@@ -20,7 +20,7 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(); // testing github
         }
 
         public IActionResult Privacy()
