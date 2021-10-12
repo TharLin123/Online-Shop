@@ -3,7 +3,16 @@
 }
 
 @{ 
-    var cart = (List<Products>)ViewData["cart"];
+    var cart = (List<Products>)ViewData["cartProducts"];
 }
 
-<h1>testing testing</h1>
+<h1>View Cart</h1> <!--will move to header-->
+
+@if(cart.Count == 0)
+    {
+                <div>Your cart is empty!</div>
+    }
+else
+    {
+    <div>test: your cart has items!</div>
+    }
