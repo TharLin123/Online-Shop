@@ -26,7 +26,6 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult Index()
         {
-            ViewData["ShoppingCartProductCount"] = shoppingCart.Count;
             return View(); // testing github
         }
 
