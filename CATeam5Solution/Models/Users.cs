@@ -15,7 +15,8 @@ namespace CATeam5Solution.Models
         public Guid ID { get; set; }
         [Required]
         public string UserName { get; set; }
-        public string Password { get; set; }
+        [Required]
+        public byte[] Password { get; set; }
 
 
         
