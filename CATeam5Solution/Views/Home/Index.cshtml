@@ -5,10 +5,52 @@
 }
 
 
+
 <h1>CONSTRUCTION IN PROGRESS</h1>
 
-    @{ foreach (Products products in allProducts)
+
+<!--still testing, semi-hardcoding the 6 products first-->
+<div class="card-deck">
+    @{
+        for (int i = 0; i < 3; i++)
         {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Product Image TBF">
+                <div class="card-body">
+                    <h5 class="card-title">@allProducts[i].ProductName</h5>
+                    <p class="card-text">@allProducts[i].Description</p>
+                    <a href="#" class="btn btn-primary">@allProducts[i].UnitPrice - Add to Cart</a>
+                </div>
+            </div>
+            <br />
+        }   
+    }
+</div>
+
+<div class="card-deck">
+    @{
+        for (int i = 4; i < 7; i++)
+        {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Product Image TBF">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @allProducts[i].ProductName</h5>
+                    <p class="card-text">@allProducts[i].Description</p>
+                    <a href="#" class="btn btn-primary">@allProducts[i].UnitPrice - Add to Cart</a>
+            </div>
+        </div>
+        <br />
+
+        }
+    }
+</div>
+
+
+@*@{
+
+    foreach (Products products in allProducts)
+    {
 
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="..." alt="Product Image TBF">
@@ -18,10 +60,11 @@
                 <a href="#" class="btn btn-primary">@products.UnitPrice - Add to Cart</a>
             </div>
         </div>
-        <br />}
-        }
+        <br />
+}*@
+}
 
-    
+
 
 
 
