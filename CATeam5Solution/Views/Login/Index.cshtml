@@ -1,29 +1,40 @@
 ﻿
-<form action="/Login/Login" method="POST">
-    <div style="text-align:center">
-        <div class="my_tbl">
-            <div class="my_row">
-                <div class="my_cell">
-                    Username:
+
+    
+    <form action="/Login/Login" method="POST">
+        <div style="text-align:center">
+            <div class="my_tbl">
+                <div class="my_row">
+                    <div class="my_cell">
+                        <b>Username:</b>
+                    </div>
+                    <div class="my_cell">
+                        <input name="username" />
+                    </div>
                 </div>
-                <div class="my_cell">
-                    <input name="username" />
+                <div class="my_row">
+                    <div class="my_cell">
+                        <b>Password:</b>
+                    </div>
+                    <div class="my_cell">
+                        <input name="password" type="password" />
+                    </div>
                 </div>
-            </div>
-            <div class="my_row">
-                <div class="my_cell">
-                    Password:
-                </div>
-                <div class="my_cell">
-                    <input name="password" />
-                </div>
-            </div>
-            <div class="my_row">
-                <div class="my_cell"></div>
-                <div class="my_cell" style="text-align: right">
-                    <input type="submit" value="Login" class="btn btn-primary" />
+                <div class="my_row">
+                    <div class="my_cell"></div>
+                    <div class="my_cell" style="text-align: center">
+                        <br />
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                        <input type="reset" value="Reset" class="btn btn-primary" />
+                    </div>
+                    <div style="font-size:80%">
+                        <br />
+                        Do not have an account?
+                    </div>
+                    <div>
+                        <a href="/Login/CreateAccount" style="font-size:80%">Create Account!</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
