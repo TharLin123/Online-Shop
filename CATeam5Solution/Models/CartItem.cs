@@ -7,7 +7,16 @@ namespace CATeam5Solution.Models
 {
     public class CartItem
     {
-        public Products Product { get; set; }
-        public int QuantitySelected { get; set; }
+        public CartItem()
+        {
+            Id = new Guid();
+        }
+
+        public Guid Id { get; set; }
+        
+        public int Quantity { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Guid UsersId { get; set; }
+        public virtual Products Product { get; set; }
     }
 }
