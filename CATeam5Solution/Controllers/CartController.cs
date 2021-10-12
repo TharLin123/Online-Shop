@@ -9,10 +9,7 @@ namespace CATeam5Solution.Controllers
 {
     public class CartController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+       [Route("/Cart")]
         public IActionResult ViewCart(List<Products> shoppingCart)
         {
             List<Products> cart = shoppingCart;
