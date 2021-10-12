@@ -19,6 +19,7 @@ namespace CATeam5Solution.Models
         public DbSet<Session> Session { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<CartItem> CartItem { get; set; }
     }
 }
     

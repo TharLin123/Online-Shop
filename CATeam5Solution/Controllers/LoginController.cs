@@ -82,6 +82,10 @@ namespace CATeam5Solution.Controllers
 
             return RedirectToAction("Index");
         }
+        public IActionResult CreateAccount()
+        {
+            return View();
+        }
     }
 }
 
