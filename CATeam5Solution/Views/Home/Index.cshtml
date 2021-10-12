@@ -1,22 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    List<Products> allProducts = (List<Products>)ViewData["allProducts"];
 
 }
-<style>
-    #test {
-        background-color: mediumpurple;
-        width: 200px;
-    }
 
-        #test:hover {
-            background-color: yellow;
-        }
-</style>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-<div id="test">
-    <p style="color:black">Yuchen is coming!</p>
-    <p style="color:darkslategray">Xu Hong's here :waves:</p>
-</div><!--Just for testing the push plz feel free to delete it -->
+
+<h1>CONSTRUCTION IN PROGRESS</h1>
+
+@{
+    foreach (Products products in allProducts)
+    {
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Product Image TBF">
+            <div class="card-body">
+                <h5 class="card-title">@products.Name</h5>
+                <p class="card-text">@products.Description</p>
+                <a href="#" class="btn btn-primary">@products.UnitPrice - Add to Cart</a>
+            </div>
+        </div>
+        <br />
+    }
+}
