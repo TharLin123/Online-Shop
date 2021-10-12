@@ -40,9 +40,10 @@ namespace CATeam5Solution.Controllers
             };
             List<Products> cartProducts = testList;
             ViewData["cartProducts"] = cartProducts;
+            ViewData["TestImage"] = "~/img/Behance-64.png"; //seed product image. need to add in products model.
             return View();
         }
 
-
+        
     }
 }

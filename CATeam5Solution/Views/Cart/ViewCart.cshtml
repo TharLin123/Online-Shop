@@ -10,9 +10,22 @@
 
 @if(cart.Count == 0)
     {
-                <div>Your cart is empty!</div>
+        <div>Your cart is empty!</div>
     }
 else
     {
-    <div>test: your cart has items!</div>
+        <div>test: your cart has items!</div>
+        <table class=cart_Table>
+            <tr>
+                <th>Item</th>
+                <th>Details</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+
+            @foreach(var cartItem in cart)
+                {
+                    <tr><img src=@ViewData["TestImage"]></tr>
+                }
+        </table>
     }
