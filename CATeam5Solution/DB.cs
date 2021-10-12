@@ -20,7 +20,6 @@ namespace CATeam5Solution
             SeedProducts();
         }
 
-
         public void SeedProducts()
         {
             dbContext.Add(new Products
@@ -67,8 +66,6 @@ namespace CATeam5Solution
                 UnitPrice = 69.99,
                 Description = "the industry-standard vector graphics app that lets you create logos, icons, drawings, typography, and complex illustrations for any medium!  "
             });
-        }
-
-            
+        }   
     }
 }

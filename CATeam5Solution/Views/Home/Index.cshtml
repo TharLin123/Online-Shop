@@ -1,22 +1,52 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-
 }
-<style>
-    #test {
-        background-color: mediumpurple;
-        width: 200px;
-    }
 
-        #test:hover {
-            background-color: yellow;
-        }
-</style>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-<div id="test">
-    <p style="color:black">Yuchen is coming!</p>
-    <p style="color:darkslategray">Xu Hong's here :waves:</p>
-</div><!--Just for testing the push plz feel free to delete it -->
+<h1 id="CartCount"></h1>
+<button type="button" id="addToCart">Add To Cart</button>
+<button type="button" id="removeFromCart">Remove From Cart</button>
+
+@section scripts{
+    <script>
+        document.getElementById('addToCart').addEventListener('click', () => {
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "/ShoppingCart/AddToCart");
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState === XMLHttpRequest.DONE) {
+
+                    if (this.status !== 200) return;
+
+                    let data = JSON.parse(this.responseText);
+                    document.getElementById('CartCount').innerHTML = data.cartCount;
+                }
+            };
+
+            xhr.send();
+        });
+
+        document.getElementById('removeFromCart').addEventListener('click', () => {
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "/ShoppingCart/RemoveFromCart");
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState === XMLHttpRequest.DONE) {
+
+                    if (this.status !== 200) return;
+
+                    let data = JSON.parse(this.responseText);
+                    document.getElementById('CartCount').innerHTML = data.cartCount;
+                }
+            };
+
+            xhr.send();
+        }); 
+    </script>
+}
+

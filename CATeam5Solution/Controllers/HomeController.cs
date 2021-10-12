@@ -18,15 +18,8 @@ namespace CATeam5Solution.Controllers
             _logger = logger;
         }
 
-        List<Products> shoppingCart = new List<Products>();
-        public void AddToCart(int ProductId)
-        {
-           
-        }
-
         public IActionResult Index()
         {
-            ViewData["ShoppingCartProductCount"] = shoppingCart.Count;
             return View(); // testing github
         }
 
