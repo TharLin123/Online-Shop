@@ -8,8 +8,16 @@ namespace CATeam5Solution.Models
 {
     public class Products
     {
+
+        public Products()
+        {
+            Id = new Guid();
+        }
+        public Guid Id { get; set; }
+        [Required]
         public int ProductID { get; set; }
-        public string Name { get; set; }
+        [Required]
+        public string ProductName { get; set; }
         public double UnitPrice { get; set; }
         public string Description { get; set; }
     }
