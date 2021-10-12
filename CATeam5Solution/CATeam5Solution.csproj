@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Search\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Search\" />
+  </ItemGroup>
 </Project>
