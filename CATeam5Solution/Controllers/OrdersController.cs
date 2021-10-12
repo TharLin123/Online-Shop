@@ -8,7 +8,16 @@ namespace CATeam5Solution.Controllers
 {
     public class OrdersController : Controller
     {
-        public IActionResult PurchaseHistory()
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult Details()
+        {
+            return View();
+        }
+
+        public IActionResult Review()
         {
             return View();
         }
