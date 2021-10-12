@@ -2,19 +2,25 @@
     ViewData["Title"] = "View Cart";
 }
 
-@{ 
-    var cart = (List<Products>)ViewData["cartProducts"];
+@{
+    List<Products> cart = (List<Products>)ViewData["cartProducts"];
 }
 
-<h1>View Cart</h1> <!--will move to header-->
+<head>
+    <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="viewcart.css" />
+    <script src="viewcart.js"></script>
+</head>
 
-@if(cart.Count == 0)
+<body>
+    <h1>View Cart</h1> <!--will move to header-->
+
+    @if (cart.Count == 0)
     {
         <div>Your cart is empty!</div>
     }
-else
+    else
     {
-        <div>test: your cart has items!</div>
         <table class=cart_Table>
             <tr>
                 <th>Item</th>
@@ -23,9 +29,19 @@ else
                 <th>Subtotal</th>
             </tr>
 
-            @foreach(var cartItem in cart)
-                {
-                    <tr><img src=@ViewData["TestImage"]></tr>
-                }
+            @foreach (Products cartItem in cart)
+            {
+                <tr>
+                    <td><img src=@ViewData["TestImage"]></td>
+                    <td>@cartItem.ProductName<br>@cartItem.Description<br>@cartItem.UnitPrice</td>
+                    <td>
+                        <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
+                        </div>
+                    </td>
+                    <td>subtotal placeholder</td>
+                </tr>
+            }
         </table>
     }
+</body>
