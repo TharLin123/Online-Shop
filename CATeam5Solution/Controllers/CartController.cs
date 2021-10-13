@@ -40,7 +40,6 @@ namespace CATeam5Solution.Controllers
             }
 
             ViewData["ShoppingCartDict"] = ShoppingCartDictReal;
-            ViewData["TestImage"] = "/img/Behance-64.png"; //seed product image. need to add in products model.
             return View();
         }
 

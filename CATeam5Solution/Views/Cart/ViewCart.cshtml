@@ -1,6 +1,6 @@
 ﻿@{
     Dictionary<Products, int> ShoppingCartDict = (Dictionary<Products, int>)ViewData["ShoppingCartDict"];
-    String a = (String)ViewData["TestImage"];
+    
 }
 
     <head>
@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <h1>View Cart</h1> will move to header
+        <h1>Shopping Cart</h1>
 
         @if (ShoppingCartDict.Count == 0)
         {
@@ -28,12 +28,12 @@
                 @foreach (var cartitem in ShoppingCartDict)
                 {
                     <tr>
-                        <td><img src="@a"></td>
+                        <td><img src="~/img/@cartitem.Key.Image"/></td>
                         <td>@cartitem.Key.ProductName<br>@cartitem.Key.Description<br>@cartitem.Key.UnitPrice</td>
                         <td>
                             <div class="quantity buttons_added">
                                 <input type="button" value="-" class="minus">
-                                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                <input type="number" step="1" min="1" max="" name="quantity" value="@cartitem.Value" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
                                 <input type="button" value="+" class="plus">
                             </div>
                         </td>
