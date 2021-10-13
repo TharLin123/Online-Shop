@@ -33,9 +33,9 @@ namespace CATeam5Solution.Controllers
         {
             //在这里获取View中需要的所有数据
            
-            Guid userId = new Guid();//test only
+            string userId = "7781ce81-5140-42d0-b914-08d98e31bbc4";//test only
             GetHistory getHistory = new GetHistory(userId, dbContext);
-            ViewData["gethistory"] = getHistory;
+            ViewData["orders"] = getHistory.Orders;
             return View();
         }//for testing the page only now
         public IActionResult Review()

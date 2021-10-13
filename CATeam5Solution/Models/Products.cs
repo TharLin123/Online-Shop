@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +13,10 @@ namespace CATeam5Solution.Models
         public Products()
         {
             Id = new Guid();
-            Orders = new List<Order>();
             ActCodes = new List<ActCode>();
+            Orders = new List<Order>();
         }
+        
         public Guid Id { get; set; }
         [Required]
         public int ProductID { get; set; }
@@ -27,7 +29,7 @@ namespace CATeam5Solution.Models
 
         //many 2 many relationship between Pro and Ord
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<ActCode> ActCodes { get; set; }//每个Product有很多的Actcode
-        
+        public virtual ICollection<ActCode> ActCodes { get; set; }
+
     }
 }

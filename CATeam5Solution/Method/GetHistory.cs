@@ -9,19 +9,20 @@ namespace CATeam5Solution.Method
     public class GetHistory
     {
         private DBContext dbContext;
-        public GetHistory(Guid userID, DBContext dbContext)
+        public GetHistory(string userID, DBContext dbContext)
         {
             UserId = userID;
             this.dbContext = dbContext;
             Orders = GetOrders();
         }
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public List<Order> Orders { get; set; }
         public List<Order> GetOrders()
         {
-            List<Order> orders = dbContext.Orders.Where(x => x.UsersId == this.UserId).ToList();
+            List<Order> orders = dbContext.Orders.Where(x => x.UsersId.ToString() == this.UserId).ToList();
             return orders;
             
         }
+        
     }
 }
