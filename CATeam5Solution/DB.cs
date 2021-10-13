@@ -71,6 +71,7 @@ namespace CATeam5Solution
             });
             dbContext.SaveChanges();
         }
+
         public void SeedUsers()
         {
             HashAlgorithm sha = SHA256.Create();

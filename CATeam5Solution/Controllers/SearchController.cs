@@ -24,7 +24,6 @@ namespace CATeam5Solution.Controllers
 
             if (searchStr != null)
             {
-
                 List<Products> products = dbContext.Products.Where(x =>
                 x.ProductName.Contains(searchStr) ||
                 x.Description.Contains(searchStr)).ToList();
