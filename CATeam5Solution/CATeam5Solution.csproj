@@ -26,7 +26,6 @@
     <None Remove="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Search\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 </Project>

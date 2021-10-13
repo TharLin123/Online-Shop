@@ -5,7 +5,7 @@
     <head>
         <link href="~/css/MyPurchase.css" rel="stylesheet" />
     </head>
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 99; i++)
     {
         <div class="producthistory">
             <div class="left">
@@ -27,22 +27,33 @@
                 <form id="score_form">
                 </form>
                 <form>
-                <div class="star-rating" id="Star">
-                    <fieldset>
-                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Outstanding">5 stars</label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Very Good">4 stars</label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Good">3 stars</label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">2 stars</label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very Poor">1 star</label>
-                    </fieldset>
-                </div>
+                    <div class="star-rating">
+                        <fieldset class="starability-basic">
+                            <p style="color:blue">Rating</p>
+                            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="rating" value="1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="rating" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="rating" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="rating" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="rating" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                        </fieldset>
+                    </div>
                 </form>
-
-                <input id="Review" type="text" onblur="javascript:check_Review();" onfocus="if(this.value=='Leave a Review') this.value='';this.style.color='#000'" value="Leave a Review" name="Review">
+                <p>Leave your review:</p>
+                <textarea rows="6" cols="40"></textarea>
+                <button>Submit</button>
             </div>
         </div>
     }
 }
+<head>
+    <link href="~/css/MyPurchase.css" rel="stylesheet" />
+</head>
 <style>
 
     .producthistory {
@@ -64,12 +75,25 @@
         display: table-cell;
         background: burlywood;
         width: 400px;
-        padding-left: 15px;
+        margin:0px;
+        padding-left:5px;
+       
     }
 
     img {
         padding-top: 10px;
     }
+
+    .textdiv {
+        width: 100%;
+        border: 1px solid #EBEBEB;
+        min-height: 24px;
+        background-color: #FFF;
+        border-radius: 5px 5px;
+        overflow-y: auto;
+        font-size: 0.9em;
+    }
+
 </style>
 
 @*<div class="producthistory">
