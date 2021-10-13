@@ -10,7 +10,7 @@ namespace CATeam5Solution.Controllers
     public class CartTestController : Controller 
     {
 
-       //For testing view only. 
+        //For testing view only. 
         public IActionResult ViewCartProduct()
         {
             List<Products> testList = new List<Products>
@@ -43,7 +43,18 @@ namespace CATeam5Solution.Controllers
             ShoppingCartDict.Add("1", 3);
             ShoppingCartDict.Add("2", 4);
             ShoppingCartDict.Add("3", 1);
-            
+
+            Dictionary<Products, int> ShoppingCartDictReal = new Dictionary<Products, int>();
+            foreach(var item in ShoppingCartDict)
+            {
+                int id = Int32.Parse(item.Key);
+                //Change to fetch from DB instead
+                Products ProductToAdd = ProductList.ProductsListt.SingleOrDefault(r => r.ProductID == id);
+                ShoppingCartDictReal.Add(ProductToAdd, item.Value);
+            }
+
+            ViewData["ShoppingCartDict"] = ShoppingCartDictReal;
+            ViewData["TestImage"] = "/img/Behance-64.png"; //seed product image. need to add in products model.
             return View();
         }
     }
