@@ -38,9 +38,10 @@ namespace CATeam5Solution.Controllers
         public IActionResult Index()
         {
             List<Products> allProducts = dbContext.Products.ToList();
+
+                ViewData["AllProducts"] = allProducts;
+                ViewData["ShoppingCart"] = ShoppingCart.ProductList;
             
-            ViewData["AllProducts"] = allProducts;
-            ViewData["ShoppingCart"] = ShoppingCart.ProductList;
             return View(); // testing github
         }
 
