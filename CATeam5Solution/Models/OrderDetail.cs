@@ -11,7 +11,6 @@ namespace CATeam5Solution.Models
         public OrderDetail()
         {
             ActivationCode = new Guid();
-           
         }
         public Guid ActivationCode { get; set; }
 
