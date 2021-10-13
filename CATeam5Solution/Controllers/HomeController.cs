@@ -30,7 +30,6 @@ namespace CATeam5Solution.Controllers
             this.dbContext = dbContext;
         }
 
-        List<Products> shoppingCart = new List<Products>();
         public void AddToCart(int ProductId)
         {
            
