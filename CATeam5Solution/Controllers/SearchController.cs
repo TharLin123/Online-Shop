@@ -32,9 +32,12 @@ namespace CATeam5Solution.Controllers
             }
             else
             {
-                ViewData["AllProducts"] = allProducts;
-                ViewData["ShoppingCart"] = ShoppingCart.ProductList;
-                searchStr = "";
+                
+                return RedirectToAction("Index", "Home"); //return to Gallery page if cleared
+
+                //ViewData["AllProducts"] = allProducts;
+                //ViewData["ShoppingCart"] = ShoppingCart.ProductList;
+                //searchStr = "";
             }
 
 
