@@ -8,5 +8,9 @@ namespace CATeam5Solution.Models
     {
         public static List<Dictionary<string, int>> ProductList = new List<Dictionary<string, int>>();
         Dictionary<string, int> ShoppingCartDict = new Dictionary<string, int>();
+
+        public static void ClearCart(){
+            ProductList.Clear();
+        }
     }
 }

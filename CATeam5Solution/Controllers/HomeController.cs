@@ -20,6 +20,7 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult Index()
         {
+            ShoppingCart.ClearCart();
             List<Products> allProducts = ProductList.ProductsListt;
             ViewData["AllProducts"] = allProducts;
             ViewData["ShoppingCart"] = ShoppingCart.ProductList;
