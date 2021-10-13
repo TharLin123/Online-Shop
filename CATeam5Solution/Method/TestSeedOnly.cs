@@ -10,7 +10,7 @@ namespace CATeam5Solution.Method
     public class TestSeedOnly
     {
         private DBContext dBContext;
-        // test user guid 08d98e278632 adam adamadam
+        // test userName adam
         public TestSeedOnly(DBContext dBContext)
         {
             this.dBContext = dBContext;
