@@ -34,6 +34,11 @@ namespace CATeam5Solution.Controllers
         {
             return View();
         }
+        
+        public IActionResult MyPurchase()
+        {
+            return View();
+        }//for testing the page only now
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
