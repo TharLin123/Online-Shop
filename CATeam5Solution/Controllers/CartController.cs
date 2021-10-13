@@ -9,16 +9,9 @@ namespace CATeam5Solution.Controllers
 {
     public class CartController : Controller
     {
-       [Route("/Cart")]
-        //public IActionResult ViewCart(List<Products> productsAddedToCart)
-        //{
-        //    List<Products> cartProducts = productsAddedToCart;
-        //    ViewData["cartProducts"] = cartProducts;
-        //    return View();
-        //}
-
-        //For testing only. Actual method above, to take arguments in parameter
-        public IActionResult ViewCart()
+      
+        //For testing only. 
+        public IActionResult ViewCartTest()
         {
             List<Products> testList = new List<Products>
             {
@@ -41,6 +34,8 @@ namespace CATeam5Solution.Controllers
             List<Products> cartProducts = testList;
             ViewData["cartProducts"] = cartProducts;
             ViewData["TestImage"] = "~/img/Behance-64.png"; //seed product image. need to add in products model.
+            return View();
+        }
         private DBContext dbContext;
 
         public CartController(DBContext dbContext)
