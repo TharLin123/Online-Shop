@@ -10,15 +10,16 @@ namespace CATeam5Solution.Models
     {
         public Users()
         {
-            ID = new Guid();
+            Id = new Guid();
+            Order = new List<Order>();
         }
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string UserName { get; set; }
         [Required]
         public byte[] Password { get; set; }
-
-
+        //1 to many between user and orders
+        public virtual ICollection<Order> Order { get; set; }//每个user会有很多的Order
         
     }
 }

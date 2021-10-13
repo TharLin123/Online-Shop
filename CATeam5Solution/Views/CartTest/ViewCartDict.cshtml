@@ -1,0 +1,45 @@
+﻿@{
+    Dictionary<Products, int> ShoppingCartDict = (Dictionary<Products, int>)ViewData["ShoppingCartDict"];
+    String a = (String)ViewData["TestImage"];
+}
+
+    <head>
+        <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="viewcart.css" />
+        <script src="~/js/viewcart.js"></script>
+    </head>
+
+    <body>
+        <h1>View Cart</h1> will move to header
+
+        @if (ShoppingCartDict.Count == 0)
+        {
+            <div>Your cart is empty!</div>
+        }
+        else
+        {
+            <table class=cart_Table>
+                <tr>
+                    <th>Item</th>
+                    <th>Details</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                @foreach (var cartitem in ShoppingCartDict)
+                {
+                    <tr>
+                        <td><img src="@a"></td>
+                        <td>@cartitem.Key.ProductName<br>@cartitem.Key.Description<br>@cartitem.Key.UnitPrice</td>
+                        <td>
+                            <div class="quantity buttons_added">
+                                <input type="button" value="-" class="minus">
+                                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                <input type="button" value="+" class="plus">
+                            </div>
+                        </td>
+                        <td>subtotal placeholder</td>
+                    </tr>
+                }
+            </table>
+        }
+    </body>

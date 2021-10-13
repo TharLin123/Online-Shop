@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home Page";
     List<Products> allProducts = (List<Products>)ViewData["allProducts"];
 }
+<<<<<<< HEAD
 <div class="container">
       <div class="row mx-auto">
 @{
@@ -16,10 +17,70 @@
                 <p class="card-text" id="@products.ProductID"></p>
                 <a onclick="addToCart(@products.ProductID);" class="btn btn-primary">$@products.UnitPrice - Add to Cart</a>
                 <a onclick="removeFromCart(@products.ProductID);" class="btn btn-primary">Remove from Cart</a>
+=======
+<h1>CONSTRUCTION IN PROGRESS</h1>
+
+
+<!--still testing, semi-hardcoding the 6 products first-->
+<div class="card-deck">
+    @{//first row 
+        for (int i = 0; i < 3; i++)
+        {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Product Image TBF">
+                <div class="card-body">
+                    <h5 class="card-title">@allProducts[i].ProductName</h5>
+                    <p class="card-text">@allProducts[i].Description</p>
+                    <a href="#" class="btn btn-primary">@allProducts[i].UnitPrice - Add to Cart</a>
+                </div>
+>>>>>>> 82e382bba115d95d4e4ac70b370b205ad7002585
             </div>
-        </div>
-        <br/>
+        }
     }
+<<<<<<< HEAD
 }
     </div>
 </div>
+=======
+</div>
+
+<br /> <!--rudimentary implementation of spacing between rows-->
+
+
+<div class="card-deck">
+    @{//first row
+        for (int i = 3; i < 6; i++)
+        {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Product Image TBF">
+                <div class="card-body">
+                    <h5 class="card-title">@allProducts[i].ProductName</h5>
+                    <p class="card-text">@allProducts[i].Description</p>
+                    <a href="#" class="btn btn-primary">@allProducts[i].UnitPrice - Add to Cart</a>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+            <p>Shopping Cart Count</p><h1 id="CartCount"></h1>
+
+            @{
+                foreach (Products products in allProducts)
+                {
+                    string url = "/images/" + Convert.ToString(products.ProductID) + ".png";
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@url" alt="Product Image TBF">
+                        <div class="card-body">
+                            <h5 class="card-title">@products.ProductName</h5>
+                            <p class="card-text">@products.Description</p>
+                            <p class="card-text">@products.UnitPrice</p>
+                            <p class="card-text">Amount of each item in cart :</p>
+                            <p class="card-text" id="@products.ProductID"></p>
+                            <a onclick="addToCart(@products.ProductID);" class="btn btn-primary">Add to Cart</a>
+                            <a onclick="removeFromCart(@products.ProductID);" class="btn btn-primary">Remove from Cart</a>
+                        </div>
+                    </div>
+                }
+            }
+>>>>>>> 82e382bba115d95d4e4ac70b370b205ad7002585
