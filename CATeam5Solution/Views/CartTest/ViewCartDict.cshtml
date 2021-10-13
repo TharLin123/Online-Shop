@@ -1,6 +1,7 @@
 ﻿@{
     Dictionary<Products, int> ShoppingCartDict = (Dictionary<Products, int>)ViewData["ShoppingCartDict"];
     String a = (String)ViewData["TestImage"];
+    
 }
 
     <head>
@@ -11,6 +12,7 @@
 
     <body>
         <h1>View Cart</h1> will move to header
+
 
         @if (ShoppingCartDict.Count == 0)
         {
@@ -25,19 +27,24 @@
                     <th>Quantity</th>
                     <th>Subtotal</th>
                 </tr>
+                
                 @foreach (var cartitem in ShoppingCartDict)
                 {
+                    var placeholder = "subtotal" + @cartitem.Key.ProductID;
+                    var placeholder2 = "unitprice" + @cartitem.Key.ProductID;
+                    //var placeholder3 = "value" + @cartitem.Key.ProductID;
+
                     <tr>
                         <td><img src="@a"></td>
-                        <td>@cartitem.Key.ProductName<br>@cartitem.Key.Description<br>@cartitem.Key.UnitPrice</td>
+                        <td>@cartitem.Key.ProductName<br>@cartitem.Key.Description<br><span id=@placeholder2>@cartitem.Key.UnitPrice</span></td>
                         <td>
                             <div class="quantity buttons_added">
-                                <input type="button" value="-" class="minus">
-                                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
-                                <input type="button" value="+" class="plus">
+                                @*<input type="button" value="-" class="minus">*@
+                                <input id=@cartitem.Key.ProductID type="number" step="1" min="1" max="" name="quantity" value="1" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                @*<input type="button" value="+" class="plus">*@
                             </div>
                         </td>
-                        <td>subtotal placeholder</td>
+                        <td id=@placeholder>@cartitem.Key.UnitPrice</td>
                     </tr>
                 }
             </table>
