@@ -44,11 +44,13 @@ namespace CATeam5Solution.Controllers
 
             Dictionary<string, int> ShoppingCartItem = ShoppingCart.ProductList.SingleOrDefault(product => product["ProductId"] == id);
 
-            ShoppingCartItem["Amount"] -= 1;
-
-            if (ShoppingCartItem["Amount"] == 0)
+            if(ShoppingCartItem != null)
             {
-                ShoppingCart.ProductList.Remove(ShoppingCartItem);
+                ShoppingCartItem["Amount"] -= 1;
+                if (ShoppingCartItem["Amount"] == 0)
+                {
+                    ShoppingCart.ProductList.Remove(ShoppingCartItem);
+                }
             }
 
             foreach (Dictionary<string, int> Item in ShoppingCart.ProductList)

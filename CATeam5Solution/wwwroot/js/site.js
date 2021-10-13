@@ -16,7 +16,6 @@ addToCart = function(productId) {
             if (this.status !== 200) return;
 
             let data = JSON.parse(this.responseText);
-            console.log(data);
             document.getElementById('CartCount').innerHTML = data.cartCount;
             document.getElementById(productId).innerHTML = data.shoppingCart.find(item => item["ProductId"] == productId).Amount;
         }
@@ -38,8 +37,6 @@ removeFromCart = function(productId) {
             if (this.status !== 200) return;
 
             let data = JSON.parse(this.responseText);
-            console.log(data);
-            console.log(data.shoppingCart);
             document.getElementById('CartCount').innerHTML = data.cartCount;
             document.getElementById(productId).innerHTML = data.shoppingCart.find(item => item["ProductId"] == productId).Amount;
         }
