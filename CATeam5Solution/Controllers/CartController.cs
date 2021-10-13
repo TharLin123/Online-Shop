@@ -9,33 +9,7 @@ namespace CATeam5Solution.Controllers
 {
     public class CartController : Controller
     {
-      
-        //For testing only. 
-        public IActionResult ViewCartTest()
-        {
-            List<Products> testList = new List<Products>
-            {
-                new Products
-                {
-                    ProductID = 1,
-                    ProductName = "PhotoEditShop",
-                    UnitPrice = 39.99,
-                    Description = "This app provides you with the capabilities to do professional design and photo editing!"
-                 },
 
-                new Products
-                {
-                    ProductID = 3,
-                    ProductName = "ProPremier​",
-                    UnitPrice = 59.99,
-                    Description = "Premium version of the premier video editing application!"
-                }
-            };
-            List<Products> cartProducts = testList;
-            ViewData["cartProducts"] = cartProducts;
-            ViewData["TestImage"] = "~/img/Behance-64.png"; //seed product image. need to add in products model.
-            return View();
-        }
         private DBContext dbContext;
 
         public CartController(DBContext dbContext)
@@ -54,10 +28,6 @@ namespace CATeam5Solution.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-
-            /*List<Products> cart = shoppingCart;
-            ViewData["cart"] = cart;
-            return View();*/ //can remove this?
 
             Guid userid = session.UserId;
 
