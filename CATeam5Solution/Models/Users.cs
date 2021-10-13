@@ -10,15 +10,15 @@ namespace CATeam5Solution.Models
     {
         public Users()
         {
-            ID = new Guid();
+            Id = new Guid();
         }
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string UserName { get; set; }
         [Required]
         public byte[] Password { get; set; }
 
-
+        
         
     }
 }
