@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CATeam5Solution.Controllers
 {
-    public class OrderDetailController : Controller
+    public class MyPurchaseController : Controller
     {
         public IActionResult Index()
         {
@@ -21,6 +21,10 @@ namespace CATeam5Solution.Controllers
             return View();
         }
 
+        public IActionResult MyPurchase()
+        {
+            return View();
+        }//for testing the page only now
         public IActionResult Review()
         {
 
