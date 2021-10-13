@@ -6,7 +6,7 @@
     <head>
         <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="viewcart.css" />
-        <script src="viewcart.js"></script>
+        <script src="~/js/viewcart.js"></script>
     </head>
 
     <body>
@@ -25,7 +25,6 @@
                     <th>Quantity</th>
                     <th>Subtotal</th>
                 </tr>
-                <p>@a</p>
                 @foreach (var cartitem in ShoppingCartDict)
                 {
                     <tr>
@@ -33,7 +32,9 @@
                         <td>@cartitem.Key.ProductName<br>@cartitem.Key.Description<br>@cartitem.Key.UnitPrice</td>
                         <td>
                             <div class="quantity buttons_added">
-                                <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
+                                <input type="button" value="-" class="minus">
+                                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                <input type="button" value="+" class="plus">
                             </div>
                         </td>
                         <td>subtotal placeholder</td>
