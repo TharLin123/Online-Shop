@@ -14,6 +14,8 @@ namespace CATeam5Solution.Models
         public Guid Id { get; set; }
         public virtual Guid OrderId { get; set; }
         public virtual Guid ProductsId { get; set; }
+        
+        
     }
     
 }

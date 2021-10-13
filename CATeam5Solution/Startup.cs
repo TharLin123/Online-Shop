@@ -1,3 +1,4 @@
+using CATeam5Solution.Method;
 using CATeam5Solution.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -67,7 +68,10 @@ namespace CATeam5Solution
                 dbContext.Database.EnsureCreated();
             }
             DB db = new DB(dbContext);
-            //db.Seed();
+            TestSeedOnly ts = new TestSeedOnly(dbContext);
+
+            db.Seed();
+            ts.MakeOrders();
         }         
     }
     
