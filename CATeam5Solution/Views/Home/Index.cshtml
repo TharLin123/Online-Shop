@@ -1,23 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     List<Products> allProducts = (List<Products>)ViewData["allProducts"];
-
 }
-
-
 <h1>CONSTRUCTION IN PROGRESS</h1>
+
+<p>Shopping Cart Count</p><h1 id="CartCount"></h1>
 
 @{
     foreach (Products products in allProducts)
     {
+        string url = "/images/" + Convert.ToString(products.ProductID) + ".png";
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Product Image TBF">
+            <img class="card-img-top" src="@url" alt="Product Image TBF">
             <div class="card-body">
                 <h5 class="card-title">@products.ProductName</h5>
                 <p class="card-text">@products.Description</p>
-                <a href="#" class="btn btn-primary">@products.UnitPrice - Add to Cart</a>
+                <p class="card-text">@products.UnitPrice</p>
+                <p class="card-text">Amount of each item in cart :</p>
+                <p class="card-text" id="@products.ProductID"></p>
+                <a onclick="addToCart(@products.ProductID);" class="btn btn-primary">Add to Cart</a>
+                <a onclick="removeFromCart(@products.ProductID);" class="btn btn-primary">Remove from Cart</a>
             </div>
         </div>
-        <br />
+        <br/>
     }
 }

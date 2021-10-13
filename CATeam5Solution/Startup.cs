@@ -27,15 +27,16 @@ namespace CATeam5Solution
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-           
-            services.AddDbContext<DBContext>(opt =>
-            opt.UseLazyLoadingProxies().UseSqlServer(
-            Configuration.GetConnectionString("db_conn"))
-            );
+
+            //services.AddDbContext<DBContext>(opt =>
+            //opt.UseLazyLoadingProxies().UseSqlServer(
+            //Configuration.GetConnectionString("db_conn"))
+            //);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,[FromServices] DBContext dbContext)
+        //[FromServices]DBContext dbContext
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -60,12 +61,12 @@ namespace CATeam5Solution
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            if (!dbContext.Database.CanConnect())
-            {
-                dbContext.Database.EnsureCreated();
-            }
-            DB db = new DB(dbContext);
-            db.Seed();
+            //if (!dbContext.Database.CanConnect())
+            //{
+            //    dbContext.Database.EnsureCreated();
+            //}
+            //DB db = new DB(dbContext);
+            //db.Seed();
         }         
     }
     
