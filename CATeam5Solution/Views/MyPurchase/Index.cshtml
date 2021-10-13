@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
         <div class="producthistory">
             <div class="left">
@@ -13,15 +13,35 @@
             </div>
 
             <div class="right">
-                <p>Purchase on: 12, OCT, 2021</p>
-                <p>Quantity: 2</p>
+                <p>Purchase on: @ViewData[""]</p>
+                <p>Quantity: @ViewData[""]</p>
                 <p>
                     Activation Code: <select>
                         <option value="value">text</option>
                         <option value="value">text</option>
                     </select>
                 </p>
-                <p>Leave A Review!</p>
+                <form id="score_form">
+                </form>
+                <form>
+                    <div class="star">
+                        <input type="radio" id="rate5" name="rating" value="5">
+                        <label for="rate5" title="Amazing"></label>
+
+                        <input type="radio" id="rate4" name="rating" value="4">
+                        <label for="rate4" title="Good"></label>
+
+                        <input type="radio" id="rate3" name="rating" value="3">
+                        <label for="rate3" title="Average"></label>
+
+                        <input type="radio" id="rate2" name="rating" value="2">
+                        <label for="rate2" title="Not good"></label>
+
+                        <input type="radio" id="rate1" name="rating" value="1">
+                        <label for="rate1" title="Terrible"></label>
+                    </div>
+                </form>
+                <input id="Review" type="text" onblur="javascript:check_Review();" onfocus="if(this.value=='Leave a Review') this.value='';this.style.color='#000'" value="Leave a Review" name="Review">
             </div>
         </div>
     }
