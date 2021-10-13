@@ -2,6 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    <head>
+        <link href="~/css/MyPurchase.css" rel="stylesheet" />
+    </head>
     for (int i = 0; i < 5; i++)
     {
         <div class="producthistory">
@@ -24,23 +27,17 @@
                 <form id="score_form">
                 </form>
                 <form>
-                    <div class="star">
-                        <input type="radio" id="rate5" name="rating" value="5">
-                        <label for="rate5" title="Amazing"></label>
-
-                        <input type="radio" id="rate4" name="rating" value="4">
-                        <label for="rate4" title="Good"></label>
-
-                        <input type="radio" id="rate3" name="rating" value="3">
-                        <label for="rate3" title="Average"></label>
-
-                        <input type="radio" id="rate2" name="rating" value="2">
-                        <label for="rate2" title="Not good"></label>
-
-                        <input type="radio" id="rate1" name="rating" value="1">
-                        <label for="rate1" title="Terrible"></label>
-                    </div>
+                <div class="star-rating" id="Star">
+                    <fieldset>
+                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Outstanding">5 stars</label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Very Good">4 stars</label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Good">3 stars</label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">2 stars</label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very Poor">1 star</label>
+                    </fieldset>
+                </div>
                 </form>
+
                 <input id="Review" type="text" onblur="javascript:check_Review();" onfocus="if(this.value=='Leave a Review') this.value='';this.style.color='#000'" value="Leave a Review" name="Review">
             </div>
         </div>
