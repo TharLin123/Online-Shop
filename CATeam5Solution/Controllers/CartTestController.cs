@@ -11,7 +11,7 @@ namespace CATeam5Solution.Controllers
     {
 
        //For testing view only. 
-        public IActionResult Index()
+        public IActionResult ViewCartProduct()
         {
             List<Products> testList = new List<Products>
             {
@@ -34,6 +34,16 @@ namespace CATeam5Solution.Controllers
             List<Products> cartProducts = testList;
             ViewData["cartProducts"] = cartProducts;
             ViewData["TestImage"] = "~/img/Behance-64.png"; //seed product image. need to add in products model.
+            return View();
+        }
+
+        public IActionResult ViewCartDict()
+        {
+            Dictionary<string, int> ShoppingCartDict = new Dictionary<string, int>();
+            ShoppingCartDict.Add("1", 3);
+            ShoppingCartDict.Add("2", 4);
+            ShoppingCartDict.Add("3", 1);
+            
             return View();
         }
     }
