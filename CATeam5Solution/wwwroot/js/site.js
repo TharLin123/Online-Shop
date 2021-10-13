@@ -17,7 +17,12 @@ addToCart = function(productId) {
 
             let data = JSON.parse(this.responseText);
             document.getElementById('CartCount').innerHTML = data.cartCount;
-            document.getElementById(productId).innerHTML = data.shoppingCart.find(item => item["ProductId"] == productId).Amount;
+            let cartItem = data.shoppingCart.find(item => item["ProductId"] == productId)
+            if(cartItem != null){
+                document.getElementById(productId).innerHTML = cartItem.Amount;
+            }else {
+                document.getElementById(productId).innerHTML = '';
+            }
         }
     };
 
@@ -38,7 +43,12 @@ removeFromCart = function(productId) {
 
             let data = JSON.parse(this.responseText);
             document.getElementById('CartCount').innerHTML = data.cartCount;
-            document.getElementById(productId).innerHTML = data.shoppingCart.find(item => item["ProductId"] == productId).Amount;
+            let cartItem = data.shoppingCart.find(item => item["ProductId"] == productId)
+            if(cartItem != null){
+                document.getElementById(productId).innerHTML = cartItem.Amount;
+            } else {
+                document.getElementById(productId).innerHTML = '';
+            }
         }
     };
 
