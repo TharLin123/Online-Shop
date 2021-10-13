@@ -22,3 +22,31 @@ String.prototype.getDecimals || (String.prototype.getDecimals = function () {
         e = a.attr("step");
     b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
 });
+
+window.onload = function () {
+    /* setup event listeners for tasks selection */
+    let elems = document.getElementsByClassName("input-text");
+    for (let i = 0; i < elems.length; i++) {
+        elems[i].addEventListener('input', UpdatePrice);
+    }
+    
+}
+
+function UpdatePrice(event) {
+    let target = event.currentTarget;
+
+    let targetid = target.id;
+
+    /*let valueid = "value" + targetid;*/
+    let subtotalid = "subtotal" + targetid;
+    let unitpriceid = "unitprice" + targetid;
+
+    let value = document.getElementById(targetid).value;
+    let unitprice = document.getElementById(unitpriceid).innerHTML;
+
+    let newsubtotal = value * unitprice;
+
+    document.getElementById(subtotalid).innerHTML = newsubtotal;
+
+    
+}

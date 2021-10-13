@@ -9,11 +9,17 @@ namespace CATeam5Solution.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        private DBContext dbContext;
+        public ShoppingCartController(DBContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         [HttpPost]
         public IActionResult AddToCart(int id)
         {
             int Count = 0;
-            Products ProductToAdd = ProductList.ProductsListt.SingleOrDefault(r => r.ProductID == id);
+            Products ProductToAdd = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
 
             Dictionary<string, int> ShoppingCartItem = ShoppingCart.ProductList.SingleOrDefault(product => product["ProductId"] == id);
 
@@ -40,7 +46,7 @@ namespace CATeam5Solution.Controllers
         public IActionResult RemoveFromCart(int id)
         {
             int Count = 0;
-            Products ProductToAdd = ProductList.ProductsListt.SingleOrDefault(r => r.ProductID == id);
+            Products ProductToAdd = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
 
             Dictionary<string, int> ShoppingCartItem = ShoppingCart.ProductList.SingleOrDefault(product => product["ProductId"] == id);
 

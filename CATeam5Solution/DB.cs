@@ -30,21 +30,24 @@ namespace CATeam5Solution
                 ProductID = 1,
                 ProductName = "PhotoEditShop",
                 UnitPrice = 39.99,
-                Description = "This app provides you with the capabilities to do professional design and photo editing!"
+                Description = "This app provides you with the capabilities to do professional design and photo editing!",
+                Image = "Photoshop.png"
             });
             dbContext.Add(new Products
             {
                 ProductID = 2,
                 ProductName = "readPDF Pro",
                 UnitPrice = 9.99,
-                Description = "Pro Version of the readPDF! Allows you to edit, encrypt and Sign off in a pdf document!  "
+                Description = "Pro Version of the readPDF! Allows you to edit, encrypt and Sign off in a pdf document!",
+                Image = "AcrobatDC.png"
             });
             dbContext.Add(new Products
             {
                 ProductID = 3,
                 ProductName = "ProPremier​",
                 UnitPrice = 59.99,
-                Description = "Premium version of the premier video editing application!  "
+                Description = "Premium version of the premier video editing application!",
+                Image = "Premiere.png"
             });
 
             dbContext.Add(new Products
@@ -52,14 +55,16 @@ namespace CATeam5Solution
                 ProductID = 4,
                 ProductName = "RoomLight​",
                 UnitPrice = 39.99,
-                Description = "A creative image manipulation software that allows you to create a workflow so ease your life as both an avid or pro photographer   "
+                Description = "A creative image manipulation software that allows you to create a workflow so ease your life as both an avid or pro photographer",
+                Image = "Lightroom.png"
             });
             dbContext.Add(new Products
             {
                 ProductID = 5,
                 ProductName = "EffectsAfter",
                 UnitPrice = 69.99,
-                Description = " VFX and Motion graphics software for the budding animators and 3d designers!  "
+                Description = " VFX and Motion graphics software for the budding animators and 3d designers!",
+                Image = "AfterEffects.png"
             });
 
             dbContext.Add(new Products
@@ -67,10 +72,12 @@ namespace CATeam5Solution
                 ProductID = 6,
                 ProductName = "illustrator",
                 UnitPrice = 69.99,
-                Description = "the industry-standard vector graphics app that lets you create logos, icons, drawings, typography, and complex illustrations for any medium!  "
+                Description = "the industry-standard vector graphics app that lets you create logos, icons, drawings, typography, and complex illustrations for any medium!",
+                Image = "Illustrator.png"
             });
             dbContext.SaveChanges();
         }
+
         public void SeedUsers()
         {
             HashAlgorithm sha = SHA256.Create();

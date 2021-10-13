@@ -30,15 +30,9 @@ namespace CATeam5Solution.Controllers
             this.dbContext = dbContext;
         }
 
-        public void AddToCart(int ProductId)
-        {
-           
-        }
-
         public IActionResult Index()
         {
             List<Products> allProducts = dbContext.Products.ToList();
-
                 ViewData["AllProducts"] = allProducts;
                 ViewData["ShoppingCart"] = ShoppingCart.ProductList;
             
@@ -49,8 +43,6 @@ namespace CATeam5Solution.Controllers
         {
             return View();
         }
-        
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
