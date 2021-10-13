@@ -34,12 +34,12 @@
                     //var placeholder3 = "value" + @cartitem.Key.ProductID;
 
                     <tr>
-                        <td><img src="@a"></td>
+                        <td><img src="@cartitem.Key.Image"></td>
                         <td>@cartitem.Key.ProductName<br>@cartitem.Key.Description<br><span id=@placeholder2>@cartitem.Key.UnitPrice</span></td>
                         <td>
                             <div class="quantity buttons_added">
                                 @*<input type="button" value="-" class="minus">*@
-                                <input id=@cartitem.Key.ProductID type="number" step="1" min="1" max="" name="quantity" value="1" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                <input id=@cartitem.Key.ProductID type="number" step="1" min="1" max="" name="quantity" value="@cartitem.Value" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
                                 @*<input type="button" value="+" class="plus">*@
                             </div>
                         </td>
