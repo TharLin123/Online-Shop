@@ -21,7 +21,8 @@ namespace CATeam5Solution.Controllers
         {
             return View();
         }
-        [Route("Cart")] // Route here first to test view
+       
+        [Route("Cart")] // Route here first to test view. Need to take in dictionary.
         public IActionResult ViewCart()
         {
             Dictionary<string, int> ShoppingCartDict = new Dictionary<string, int>();
