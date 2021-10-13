@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CATeam5Solution.Method;
+using CATeam5Solution.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +11,11 @@ namespace CATeam5Solution.Controllers
 {
     public class MyPurchaseController : Controller
     {
+       private readonly DBContext dbContext;
+        public MyPurchaseController(DBContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
         public IActionResult Index()
         {
             //check order status and login status,both true, jump to this page
@@ -23,6 +31,11 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult MyPurchase()
         {
+            //在这里获取View中需要的所有数据
+           
+            Guid userId = new Guid();//test only
+            GetHistory getHistory = new GetHistory(userId, dbContext);
+            ViewData["gethistory"] = getHistory;
             return View();
         }//for testing the page only now
         public IActionResult Review()
