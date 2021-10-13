@@ -2,7 +2,29 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    for (int i = 0; i < 4; i++)
+    {
+        <div class="producthistory">
+            <div class="left">
+                <img src="https://www.dute.org/imgplaceholder/360x240">
+                <p>Product Name</p>
+                <p>The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</p>
+                <button>DownLoad</button>
+            </div>
 
+            <div class="right">
+                <p>Purchase on: 12, OCT, 2021</p>
+                <p>Quantity: 2</p>
+                <p>
+                    Activation Code: <select>
+                        <option value="value">text</option>
+                        <option value="value">text</option>
+                    </select>
+                </p>
+                <p>Leave A Review!</p>
+            </div>
+        </div>
+    }
 }
 <style>
 
@@ -12,6 +34,7 @@
         display: block;
         margin: 0 auto;
     }
+
     .left {
         display: table-cell;
         background: yellow;
@@ -19,19 +42,20 @@
         text-align: center;
         margin: 10px;
     }
+
     .right {
         display: table-cell;
         background: burlywood;
         width: 400px;
-        padding-left:15px;
-    }
-    img {
-    padding-top:10px;
+        padding-left: 15px;
     }
 
+    img {
+        padding-top: 10px;
+    }
 </style>
 
-<div class="producthistory">
+@*<div class="producthistory">
     <div class="left">
         <img src="https://www.dute.org/imgplaceholder/360x240">
         <p>Product Name</p>
@@ -50,32 +74,32 @@
         </p>
         <p>Leave A Review!</p>
     </div>
-</div>
+</div>*@
 
 
 @*<div class="historydiv1">
-    <table border="1">
-        <tr>
-            <td>
-                <div class="leftpart">
-                    <img src="https://www.dute.org/imgplaceholder/800x240" width="400" height="240">
-                    <div class="pro_name">Product Name</div>
-                    <div class="pro-desc">The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</div>
-                    <button>DownLoad</button>
-                </div>
-            </td>
-            <td>
-                <div class="rightpart" style="display:inline">
-                    <p>Purchase on: 12, OCT, 2021</p>
-                    <p>Quantity: 2</p>
-                    <p>
-                        Activation Code: <select>
-                            <option value="value">text</option>
-                            <option value="value">text</option>
-                        </select>
-                    </p>
-                    <p>Leave A Review!</p>
-                </div>
-            </td>
-    </table>
-</div>*@
+        <table border="1">
+            <tr>
+                <td>
+                    <div class="leftpart">
+                        <img src="https://www.dute.org/imgplaceholder/800x240" width="400" height="240">
+                        <div class="pro_name">Product Name</div>
+                        <div class="pro-desc">The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</div>
+                        <button>DownLoad</button>
+                    </div>
+                </td>
+                <td>
+                    <div class="rightpart" style="display:inline">
+                        <p>Purchase on: 12, OCT, 2021</p>
+                        <p>Quantity: 2</p>
+                        <p>
+                            Activation Code: <select>
+                                <option value="value">text</option>
+                                <option value="value">text</option>
+                            </select>
+                        </p>
+                        <p>Leave A Review!</p>
+                    </div>
+                </td>
+        </table>
+    </div>*@
