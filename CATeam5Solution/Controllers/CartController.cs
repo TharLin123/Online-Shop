@@ -9,6 +9,7 @@ namespace CATeam5Solution.Controllers
 {
     public class CartController : Controller
     {
+
         private DBContext dbContext;
 
         public CartController(DBContext dbContext)
@@ -27,10 +28,6 @@ namespace CATeam5Solution.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-
-            /*List<Products> cart = shoppingCart;
-            ViewData["cart"] = cart;
-            return View();*/ //can remove this?
 
             Guid userid = session.UserId;
 

@@ -27,7 +27,7 @@ namespace CATeam5Solution
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-           
+
             services.AddDbContext<DBContext>(opt =>
             opt.UseLazyLoadingProxies().UseSqlServer(
             Configuration.GetConnectionString("db_conn"))
@@ -35,7 +35,9 @@ namespace CATeam5Solution
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,[FromServices] DBContext dbContext)
+        //[FromServices]DBContext dbContext
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            [FromServices] DBContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -65,7 +67,7 @@ namespace CATeam5Solution
                 dbContext.Database.EnsureCreated();
             }
             DB db = new DB(dbContext);
-            db.Seed();
+            //db.Seed();
         }         
     }
     
