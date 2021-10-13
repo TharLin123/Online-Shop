@@ -1,6 +1,8 @@
+using CATeam5Solution.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,13 +27,15 @@ namespace CATeam5Solution
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
- /*           services.AddDbContext<DB>(opt =>
-            opt.UseLazyLoadingProxies().UseSqlServer(
-        Configuration.GetConnectionString("db_conn"))
-);*/
+
+            //services.AddDbContext<DBContext>(opt =>
+            //opt.UseLazyLoadingProxies().UseSqlServer(
+            //Configuration.GetConnectionString("db_conn"))
+            //);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //[FromServices]DBContext dbContext
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -50,14 +54,19 @@ namespace CATeam5Solution
             app.UseRouting();
 
             app.UseAuthorization();
-
+        
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            //if (!dbContext.Database.CanConnect())
+            //{
+            //    dbContext.Database.EnsureCreated();
+            //}
+            //DB db = new DB(dbContext);
+            //db.Seed();
         }         
     }
     
