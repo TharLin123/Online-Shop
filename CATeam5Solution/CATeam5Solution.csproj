@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Search\" />
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 </Project>
