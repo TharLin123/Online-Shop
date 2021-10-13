@@ -2,17 +2,15 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-
-    List<Order> orders = (List<Order>)ViewData["orders"];
-
-
-
+    <head>
+        <link href="~/css/MyPurchase.css" rel="stylesheet" />
+    </head>
     for (int i = 0; i < 5; i++)
     {
         <div class="producthistory">
             <div class="left">
                 <img src="https://www.dute.org/imgplaceholder/360x240">
-                <p>ProductName</p>
+                <p>Product Name</p>
                 <p>The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</p>
                 <button>DownLoad</button>
             </div>
@@ -29,15 +27,15 @@
                 <form id="score_form">
                 </form>
                 <form>
-                    <div class="star-rating" id="Star">
-                        <fieldset>
-                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Outstanding">5 stars</label>
-                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Very Good">4 stars</label>
-                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Good">3 stars</label>
-                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">2 stars</label>
-                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very Poor">1 star</label>
-                        </fieldset>
-                    </div>
+                <div class="star-rating" id="Star">
+                    <fieldset>
+                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Outstanding">5 stars</label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Very Good">4 stars</label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Good">3 stars</label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">2 stars</label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very Poor">1 star</label>
+                    </fieldset>
+                </div>
                 </form>
 
                 <input id="Review" type="text" onblur="javascript:check_Review();" onfocus="if(this.value=='Leave a Review') this.value='';this.style.color='#000'" value="Leave a Review" name="Review">
@@ -78,25 +76,25 @@
 </style>
 
 @*<div class="producthistory">
-        <div class="left">
-            <img src="https://www.dute.org/imgplaceholder/360x240">
-            <p>Product Name</p>
-            <p>The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</p>
-            <button>DownLoad</button>
-        </div>
+    <div class="left">
+        <img src="https://www.dute.org/imgplaceholder/360x240">
+        <p>Product Name</p>
+        <p>The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</p>
+        <button>DownLoad</button>
+    </div>
 
-        <div class="right">
-            <p>Purchase on: 12, OCT, 2021</p>
-            <p>Quantity: 2</p>
-            <p>
-                Activation Code: <select>
-                    <option value="value">text</option>
-                    <option value="value">text</option>
-                </select>
-            </p>
-            <p>Leave A Review!</p>
-        </div>
-    </div>*@
+    <div class="right">
+        <p>Purchase on: 12, OCT, 2021</p>
+        <p>Quantity: 2</p>
+        <p>
+            Activation Code: <select>
+                <option value="value">text</option>
+                <option value="value">text</option>
+            </select>
+        </p>
+        <p>Leave A Review!</p>
+    </div>
+</div>*@
 
 
 @*<div class="historydiv1">

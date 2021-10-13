@@ -7,21 +7,38 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace CATeam5Solution.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        /*Have to comment out the following HomeController default
+         * Otherwise cannot put in DBContext and constructor
+         * which then results in not being able to add all products 
+         * to the list (XH)
+         */
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        private DBContext dbContext;
+        public HomeController(DBContext dbContext)
         {
-            _logger = logger;
+            this.dbContext = dbContext;
+        }
+
+        public void AddToCart(int ProductId)
+        {
+           
         }
 
         public IActionResult Index()
         {
-            ShoppingCart.ClearCart();
-            List<Products> allProducts = ProductList.ProductsListt;
+            List<Products> allProducts = dbContext.Products.ToList();
+            
             ViewData["AllProducts"] = allProducts;
             ViewData["ShoppingCart"] = ShoppingCart.ProductList;
             return View(); // testing github
