@@ -18,7 +18,6 @@ namespace CATeam5Solution.Models
         public Guid Id { get; set; }
         public DateTime OrderDate { get; set; }
         public virtual Guid UsersId { get; set; }
-
         public virtual ICollection<Products> Products { get; set; }
     }
 }
