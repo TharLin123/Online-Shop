@@ -20,6 +20,8 @@ namespace CATeam5Solution.Models
         public DbSet<Products> Products { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<CartItem> CartItem { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ActCode> ActCode { get; set; }
     }
 }
     

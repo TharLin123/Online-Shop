@@ -12,6 +12,7 @@ namespace CATeam5Solution.Models
         {
             Id = new Guid();
             Order = new List<Order>();
+            
         }
         public Guid Id { get; set; }
         [Required]
@@ -19,7 +20,8 @@ namespace CATeam5Solution.Models
         [Required]
         public byte[] Password { get; set; }
         //1 to many between user and orders
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Order> Order { get; set; }//每个user会有很多的Order
+        
         
     }
 }
