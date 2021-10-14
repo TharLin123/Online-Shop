@@ -2,32 +2,32 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    List<Products> products = (List<Products>)ViewData["products"];
+    List<MyPurchaseViewModel> productDetails = (List<MyPurchaseViewModel>)ViewData["myPurchaseViewModel"];
  }
 @{
 
     <head>
         <link href="~/css/MyPurchase.css" rel="stylesheet" />
     </head>
-    @if (products == null)
+    @if (productDetails == null)
     {
         <div>Your history is empty.</div>
     }
     else
     {
-        foreach (var item in products)
+        foreach (var item in productDetails)
         {
             <div class="producthistory">
                 <div class="left">
                     <img src="https://www.dute.org/imgplaceholder/360x240">
-                    <p>@item.ProductName</p>
+                    <p>@item.Name</p>
                     <p>@item.Description</p>
                     <button>DownLoad</button>
                 </div>
 
                 <div class="right">
-                    <p>Purchase on: @ViewData[""]</p>
-                    <p>Quantity: @ViewData[""]</p>
+                    <p>Purchase on: @item.DateTime</p>
+                    <p>Quantity: @item.Quantity</p>
                     <p>
                         Activation Code: <select>
                             <option value="value">text</option>

@@ -24,19 +24,18 @@ namespace CATeam5Solution.Controllers
         }
         public IActionResult CheckOut()
         {
-            //Session session = GetSession();
-            //if (session == null)
-            //{
-            //    return RedirectToAction("Index", "Login");
-            //}
-            ////To verify if he is login or not
-            //Guid userid = session.UserId;
+            Session session = GetSession();
+            if (session == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            Guid userid = session.UsersId;
             //the follow 2 lines of code are for testing only
-            Users user = dbContext.Users.FirstOrDefault(x => x.UserName.Equals("adam"));
-            Guid userid = user.Id;
+            //Users user = dbContext.Users.FirstOrDefault(x => x.UserName.Equals("adam"));
+            //Guid userid = user.Id;
 
             CreateOrder orderMaker = new CreateOrder(userid,dbContext);
-            orderMaker.MakeOrder();
+            orderMaker.MakeOrder();//with passing the data to user/product/order/actcode tables, the his data in cartitem table will be deleted.
             return RedirectToAction("Index", "MyPurchase");
         }//check out function-----> put user's cartitem data into User/Product/Order table
        
