@@ -15,6 +15,7 @@ namespace CATeam5Solution.Models
             Id = new Guid();
             ActCodes = new List<ActCode>();
             Orders = new List<Order>();
+            CartItems = new List<CartItem>();
         }
         
         public Guid Id { get; set; }

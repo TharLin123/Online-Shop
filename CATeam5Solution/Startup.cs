@@ -71,7 +71,7 @@ namespace CATeam5Solution
             TestSeedOnly ts = new TestSeedOnly(dbContext);
 
             db.Seed();
-            ts.MakeOrders();
+            ts.SeedCart();
         }         
     }
     
