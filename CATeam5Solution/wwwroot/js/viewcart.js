@@ -28,7 +28,7 @@ String.prototype.getDecimals || (String.prototype.getDecimals = function () {
 
 window.onload = function () {
     /* setup event listeners for tasks selection */
-    let elems = document.getElementsByClassName("input-text");
+    let elems = document.getElementsByClassName("cart_QuantityBox");
     for (let i = 0; i < elems.length; i++) {
         elems[i].addEventListener('input', UpdatePrice);
     }
@@ -43,12 +43,13 @@ function UpdatePrice(event) {
     let unitpriceId = "unitprice" + productId;
 
     let value = document.getElementById(productId).value;
-    let unitprice = document.getElementById(unitpriceId).innerHTML;
+    let unitprice = parseFloat(document.getElementById(unitpriceId).innerHTML.substring(1));
 
     AjaxUpdateCartDB(productId, value);
 
     let newsubtotal = value * unitprice;
-    document.getElementById(subtotalId).innerHTML = newsubtotal;
+    let finalsubtotal = newsubtotal.toFixed(2);
+    document.getElementById(subtotalId).innerHTML = "$"+finalsubtotal;
 }
 
 function AjaxUpdateCartDB(productId, value) {
@@ -70,7 +71,6 @@ function AjaxUpdateCartDB(productId, value) {
             }
         }
     };
-
 
 
     let cartUpdate = {
