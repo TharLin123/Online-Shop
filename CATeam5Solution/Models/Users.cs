@@ -12,7 +12,7 @@ namespace CATeam5Solution.Models
         {
             Id = new Guid();
             Order = new List<Order>();
-            
+            CartItems = new List<CartItem>();
         }
         public Guid Id { get; set; }
         [Required]

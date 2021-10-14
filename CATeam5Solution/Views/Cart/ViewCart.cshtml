@@ -1,5 +1,6 @@
 ﻿@{
     List<CartItem> cartItems = (List<CartItem>)ViewData["cart"];
+    ViewData["Title"] = "View Cart";
 }
 
     <head>
@@ -27,14 +28,14 @@
                 </tr>
                 
                 @foreach (var cartitem in cartItems)
-    {
-        var placeholder = "subtotal" + @cartitem.Product.ProductID;
-        var placeholder2 = "unitprice" + @cartitem.Product.ProductID;
-                    //var placeholder3 = "value" + @cartitem.Key.ProductID;
+                {
+                    var placeholder = "subtotal" + @cartitem.Product.ProductID;
+                    var placeholder2 = "unitprice" + @cartitem.Product.ProductID;
+                    var initSubtotal = @cartitem.Product.UnitPrice * @cartitem.Quantity;
 
                     <tr>
                         <td><img src="/img/@cartitem.Product.Image"></td>
-                        <td>@cartitem.Product.ProductName<br>@cartitem.Product.Description<br><span id=@placeholder2>@cartitem.Product.UnitPrice</span></td>
+                        <td>@cartitem.Product.ProductName<br>@cartitem.Product.Description<br><span id=@placeholder2 class="unitprice">@cartitem.Product.UnitPrice</span></td>
                         <td>
                             <div class="quantity buttons_added">
                                 @*<input type="button" value="-" class="minus">*@
@@ -42,7 +43,7 @@
                                 @*<input type="button" value="+" class="plus">*@
                             </div>
                         </td>
-                        <td id=@placeholder>@cartitem.Product.UnitPrice</td>
+                        <td id=@placeholder class="subtotals"> @initSubtotal </td>
                     </tr>
                 }
             </table>
