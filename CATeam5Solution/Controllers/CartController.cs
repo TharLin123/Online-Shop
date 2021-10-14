@@ -25,15 +25,15 @@ namespace CATeam5Solution.Controllers
         [Route("Cart")]
         public IActionResult ViewCart(List<Products> shoppingCart)
         {
-            Session session = GetSession();
-            if (session == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
+            //Session session = GetSession();
+            //if (session == null)
+            //{
+            //    return RedirectToAction("Index", "Login");
+            //}
 
-            Guid userid = session.UserId;
+            //Guid userid = session.UserId;
+            Guid userid = new Guid();//for testing
 
-            //Guid userid = new Guid(); //test only
             List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
             ViewData["cart"] = cartItems;
             return View();
