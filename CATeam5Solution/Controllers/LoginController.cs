@@ -56,7 +56,7 @@ namespace CATeam5Solution.Controllers
             // create a new session and tag to user
             Session session = new Session()
             {
-                UserName = user
+                Users = user
             };
             dbContext.Session.Add(session);
             dbContext.SaveChanges();

@@ -1,4 +1,7 @@
 ﻿//Quantity box
+
+//const { ajax } = require("jquery");
+//Not sure what is the above line somehow it got generated when i was working other parts
 //Reference:  https://embed.plnkr.co/plunk/B5waxZ
 function wcqib_refresh_quantity_increments() {
     jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function (a, b) {
@@ -29,24 +32,49 @@ window.onload = function () {
     for (let i = 0; i < elems.length; i++) {
         elems[i].addEventListener('input', UpdatePrice);
     }
-    
+          
 }
 
 function UpdatePrice(event) {
     let target = event.currentTarget;
+    let productId = target.id;
 
-    let targetid = target.id;
+    let subtotalId = "subtotal" + productId;
+    let unitpriceId = "unitprice" + productId;
 
-    /*let valueid = "value" + targetid;*/
-    let subtotalid = "subtotal" + targetid;
-    let unitpriceid = "unitprice" + targetid;
+    let value = document.getElementById(productId).value;
+    let unitprice = document.getElementById(unitpriceId).innerHTML;
 
-    let value = document.getElementById(targetid).value;
-    let unitprice = document.getElementById(unitpriceid).innerHTML;
+    AjaxUpdateCartDB(productId, value);
 
     let newsubtotal = value * unitprice;
-
-    document.getElementById(subtotalid).innerHTML = newsubtotal;
-
-    
+    document.getElementById(subtotalId).innerHTML = newsubtotal;
 }
+
+function AjaxUpdateCartDB(productId, value) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/Cart/Update");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState === XMLHttpRequest.DONE) {
+            if (this.status == 200)
+            {
+                let total = document.getElementById("totalPrice");
+                let data = JSON.parse(this.responseText);
+
+                total.innerHTML = "Total: $" + data.userCartAmt;
+            }
+        }
+    };
+
+
+
+    let cartUpdate = {
+        ProductId: productId,
+        Quantity: value
+    };
+    xhr.send(JSON.stringify(cartUpdate));
+}
+
