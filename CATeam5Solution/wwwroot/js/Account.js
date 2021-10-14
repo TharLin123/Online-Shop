@@ -31,5 +31,8 @@ var checkpass = function ()
 
 }
 
+var AlertReset = function () {
+    alert("Password reset will be sent to registered email!")
+}
 
 

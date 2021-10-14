@@ -49,10 +49,7 @@ namespace CATeam5Solution.Controllers
             byte[] hash = sha.ComputeHash(
                 Encoding.UTF8.GetBytes(username + password));
 
-            Users user = dbContext.Users.FirstOrDefault(x =>
-                x.UserName == username &&
-                x.Password == hash
-            );
+            Users user = dbContext.Users.FirstOrDefault(x =>x.UserName == username && x.Password == hash);
 
             if (user == null)
             {
@@ -91,13 +88,8 @@ namespace CATeam5Solution.Controllers
         {
             string username = form["username"].ToString();
             string password = form["confirmPass"].ToString();
-            Users user = dbContext.Users.FirstOrDefault(x =>
-            x.UserName == username);
+            Users user = dbContext.Users.FirstOrDefault(x =>x.UserName == username);
 
-            if (user != null)
-            {
-                return RedirectToAction("UserExist", "Login");
-            }
             HashAlgorithm sha = SHA256.Create();
             byte[] hashpass = sha.ComputeHash(Encoding.UTF8.GetBytes(username + password));
 
@@ -109,6 +101,12 @@ namespace CATeam5Solution.Controllers
             dbContext.SaveChanges();
             return RedirectToAction("Index", "Login");
         }
+
+        public IActionResult ForgetPass()
+        {
+            return View();
+        }
+
     }
 }
 

@@ -1,13 +1,10 @@
 ﻿@section Scripts {
-    <script src="~/js/CreateAccount.js"></script>
+    <script src="~/js/Account.js"></script>
 }
-
-
 <h1> Create Account</h1>
 <div>
     <form action="/Login/RegisterAccount" method="POST">
-        <div style="text-align:center">
-            <div class="my_tbl">
+            <div class="my_tbl" style="text-align:center">
                 <div class="my_row">
                     <div class="my_cell">
                         <b>Username:</b>
@@ -15,31 +12,37 @@
                     <div class="my_cell">
                         <input name="username" />
                     </div>
-                </div>
-                <div class="my_row">
                     <div class="my_cell">
-                        <b>Password:</b>
-                    </div>
-                    <div>
-                        <input name="password" id="password" type="password" />
+                        <b>E-Mail:</b>
                     </div>
                     <div class="my_cell">
-                        <b>Confirm Password:</b>
+                        <input name="email" type="email" />
                     </div>
-                    <div>
-                        <input name="confirmPass" id="confirmPass" type="password" style="margin-left:135px" />
-                        <input type="button" id="btnCheck" value="Check Password" onclick="checkpass()" />
+                    <div class="my_row">
+                        <div class="my_cell">
+                            <b>Password:</b>
+                        </div>
+                        <div>
+                            <input name="password" id="password" type="password" />
+                        </div>
+                        <div class="my_cell">
+                            <b>Confirm Password:</b>
+                        </div>
+                        <div>
+                            <input name="confirmPass" id="confirmPass" type="password" style="margin-left:135px" />
+                            <input type="button" id="btnCheck" value="Check Password" onclick="checkpass()" />
+                        </div>
+
+                    </div>
+                    <div class="my_row">
+                        <div class="my_cell"></div>
+                        <div class="my_cell" style="text-align: center">
+                            <br />
+                            <input type="submit" id="submitCreate" value="Submit" class="btn btn-primary" disabled />
+                            <input type="reset" value="Reset" class="btn btn-primary" />
+                        </div>
                     </div>
                 </div>
-                <div class="my_row">
-                    <div class="my_cell"></div>
-                    <div class="my_cell" style="text-align: center">
-                        <br />
-                        <input type="submit" id="submitCreate" value="Submit" class="btn btn-primary" disabled/>
-                        <input type="reset" value="Reset" class="btn btn-primary" />
-                    </div>
-                </div>
-            </div>
         </div>
     </form>
 </div>
