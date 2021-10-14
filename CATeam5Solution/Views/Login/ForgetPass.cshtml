@@ -5,7 +5,7 @@
 <br />
 <br />
 <div>
-    <form action="/Login/RegisterAccount" method="POST">
+    <form action="/Login/ResetPass" method="POST">
         <div class="my_tbl" style="text-align:center">
             <div class="my_row">
                 <div> Please enter the account that you want to reset the password.</div>
@@ -15,12 +15,12 @@
                 </div>
                 <div></div>
                 <div class="my_cell">
-                    <input name="email" type="email" placeholder="Enter E-Mail Here" />
+                    <input name="email" type="email" id="email" placeholder="Enter E-Mail Here" />
                 </div>
                 <div class="my_row">
                     <div class="my_cell" style="text-align: center">
                         <br />
-                        <input type="submit" id="submit" value="Submit" class="btn btn-primary" onclick="AlertReset()" />
+                        <input type="submit" id="submit" value="Submit" class="btn btn-primary" />
                     </div>
                 </div>
             </div>

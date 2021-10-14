@@ -31,12 +31,8 @@ namespace CATeam5Solution.Controllers
                 {
                     return RedirectToAction("Index", "Logout");
                 }
-
-
                 return RedirectToAction("Index", "Home");
             }
-
-
             return View();
         }
 
@@ -53,9 +49,10 @@ namespace CATeam5Solution.Controllers
 
             if (user == null)
             {
+                TempData["Pop"] = "Username or password is invalid! Please try Again";
                 return RedirectToAction("Index", "Login");
             }
-
+            
             // create a new session and tag to user
             Session session = new Session()
             {
@@ -88,7 +85,15 @@ namespace CATeam5Solution.Controllers
         {
             string username = form["username"].ToString();
             string password = form["confirmPass"].ToString();
+            string email = form["email"].ToString();
+
             Users user = dbContext.Users.FirstOrDefault(x =>x.UserName == username);
+
+            if (user != null)
+            {
+                TempData["Pop"] = "Username has been taken please try again";
+                return RedirectToAction("RegisterAccount", "Login");
+            }
 
             HashAlgorithm sha = SHA256.Create();
             byte[] hashpass = sha.ComputeHash(Encoding.UTF8.GetBytes(username + password));
@@ -96,15 +101,32 @@ namespace CATeam5Solution.Controllers
             dbContext.Add(new Users
             {
                 UserName = username,
-                Password = hashpass
-            });
+                Password = hashpass,
+                Email = email
+            }); ;
             dbContext.SaveChanges();
+            TempData["Pop"] = "User has been created!";
             return RedirectToAction("Index", "Login");
         }
+
 
         public IActionResult ForgetPass()
         {
             return View();
+        }
+
+      
+       public IActionResult ResetPass(IFormCollection form)
+        {
+            string emailAdd = form["email"];
+            Users emailReset = dbContext.Users.FirstOrDefault(x => x.Email == emailAdd);
+            if (emailReset == null)
+            {
+                TempData["Pop"] = "Email Not found, Kindly Retry";
+                return RedirectToAction("ForgetPass", "Login");
+            }
+            TempData["Pop"] = "Password link will be sent to your registered email";
+            return RedirectToAction("Index","Login");
         }
 
     }

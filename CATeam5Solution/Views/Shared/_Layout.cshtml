@@ -1,5 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
+
+@{ 
+    string popmess = (string) TempData["Pop"];
+}
+
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,11 +21,11 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     Hello,
                     @{
-                       @if (Context.Request.Cookies["Username"] != null)
-                         {@Context.Request.Cookies["Username"]}
-                       else
-                         {@: Guest
-                         }
+                        @if (Context.Request.Cookies["Username"] != null)
+                        {@Context.Request.Cookies["Username"]}
+                    else
+                    {@: Guest
+                    }
                     }
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -41,18 +48,18 @@
                         }
 
                         @*@if (Context.Request.Cookies["Username"] == null)
-                        {
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                            </li>
-                        }
+                            {
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                                </li>
+                            }
 
-                        @if (Context.Request.Cookies["Username"] != null)
-                        {
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
-                            </li>
-                        }*@
+                            @if (Context.Request.Cookies["Username"] != null)
+                            {
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                                </li>
+                            }*@
 
                         <li class="nav-item ml-auto" id="Cart">
                             <a asp-controller="Cart" asp-action="ViewCart">
@@ -87,6 +94,19 @@
             &copy; 2021 - CATeam5Solution - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (@TempData["Pop"] != null)
+            {
+                <script>
+                    var message = '@TempData["Pop"]';
+                    alert(message);
+                </script>
+            }
+            @RenderBody()
+        </main>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

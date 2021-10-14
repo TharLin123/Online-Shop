@@ -93,7 +93,8 @@ namespace CATeam5Solution
                 dbContext.Add(new Users
                 {
                     UserName = username,
-                    Password = hash
+                    Password = hash,
+                    
                 });
             }
 
