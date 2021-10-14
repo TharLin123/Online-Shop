@@ -93,7 +93,7 @@ namespace CATeam5Solution
                 {
                     UserName = username,
                     Password = hash,
-                    
+                    Email = "123@123.com"
                 });
             }
 

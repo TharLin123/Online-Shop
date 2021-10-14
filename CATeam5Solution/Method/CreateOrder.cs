@@ -19,6 +19,7 @@ namespace CATeam5Solution.Method
         {
             Dictionary<Products,int> orderDetail =  FindProducts();
             NewOrder(orderDetail);
+            
         }
 
         private Dictionary<Products, int> FindProducts()
@@ -28,6 +29,7 @@ namespace CATeam5Solution.Method
             foreach (var item in cart)
             {
                 productDetail.Add(item.Product, item.Quantity);
+                createOrderDB.Remove(item);
             }
             return productDetail;
         }
