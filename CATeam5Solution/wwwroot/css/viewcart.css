@@ -1,31 +1,56 @@
 ﻿/* table */
 
-.cart_Table {
-    float: left;
-    width: 80%;
-    font-size: 0.75rem;
+table {
+    float: none;
+    width: 100%;
+    font-size: 0.9rem;
     margin: 0 auto;
     overflow: hidden;
-    padding: 1rem;
+    padding: 1.5rem;
+    table-layout: fixed;
+}
+
+.cart_Table_10 {
+    width: 10%;
+}
+.cart_Table_15 {
+    width: 15%;
+}
+
+.cart_Table_20 {
+    width: 20%;
+}
+
+.cart_Table_40 {
+    width: 40%;
+}
+
+.cart_RemoveIcon {
+    height: 20px;
+    width: 20px;
+}
+
+.cart_QuantityBox {
+    width: 60px;
 }
 
 /* -- quantity box -- */
 /* reference: https://embed.plnkr.co/plunk/B5waxZ */
 
-.quantity {
+/*.quantity {
     display: inline-block;
-}
+}*/
 
-    .quantity .input-text.qty {
-        width: 35px;
+    /*.quantity .input-text.qty {
+        width: 60px;
         height: 39px;
         padding: 0 5px;
         text-align: center;
         background-color: transparent;
         border: 1px solid #efefef;
-    }
+    }*/
 
-    .quantity.buttons_added {
+    /*.quantity.buttons_added {
         text-align: left;
         position: relative;
         white-space: nowrap;
@@ -72,3 +97,4 @@
     .quantity.buttons_added .plus:focus {
         outline: none;
     }
+*/
