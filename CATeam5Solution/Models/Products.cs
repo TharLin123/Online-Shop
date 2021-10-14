@@ -32,5 +32,7 @@ namespace CATeam5Solution.Models
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<ActCode> ActCodes { get; set; }
 
+        public virtual ICollection<CartItem> CartItems { get; set; }
+
     }
 }
