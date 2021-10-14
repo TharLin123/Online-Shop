@@ -40,18 +40,29 @@ namespace CATeam5Solution.Controllers
         }//check out function-----> put user's cartitem data into User/Product/Order table
        
         [Route("Cart")]
-        public IActionResult ViewCart(List<Products> shoppingCart)
+        public IActionResult ViewCart()
         {
-            Session session = GetSession();
-            if (session == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
+            //Session session = GetSession();
+            //if (session == null)
+            //{
+            //    return RedirectToAction("Index", "Login");
+            //}
 
-            Guid userid = session.Users.Id;
-            //Guid userid = new Guid();//for testing
+            //Guid userid = session.Users.Id;
 
-            List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
+            //List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
+            //ViewData["cart"] = cartItems;
+
+            //string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString();
+
+            //ViewData["userCartAmt"] = userCartAmt;
+
+            //return View();
+
+            //Code below just for testing view 
+
+
+            List<CartItem> cartItems = dbContext.CartItem.ToList();
             ViewData["cart"] = cartItems;
 
             string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString();

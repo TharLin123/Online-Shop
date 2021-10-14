@@ -64,7 +64,9 @@ function AjaxUpdateCartDB(productId, value) {
                 let total = document.getElementById("totalPrice");
                 let data = JSON.parse(this.responseText);
 
-                total.innerHTML = "Total: $" + data.userCartAmt;
+                if (data.status == "success") {
+                    total.innerHTML = "Total: $" + data.userCartAmt;
+                }
             }
         }
     };
