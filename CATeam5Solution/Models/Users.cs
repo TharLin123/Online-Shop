@@ -19,9 +19,9 @@ namespace CATeam5Solution.Models
         public string UserName { get; set; }
         [Required]
         public byte[] Password { get; set; }
-        
-        //public string Email { get; set; }
-        
+
+        public string Email { get; set; }
+
         //1 to many between user and orders
         public virtual ICollection<Order> Order { get; set; }//每个user会有很多的Order
 
