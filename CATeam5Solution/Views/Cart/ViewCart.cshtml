@@ -40,9 +40,11 @@
                 {
                     var placeholder = "subtotal" + @cartitem.Product.ProductID;
                     var placeholder2 = "unitprice" + @cartitem.Product.ProductID;
-                    var initSubtotal = @cartitem.Product.UnitPrice * @cartitem.Quantity;
+                    var placeholder3 = "cartitem" + @cartitem.Product.ProductID;
+                    var placeholder4 = "remove" + @cartitem.Product.ProductID;
+                    var initSubtotal = (@cartitem.Product.UnitPrice * @cartitem.Quantity);
 
-                    <tr>
+                    <tr id=@placeholder3>
                         <td>
                             <img src="/img/@cartitem.Product.Image"></td>
                         <td>
@@ -55,7 +57,7 @@
                         <td id=@placeholder class="subtotals">
                             $@initSubtotal </td>
                         <td>
-                            <img src="/img/RemoveFromCartIcon.png" class="cart_RemoveIcon"></td>
+                            <a id="@placeholder4" class="cartItem"><img src="/img/RemoveFromCartIcon.png" class="cart_RemoveIcon"></a></td>
                     </tr>
                 }
             </table>

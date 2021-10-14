@@ -32,7 +32,11 @@ window.onload = function () {
     for (let i = 0; i < elems.length; i++) {
         elems[i].addEventListener('input', UpdatePrice);
     }
-          
+
+    let cart = document.getElementsByClassName("cartItem");
+    for (let i = 0; i < cart.length; i++) {
+        cart[i].addEventListener('click', removeItem);
+    }
 }
 
 function UpdatePrice(event) {
@@ -48,7 +52,9 @@ function UpdatePrice(event) {
     AjaxUpdateCartDB(productId, value);
 
     let newsubtotal = value * unitprice;
-    let finalsubtotal = newsubtotal.toFixed(2);
+    let converter = new Intl.NumberFormat('en-US');
+    let finalsubtotal = converter.format(newsubtotal.toFixed(2));
+
     document.getElementById(subtotalId).innerHTML = "$"+finalsubtotal;
 }
 
@@ -78,5 +84,39 @@ function AjaxUpdateCartDB(productId, value) {
         Quantity: value
     };
     xhr.send(JSON.stringify(cartUpdate));
+}
+
+
+function removeItem(event) {
+    let target = event.currentTarget;
+    let productId = target.id.substring(6);
+
+    AjaxRemoveItem(productId);
+}
+
+function AjaxRemoveItem(productId) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/Cart/Remove");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState === XMLHttpRequest.DONE) {
+            if (this.status == 200) {
+                let cartId = "cartitem"+productId
+                let item = document.getElementById(cartId);
+                let data = JSON.parse(this.responseText);
+
+                if (data.status == "success") {
+                    item.remove();
+                }
+            }
+        }
+    };
+
+    let itemToRemove = {
+        ProductId: productId,
+    };
+    xhr.send(JSON.stringify(itemToRemove));
 }
 

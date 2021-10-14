@@ -53,7 +53,7 @@ namespace CATeam5Solution.Controllers
             List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
             ViewData["cart"] = cartItems;
 
-            string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString();
+            string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("0,0.00");
 
             ViewData["userCartAmt"] = userCartAmt;
 
@@ -108,7 +108,7 @@ namespace CATeam5Solution.Controllers
                 
                 double amt = dbContext.CartItem.Where(x => x.UsersId == userid).Sum(x => x.Quantity * x.Product.UnitPrice);
 
-                userCartAmt = Math.Round(amt,2).ToString();
+                userCartAmt = Math.Round(amt, 2).ToString("0,0.00");
 
                 return Json(new 
                 { status = "success",
@@ -116,7 +116,26 @@ namespace CATeam5Solution.Controllers
                 });
             /*}*/
 
+        }
 
+
+        public IActionResult Remove([FromBody] RemoveCart item)
+        {
+            string username = Request.Cookies["Username"];
+            Users user = dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            Guid userid = user.Id;
+            int productId = item.ProductId;
+
+            CartItem cartItem = dbContext.CartItem.FirstOrDefault(x => x.UsersId == userid && x.Product.ProductID == item.ProductId);
+
+            dbContext.Remove(cartItem);
+
+            dbContext.SaveChanges();
+
+            return Json(new
+            {
+                status = "success",
+            });
         }
 
         private Session GetSession()
