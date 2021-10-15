@@ -1,11 +1,11 @@
 ﻿@{
-    Dictionary<Products, int> ShoppingCartDict = (Dictionary<Products, int>)ViewData["ShoppingCartDict"];
-    
+    List<CartItem> cartItems = (List<CartItem>)ViewData["cart"];
+    ViewData["Title"] = "View Cart";
 }
 
     <head>
         <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="viewcart.css" />
+        <link rel="stylesheet" href="~/css/viewcart.css" />
         <script src="~/js/viewcart.js"></script>
     </head>
 
@@ -13,37 +13,51 @@
         <h1>Shopping Cart</h1>
 
 
-        @if (ShoppingCartDict.Count == 0)
-        {
+        @if (cartItems.Count == 0)
+    {
             <div>Your cart is empty!</div>
         }
         else
         {
-            <table class=cart_Table>
+            <table>
+                <colgroup>
+                    <col class="cart_Table_15" />
+                    <col class="cart_Table_40" />
+                    <col class="cart_Table_15" />
+                    <col class="cart_Table_20" />
+                    <col class="cart_Table_10" />
+                </colgroup>
+
                 <tr>
                     <th>Item</th>
                     <th>Details</th>
                     <th>Quantity</th>
                     <th>Subtotal</th>
+                    <th>Remove from Cart</th>
                 </tr>
                 
-                @foreach (var cartitem in ShoppingCartDict)
+                @foreach (var cartitem in cartItems)
                 {
-                    var placeholder = "subtotal" + @cartitem.Key.ProductID;
-                    var placeholder2 = "unitprice" + @cartitem.Key.ProductID;
-                    //var placeholder3 = "value" + @cartitem.Key.ProductID;
+                    var placeholder = "subtotal" + @cartitem.Product.ProductID;
+                    var placeholder2 = "unitprice" + @cartitem.Product.ProductID;
+                    var placeholder3 = "cartitem" + @cartitem.Product.ProductID;
+                    var placeholder4 = "remove" + @cartitem.Product.ProductID;
+                    var initSubtotal = (@cartitem.Product.UnitPrice * @cartitem.Quantity);
 
-                    <tr>
-                        <td><img src="@cartitem.Key.Image"></td>
-                        <td>@cartitem.Key.ProductName<br>@cartitem.Key.Description<br><span id=@placeholder2>@cartitem.Key.UnitPrice</span></td>
+                    <tr id=@placeholder3>
                         <td>
-                            <div class="quantity buttons_added">
-                                @*<input type="button" value="-" class="minus">*@
-                                <input id=@cartitem.Key.ProductID type="number" step="1" min="1" max="" name="quantity" value="@cartitem.Value" title="qty" class="input-text qty text" size="4" pattern="" inputmode="">
-                                @*<input type="button" value="+" class="plus">*@
-                            </div>
-                        </td>
-                        <td id=@placeholder>@cartitem.Key.UnitPrice</td>
+                            <img src="/img/@cartitem.Product.Image"></td>
+                        <td>
+                            <b>@cartitem.Product.ProductName</b><br>
+                            @cartitem.Product.Description<br><br />
+                            <span id=@placeholder2 class="unitprice">$@cartitem.Product.UnitPrice</span></td>
+                        <td>
+                            <div><input id=@cartitem.Product.ProductID type="number" step="1" min="1" max="" name="quantity" value="@cartitem.Quantity" title="qty" class="cart_QuantityBox" size="4" pattern="" inputmode="">
+                            </div></td>
+                        <td id=@placeholder class="subtotals">
+                            $@initSubtotal </td>
+                        <td>
+                            <a id="@placeholder4" class="cartItem"><img src="/img/RemoveFromCartIcon.png" class="cart_RemoveIcon"></a></td>
                     </tr>
                 }
             </table>

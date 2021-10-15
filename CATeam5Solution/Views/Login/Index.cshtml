@@ -1,40 +1,41 @@
-﻿
-
-    
-    <form action="/Login/Login" method="POST">
-        <div style="text-align:center">
-            <div class="my_tbl">
-                <div class="my_row">
-                    <div class="my_cell">
-                        <b>Username:</b>
-                    </div>
-                    <div class="my_cell">
-                        <input name="username" />
-                    </div>
+﻿ <h1 style="text-align:center">Login</h1>
+<br />
+<form action="/Login/Login" method="POST">
+    <div style="text-align:center">
+        <div class="my_tbl">
+            <div class="my_row">
+                <div class="my_cell">
+                    <b>Username:</b>
                 </div>
-                <div class="my_row">
-                    <div class="my_cell">
-                        <b>Password:</b>
-                    </div>
-                    <div class="my_cell">
-                        <input name="password" type="password" />
-                    </div>
+                <div class="my_cell">
+                    <input name="username" />
                 </div>
-                <div class="my_row">
-                    <div class="my_cell"></div>
-                    <div class="my_cell" style="text-align: center">
-                        <br />
-                        <input type="submit" value="Login" class="btn btn-primary" />
-                        <input type="reset" value="Reset" class="btn btn-primary" />
-                    </div>
-                    <div style="font-size:80%">
-                        <br />
-                        Do not have an account?
-                    </div>
-                    <div>
-                        <a href="/Login/CreateAccount" style="font-size:80%">Create Account!</a>
-                    </div>
+            </div>
+            <div class="my_row">
+                <div class="my_cell">
+                    <b>Password:</b>
+                </div>
+                <div class="my_cell">
+                    <input name="password" type="password" />
+                </div>
+            </div>
+            <div class="my_row">
+                <div class="my_cell"></div>
+                <div class="my_cell" style="text-align: center">
+                    <br />
+                    <input type="submit" value="Login" class="btn btn-primary" title="Submit Login" />
+                    <input type="reset" value="Reset" class="btn btn-primary" title="Reset Form" />
+                </div>
+                <div style="font-size:80%">
+                    <br />
+                    Do not have an account or forget pass?
+                </div>
+                <div>
+                    <a href="/Login/CreateAccount" style="font-size:80%">Create Account</a>
+                    /
+                    <a href="/Login/ForgetPass" style="font-size:80%">Forget Password</a>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
+</form>

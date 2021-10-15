@@ -11,15 +11,30 @@ namespace CATeam5Solution.Controllers
 {
     public class MyPurchaseController : Controller
     {
-       private readonly DBContext dbContext;
+       private DBContext dbContext;
         public MyPurchaseController(DBContext dbContext)
         {
             this.dbContext = dbContext;
         }
         public IActionResult Index()
         {
-            //check order status and login status,both true, jump to this page
-            //select specific order to check order details
+            //check order status and login status, both true, jump to this page
+            // select specific order to check order details
+
+            Session session = GetSession();
+            if (session == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            Guid userid = session.UsersId;//get user's Guid
+            //the following 2 lines are for testing only
+            //Users user = dbContext.Users.FirstOrDefault(x => x.UserName.Equals("adam"));
+            //Guid userid = user.Id;
+            GetMyPurchaseData myPurchaseMaker = new GetMyPurchaseData(userid, dbContext);
+            List<MyPurchaseViewModel> myPurchaseViewModels = myPurchaseMaker.MakeMyPurchaseView();
+            ViewData["myPurchaseViewModel"] = myPurchaseViewModels;
+
             return View();
         }
         public IActionResult Details()
@@ -31,17 +46,28 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult MyPurchase()
         {
-            //在这里获取View中需要的所有数据
-           
-            Guid userId = new Guid();//test only
-            GetHistory getHistory = new GetHistory(userId, dbContext);
-            ViewData["gethistory"] = getHistory;
+            
             return View();
         }//for testing the page only now
         public IActionResult Review()
         {
 
             return View();
+        }
+        //Copy CartItem controller's code
+        private Session GetSession()
+        {
+            if (Request.Cookies["SessionId"] == null)
+            {
+                return null;
+            }
+
+            Guid sessionId = Guid.Parse(Request.Cookies["SessionId"]);
+            Session session = dbContext.Session.FirstOrDefault(x =>
+                x.Id == sessionId
+            );
+
+            return session;
         }
     }
 }

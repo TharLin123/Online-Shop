@@ -31,12 +31,8 @@ namespace CATeam5Solution.Controllers
                 {
                     return RedirectToAction("Index", "Logout");
                 }
-
-                
                 return RedirectToAction("Index", "Home");
             }
-
-         
             return View();
         }
 
@@ -49,25 +45,22 @@ namespace CATeam5Solution.Controllers
             byte[] hash = sha.ComputeHash(
                 Encoding.UTF8.GetBytes(username + password));
 
-            Users user = dbContext.Users.FirstOrDefault(x =>
-                x.UserName == username &&
-                x.Password == hash
-            );
+            Users user = dbContext.Users.FirstOrDefault(x =>x.UserName == username && x.Password == hash);
 
             if (user == null)
             {
+                TempData["Pop"] = "Username or password is invalid! Please try Again";
                 return RedirectToAction("Index", "Login");
             }
-
+            
             // create a new session and tag to user
             Session session = new Session()
             {
-                UserName = user
+                Users = user
             };
             dbContext.Session.Add(session);
             dbContext.SaveChanges();
 
-            //Saving Cookies on browser
             Response.Cookies.Append("SessionId", session.Id.ToString());
             Response.Cookies.Append("Username", user.UserName);
 
@@ -75,17 +68,67 @@ namespace CATeam5Solution.Controllers
         }
         public IActionResult Logout()
         {
-            // ask client to remove these cookies so that
-            // they won't be sent over next time
+
             Response.Cookies.Delete("SessionId");
             Response.Cookies.Delete("Username");
 
             return RedirectToAction("Index");
         }
+
         public IActionResult CreateAccount()
+        {
+
+            return View();
+
+        }
+        public IActionResult RegisterAccount(IFormCollection form)
+        {
+            string username = form["username"].ToString();
+            string password = form["confirmPass"].ToString();
+            string email = form["email"].ToString();
+
+            Users user = dbContext.Users.FirstOrDefault(x =>x.UserName == username);
+
+            if (user != null)
+            {
+                TempData["Pop"] = "Username has been taken please try again";
+                return RedirectToAction("RegisterAccount", "Login");
+            }
+
+            HashAlgorithm sha = SHA256.Create();
+            byte[] hashpass = sha.ComputeHash(Encoding.UTF8.GetBytes(username + password));
+
+            dbContext.Add(new Users
+            {
+                UserName = username,
+                Password = hashpass,
+                Email = email
+            }); ;
+            dbContext.SaveChanges();
+            TempData["Pop"] = "User has been created!";
+            return RedirectToAction("Index", "Login");
+        }
+
+
+        public IActionResult ForgetPass()
         {
             return View();
         }
+
+      
+       public IActionResult ResetPass(IFormCollection form)
+        {
+            string emailAdd = form["email"];
+            Users emailReset = dbContext.Users.FirstOrDefault(x => x.Email == emailAdd);
+            if (emailReset == null)
+            {
+                TempData["Pop"] = "Email Not found, Kindly Retry";
+                return RedirectToAction("ForgetPass", "Login");
+            }
+            TempData["Pop"] = "Password link will be sent to your registered email";
+            return RedirectToAction("Index","Login");
+        }
+
     }
 }
 

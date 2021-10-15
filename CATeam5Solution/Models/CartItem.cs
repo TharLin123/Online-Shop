@@ -18,5 +18,6 @@ namespace CATeam5Solution.Models
         public virtual Users Users { get; set; }
         public virtual Guid UsersId { get; set; }
         public virtual Products Product { get; set; }
+        
     }
 }

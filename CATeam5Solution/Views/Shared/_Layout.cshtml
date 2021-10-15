@@ -1,9 +1,16 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
+
+@{ 
+    string popmess = (string) TempData["Pop"];
+}
+
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CATeam5Solution</title>
+    <title>@ViewData["Title"] - Adob3 Reseller</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -12,14 +19,13 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    @if (Context.Request.Cookies["Username"] == null)
-                    {
-                        @:Hello, GUEST
+                    Hello,
+                    @{
+                        @if (Context.Request.Cookies["Username"] != null)
+                        {@Context.Request.Cookies["Username"]}
+                    else
+                    {@: Guest
                     }
-
-                    @if (Context.Request.Cookies["Username"] != null)
-                    {
-                        @:Hello, @Context.Request.Cookies["Username"]
                     }
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,27 +35,62 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">All Products</a>
+                            @if ((string)ViewData["Title"] != "View Cart")
+                            {<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">All Products</a>}
+                            else
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Continue Shopping</a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                            @if ((string)ViewData["Title"] != "View Cart")
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="MyPurchase" asp-action="Index">MyPurchase</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="MyPurchase" asp-action="Index">Checkout</a>
+                            }
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MyPurchase" asp-action="Index">MyPurchase</a>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            <a id="total" class="nav-link text-dark" asp-area="">Total: $---</a>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
-                        </li>
+
+
+                        @if ((string)ViewData["Title"] == "View Cart")
+                        {
+                            <li class="nav-item ml-auto">
+                                <a id="totalPrice" class="nav-link text-dark">Total: $@ViewData["userCartAmt"]</a>
+                            </li>
+                        }
+
+                        @*@if (Context.Request.Cookies["Username"] == null)
+        {
+            <li class="nav-item ml-auto">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+            </li>
+        }
+
+        @if (Context.Request.Cookies["Username"] != null)
+        {
+            <li class="nav-item ml-auto">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+            </li>
+        }*@
+
                         <li class="nav-item ml-auto" id="Cart">
-                             <a asp-controller="Cart" asp-action="ViewCart">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                <span id="CartCount" class="position-absolute top-5 start-90 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden"></span></span>
-                            </svg>
+                            <a asp-controller="Cart" asp-action="ViewCart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                    <span id="CartCount" class="position-absolute top-5 start-90 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden"></span></span>
+                                </svg>
                             </a>
+                        </li>
+                        <li class="nav-item" style="margin-left:20px">
+                            @{
+                                @if (Context.Request.Cookies["SessionId"] != null)
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a> }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>} }
                         </li>
                     </ul>
                 </div>
@@ -64,9 +105,22 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - CATeam5Solution - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Adob3 Reseller - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (@TempData["Pop"] != null)
+            {
+                <script>
+                    var message = '@TempData["Pop"]';
+                    alert(message);
+                </script>
+            }
+            @RenderBody()
+        </main>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

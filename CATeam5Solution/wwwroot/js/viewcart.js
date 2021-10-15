@@ -1,4 +1,7 @@
 ﻿//Quantity box
+
+//const { ajax } = require("jquery");
+//Not sure what is the above line somehow it got generated when i was working other parts
 //Reference:  https://embed.plnkr.co/plunk/B5waxZ
 function wcqib_refresh_quantity_increments() {
     jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function (a, b) {
@@ -25,28 +28,95 @@ String.prototype.getDecimals || (String.prototype.getDecimals = function () {
 
 window.onload = function () {
     /* setup event listeners for tasks selection */
-    let elems = document.getElementsByClassName("input-text");
+    let elems = document.getElementsByClassName("cart_QuantityBox");
     for (let i = 0; i < elems.length; i++) {
         elems[i].addEventListener('input', UpdatePrice);
     }
-    
+
+    let cart = document.getElementsByClassName("cartItem");
+    for (let i = 0; i < cart.length; i++) {
+        cart[i].addEventListener('click', removeItem);
+    }
 }
 
 function UpdatePrice(event) {
     let target = event.currentTarget;
+    let productId = target.id;
 
-    let targetid = target.id;
+    let subtotalId = "subtotal" + productId;
+    let unitpriceId = "unitprice" + productId;
 
-    /*let valueid = "value" + targetid;*/
-    let subtotalid = "subtotal" + targetid;
-    let unitpriceid = "unitprice" + targetid;
+    let value = document.getElementById(productId).value;
+    let unitprice = parseFloat(document.getElementById(unitpriceId).innerHTML.substring(1));
 
-    let value = document.getElementById(targetid).value;
-    let unitprice = document.getElementById(unitpriceid).innerHTML;
+    AjaxUpdateCartDB(productId, value);
 
     let newsubtotal = value * unitprice;
+    let converter = new Intl.NumberFormat('en-US');
+    let finalsubtotal = converter.format(newsubtotal.toFixed(2));
 
-    document.getElementById(subtotalid).innerHTML = newsubtotal;
-
-    
+    document.getElementById(subtotalId).innerHTML = "$"+finalsubtotal;
 }
+
+function AjaxUpdateCartDB(productId, value) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/Cart/Update");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState === XMLHttpRequest.DONE) {
+            if (this.status == 200)
+            {
+                let total = document.getElementById("totalPrice");
+                let data = JSON.parse(this.responseText);
+
+                if (data.status == "success") {
+                    total.innerHTML = "Total: $" + data.userCartAmt;
+                }
+            }
+        }
+    };
+
+
+    let cartUpdate = {
+        ProductId: productId,
+        Quantity: value
+    };
+    xhr.send(JSON.stringify(cartUpdate));
+}
+
+
+function removeItem(event) {
+    let target = event.currentTarget;
+    let productId = target.id.substring(6);
+
+    AjaxRemoveItem(productId);
+}
+
+function AjaxRemoveItem(productId) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/Cart/Remove");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState === XMLHttpRequest.DONE) {
+            if (this.status == 200) {
+                let cartId = "cartitem"+productId
+                let item = document.getElementById(cartId);
+                let data = JSON.parse(this.responseText);
+
+                if (data.status == "success") {
+                    item.remove();
+                }
+            }
+        }
+    };
+
+    let itemToRemove = {
+        ProductId: productId,
+    };
+    xhr.send(JSON.stringify(itemToRemove));
+}
+

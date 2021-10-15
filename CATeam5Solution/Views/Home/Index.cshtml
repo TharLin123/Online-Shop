@@ -5,11 +5,11 @@
 
 }
 <!--HEAD-->
-<h1>GALLERY - ALL PRODUCTS</h1>
+<h1>All Products</h1>
 @{
     @* Kenny search *@
     <form action="/Search/" method="POST">
-        Search: <input name="searchStr" value="@searchStr" />
+        Search Products: <input name="searchStr" value="@searchStr" style="width:75%"/>
     </form>
 
     <p></p>
@@ -20,22 +20,25 @@
             <div class="row mx-auto">
                 @{foreach (Products products in allProducts)
                     {
-                        string url = "/images/" + Convert.ToString(products.ProductID) + ".png";
-                        <div class="card m-10 p-10" style="width: 18rem;">
-                            <img class="card-img-top" src="@url" alt="Product Image TBF">
-                            <div class="card-body">
-                                <h5 class="card-title">@products.ProductName</h5>
-                                <p class="card-text">@products.Description</p>
-                                <p class="card-text" id="@products.ProductID"></p>
-                                <a onclick="addToCart(@products.ProductID);" class="btn btn-primary">$@products.UnitPrice - Add to Cart</a>
-                                <a onclick="removeFromCart(@products.ProductID);" class="btn btn-primary">Remove from Cart</a>
-                            </div>
+                        <div class="card m-10 p-10" style="width: 18rem; margin: 0.5rem;">
+                        <img class="card-img-top mx-auto" style="width: 150px;height: 150px; margin: 1rem" src="/img/@products.Image" alt="Product Image TBF">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title text-center">@products.ProductName</h5>
+                            <p class="card-text text-center">@products.Description</p>
+                            <p class="card-text text-center" style="font-weight:bold">$@products.UnitPrice</p>
+                            <p class="card-text text-center" id="@products.ProductID"></p>
                         </div>
-                        <br />
+                        
+                        <div class="card-text text-center">
+                            <a onclick="addToCart(@products.ProductID);" class="btn btn-primary" style="color:white; background-color:royalblue; border-color:royalblue;">Add to Cart</a>
+                            <a onclick="removeFromCart(@products.ProductID);" class="btn btn-primary" style="color: white; background-color:dimgrey; border-color:dimgrey; margin: 1rem;">Remove from Cart</a></div>
+                                
+                        </div>
                     }
                 }
             </div>
-        </div>
+    </div>
 
 
     <!--still testing, semi-hardcoding the 6 products first-->

@@ -1,0 +1,30 @@
+﻿@section Scripts {
+    <script src="~/js/Account.js"></script>
+}
+<h2>Forget your password?</h2>
+<br />
+<br />
+<div>
+    <form action="/Login/ResetPass" method="POST">
+        <div class="my_tbl" style="text-align:center">
+            <div class="my_row">
+                <div> Please enter the account that you want to reset the password.</div>
+                <br />
+                <div class="my_cell">
+                    <b>E-Mail:</b>
+                </div>
+                <div></div>
+                <div class="my_cell">
+                    <input name="email" type="email" id="email" placeholder="Enter E-Mail Here" />
+                </div>
+                <div class="my_row">
+                    <div class="my_cell" style="text-align: center">
+                        <br />
+                        <input type="submit" id="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
