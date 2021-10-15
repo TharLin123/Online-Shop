@@ -18,7 +18,7 @@ namespace CATeam5Solution.Controllers
         [HttpPost]
         public IActionResult AddToCart(int id)
         {
-            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).UserName;
+            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).Users;
             Products ProductToAdd = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
 
             ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User.Id == User.Id);
@@ -27,7 +27,7 @@ namespace CATeam5Solution.Controllers
             {
                 dbContext.Add(new ShoppingCart
                 {
-                    User = null //User
+                    User = User
                 });
                 dbContext.SaveChanges();
                 shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User == null);
@@ -39,7 +39,8 @@ namespace CATeam5Solution.Controllers
                 ShoppingCart = shoppingCart
             });
 
-            CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Product.ProductID == ProductToAdd.ProductID);
+            CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToAdd.ProductID);
+          
             if (cartItem == null)
             {
                 dbContext.Add(new CartItem
@@ -48,9 +49,7 @@ namespace CATeam5Solution.Controllers
                     Product = ProductToAdd,
                     Quantity = 1,
                 }); 
-            }
-            else
-            {
+            } else {
                 cartItem.Quantity += 1;
             }
 
@@ -65,7 +64,7 @@ namespace CATeam5Solution.Controllers
         [HttpPost]
         public IActionResult RemoveFromCart(int id)
         {
-            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).UserName;
+            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).Users;
             Products ProductToRemove = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
             ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User.Id == User.Id);
             
@@ -77,14 +76,14 @@ namespace CATeam5Solution.Controllers
                     dbContext.Remove(ShoppingCartItem);
                 }
             }
-
-            CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Product.ProductID == ProductToRemove.ProductID);
+      
+            CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToRemove.ProductID);
             if (cartItem != null)
             {
                 cartItem.Quantity -= 1;
                 if (cartItem.Quantity == 0)
                 {
-                    dbContext.Remove(cartItem);
+                    dbContext.CartItem.Remove(cartItem);
                 }
             }
 
