@@ -72,8 +72,6 @@ namespace CATeam5Solution
                 db.Seed();//the seed should be here to prevent multiple seedings everytime we restart the asp mvc 
             }
             
-            //TestSeedOnly ts = new TestSeedOnly(dbContext);           
-            //ts.SeedCart();
         }         
     }
     
