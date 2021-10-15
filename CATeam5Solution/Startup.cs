@@ -63,15 +63,17 @@ namespace CATeam5Solution
                     name: "default",
                     pattern: "{controller=MyPurchase}/{action=Index}/{id?}");
             });
+
+            DB db = new DB(dbContext);
+
             if (!dbContext.Database.CanConnect())
             {
                 dbContext.Database.EnsureCreated();
+                db.Seed();//the seed should be here to prevent multiple seedings everytime we restart the asp mvc 
             }
-            DB db = new DB(dbContext);
-            TestSeedOnly ts = new TestSeedOnly(dbContext);
-
-            db.Seed();
-            ts.MakeOrders();
+            
+            //TestSeedOnly ts = new TestSeedOnly(dbContext);           
+            //ts.SeedCart();
         }         
     }
     

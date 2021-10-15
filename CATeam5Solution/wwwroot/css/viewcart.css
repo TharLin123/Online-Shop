@@ -1,74 +1,55 @@
 ﻿/* table */
 
-.cart_Table {
-    float: left;
-    width: 80%;
-    font-size: 0.75rem;
+table {
+    float: none;
+    width: 100%;
+    font-size: 0.9rem;
     margin: 0 auto;
     overflow: hidden;
-    padding: 1rem;
+    padding: 1.5rem;
+    table-layout: fixed;
 }
 
-/* -- quantity box -- */
-/* reference: https://embed.plnkr.co/plunk/B5waxZ */
-
-.quantity {
-    display: inline-block;
+.cart_Table_10 {
+    width: 10%;
+}
+.cart_Table_15 {
+    width: 15%;
 }
 
-    .quantity .input-text.qty {
-        width: 35px;
-        height: 39px;
-        padding: 0 5px;
-        text-align: center;
-        background-color: transparent;
-        border: 1px solid #efefef;
-    }
+.cart_Table_20 {
+    width: 20%;
+}
 
-    .quantity.buttons_added {
-        text-align: left;
-        position: relative;
-        white-space: nowrap;
-        vertical-align: top;
-    }
+.cart_Table_40 {
+    width: 40%;
+}
 
-        .quantity.buttons_added input {
-            display: inline-block;
-            margin: 0;
-            vertical-align: top;
-            box-shadow: none;
-        }
+.cart_RemoveIcon {
+    height: 20px;
+    width: 20px;
+}
 
-        .quantity.buttons_added .minus,
-        .quantity.buttons_added .plus {
-            padding: 7px 10px 8px;
-            height: 41px;
-            background-color: #ffffff;
-            border: 1px solid #efefef;
-            cursor: pointer;
-        }
+.cart_QuantityBox {
+    width: 60px;
+}
 
-        .quantity.buttons_added .minus {
-            border-right: 0;
-        }
+.cart_CheckoutButton {
+    background-color: royalblue;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+}
 
-        .quantity.buttons_added .plus {
-            border-left: 0;
-        }
+.purchaseLink {
+    text-decoration: none
+}
 
-            .quantity.buttons_added .minus:hover,
-            .quantity.buttons_added .plus:hover {
-                background: #eeeeee;
-            }
-
-    .quantity input::-webkit-outer-spin-button,
-    .quantity input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        margin: 0;
-    }
-
-    .quantity.buttons_added .minus:focus,
-    .quantity.buttons_added .plus:focus {
-        outline: none;
-    }
+.card-footer {
+    background-color: royalblue;
+    color: white
+}

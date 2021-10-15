@@ -15,6 +15,8 @@ namespace CATeam5Solution.Models
             Id = new Guid();
             ActCodes = new List<ActCode>();
             Orders = new List<Order>();
+            CartItems = new List<CartItem>();
+            ProductsShoppingCarts = new List<ProductsShoppingCart>();
         }
         
         public Guid Id { get; set; }
@@ -31,6 +33,9 @@ namespace CATeam5Solution.Models
         //many 2 many relationship between Pro and Ord
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<ActCode> ActCodes { get; set; }
+        public virtual ICollection<ProductsShoppingCart> ProductsShoppingCarts { get; set; }
+
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
     }
 }

@@ -21,6 +21,7 @@ namespace CATeam5Solution
         {
             SeedProducts();
             SeedUsers();
+            SeedCartItem();
         }
 
         public void SeedProducts()
@@ -29,7 +30,7 @@ namespace CATeam5Solution
             {
                 ProductID = 1,
                 ProductName = "PhotoEditShop",
-                UnitPrice = 39.99,
+                UnitPrice = 39,
                 Description = "This app provides you with the capabilities to do professional design and photo editing!",
                 Image = "Photoshop.png"
             });
@@ -37,7 +38,7 @@ namespace CATeam5Solution
             {
                 ProductID = 2,
                 ProductName = "readPDF Pro",
-                UnitPrice = 9.99,
+                UnitPrice = 9,
                 Description = "Pro Version of the readPDF! Allows you to edit, encrypt and Sign off in a pdf document!",
                 Image = "AcrobatDC.png"
             });
@@ -45,7 +46,7 @@ namespace CATeam5Solution
             {
                 ProductID = 3,
                 ProductName = "ProPremier​",
-                UnitPrice = 59.99,
+                UnitPrice = 59,
                 Description = "Premium version of the premier video editing application!",
                 Image = "Premiere.png"
             });
@@ -54,7 +55,7 @@ namespace CATeam5Solution
             {
                 ProductID = 4,
                 ProductName = "RoomLight​",
-                UnitPrice = 39.99,
+                UnitPrice = 39,
                 Description = "A creative image manipulation software that allows you to create a workflow so ease your life as both an avid or pro photographer",
                 Image = "Lightroom.png"
             });
@@ -62,7 +63,7 @@ namespace CATeam5Solution
             {
                 ProductID = 5,
                 ProductName = "EffectsAfter",
-                UnitPrice = 69.99,
+                UnitPrice = 69,
                 Description = " VFX and Motion graphics software for the budding animators and 3d designers!",
                 Image = "AfterEffects.png"
             });
@@ -71,7 +72,7 @@ namespace CATeam5Solution
             {
                 ProductID = 6,
                 ProductName = "illustrator",
-                UnitPrice = 69.99,
+                UnitPrice = 69,
                 Description = "the industry-standard vector graphics app that lets you create logos, icons, drawings, typography, and complex illustrations for any medium!",
                 Image = "Illustrator.png"
             });
@@ -82,7 +83,7 @@ namespace CATeam5Solution
         {
             HashAlgorithm sha = SHA256.Create();
 
-            string[] usernames = { "adam", "betty", "charles", "daniel","elson","hehehe" };
+            string[] usernames = { "adam", "betty", "charles", "daniel", "elson", "hehehe" };
 
             foreach (string username in usernames)
             {
@@ -92,14 +93,50 @@ namespace CATeam5Solution
                 dbContext.Add(new Users
                 {
                     UserName = username,
-                    Password = hash
+                    Password = hash,
+                    Email = "123@123.com"
                 });
             }
 
             dbContext.SaveChanges();
         }
 
+        public void SeedCartItem()
+        {
+            Users user1 = dbContext.Users.FirstOrDefault(x => x.UserName == "Adam");
+            Users user2 = dbContext.Users.FirstOrDefault(x => x.UserName == "Betty");
+            Products product1 = dbContext.Products.FirstOrDefault(x => x.ProductID == 1);
+            Products product3 = dbContext.Products.FirstOrDefault(x => x.ProductID == 3);
 
+            if (user1 != null)
+            {
+                CartItem item1 = new CartItem
+                {
+                    Quantity = 5
+                };
+                user1.CartItems.Add(item1);
+                product1.CartItems.Add(item1);
+            }
 
+            if (user2 != null)
+            {
+                CartItem item1 = new CartItem
+                {
+                    Quantity = 11
+                };
+                user2.CartItems.Add(item1);
+                product1.CartItems.Add(item1);
+
+                CartItem item2 = new CartItem
+                {
+                    Quantity = 19
+                };
+                user2.CartItems.Add(item2);
+                product3.CartItems.Add(item2);
+
+            }
+
+            dbContext.SaveChanges();
+        }
     }
 }

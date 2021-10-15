@@ -17,7 +17,41 @@ namespace CATeam5Solution.Method
         }
         public void Seed()
         {
-            MakeOrders();
+            SeedCart();
+        }
+
+        public void SeedCart()
+        {
+            //find the product first
+            Products pro1 = dBContext.Products.FirstOrDefault(x => x.ProductID == 1);
+            Products pro2 = dBContext.Products.FirstOrDefault(x => x.ProductID == 2);
+            //Products pro3 = dBContext.Products.FirstOrDefault(x => x.ProductID == 3);
+            //Products pro4 = dBContext.Products.FirstOrDefault(x => x.ProductID == 4);
+            //Products pro5 = dBContext.Products.FirstOrDefault(x => x.ProductID == 5);
+            //Products pro6 = dBContext.Products.FirstOrDefault(x => x.ProductID == 6);
+            
+            Users adam = dBContext.Users.FirstOrDefault(x => x.UserName == "adam");
+            CartItem item1 = new CartItem{
+                Quantity = 2,
+                UsersId = adam.Id,
+                Product = pro1
+            };
+            CartItem item2 = new CartItem
+            {
+                Quantity = 1,
+                UsersId = adam.Id,
+                Product = pro2
+            };
+            dBContext.SaveChanges();
+            
+
+            pro1.CartItems.Add(item1);
+            pro2.CartItems.Add(item2);
+            adam.CartItems.Add(item1);
+            adam.CartItems.Add(item2);
+            dBContext.SaveChanges();
+
+
         }
 
         public void MakeOrders()
