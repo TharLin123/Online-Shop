@@ -61,7 +61,7 @@ namespace CATeam5Solution
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=MyPurchase}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
             DB db = new DB(dbContext);
