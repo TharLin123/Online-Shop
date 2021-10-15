@@ -1,15 +1,13 @@
 ﻿
 @{
-    List<Products> products = (List<Products>)ViewData["products"];
-    List<Order> orders = (List<Order>)ViewData["orders"];
-    List<ActCode> actCodes = (List<ActCode>)ViewData["actcodes"];
+    List<MyPurchaseViewModel> myPurchaseViewModels = (List<MyPurchaseViewModel>)ViewData["myPurchaseViewModel"];
 }
 
 <head>
     <link href="~/css/MyPurchase.css" rel="stylesheet" />
 </head>
 
-    @if (products == null)
+    @if (myPurchaseViewModels == null)
     {
         <div>Your history is empty.</div>
     }
@@ -20,37 +18,44 @@
                 <header class="header"> </header>
 
                 <div class="gallery">
-                    @foreach (var customer in products)
+                    @foreach (var customer in myPurchaseViewModels)
                     {
-                        <div class="producthistory">
-                            <a><img src=/img/@customer.Image alt="" width="200" class="cards" /></a>
-                            <p></p>
-                            <p>@customer.ProductName</p>
-                            <div class="Desc">
-                                <p>@customer.Description</p>
-                            </div>
-                            <button class="Download">Download</button>
-                            <button class="Detail" title="@customer.ActCodes.ToString()">Detail</button>
-                            <p></p>
-                            <form id="score_form">
-                                <div class="star-rating">
-                                    <fieldset class="starability-basic">
-                                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-                                        <input type="radio" id="first-rate1" name="rating" value="1" />
-                                        <label for="first-rate1" title="Terrible">1 star</label>
-                                        <input type="radio" id="first-rate2" name="rating" value="2" />
-                                        <label for="first-rate2" title="Not good">2 stars</label>
-                                        <input type="radio" id="first-rate3" name="rating" value="3" />
-                                        <label for="first-rate3" title="Average">3 stars</label>
-                                        <input type="radio" id="first-rate4" name="rating" value="4" />
-                                        <label for="first-rate4" title="Very good">4 stars</label>
-                                        <input type="radio" id="first-rate5" name="rating" value="5" />
-                                        <label for="first-rate5" title="Amazing">5 stars</label>
-                                    </fieldset>
-                                </div>
-                            </form>
-                            <textarea class="Review"></textarea>
+                    <div class="producthistory">
+                        <a><img src=/img/@customer.ImageLink alt="" width="200" class="cards" /></a>
+                        <p></p>
+                        <p>@customer.Name</p>
+                        <div class="Desc">
+                            <p>@customer.Description</p>
                         </div>
+                        <br/>
+                        <button class="Download">Download</button>
+                        <button class="Detail" title="Quantity: @customer.Quantity&#10;Order Date: @customer.DateTime">Detail</button>
+                        <br />
+                        <select class="select">
+                            <option value="Activation Code">Activation Code</option>
+                            @for(int i = 0; i < customer.ActivationCode.Count; i++){<option value="Actcode">@customer.ActivationCode[i]</option>}
+                        
+                        </select>
+                        <p></p>
+                        <form id="score_form">
+                            <div class="star-rating">
+                                <fieldset class="starability-basic">
+                                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                                    <label for="first-rate1" title="Terrible">1 star</label>
+                                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                                    <label for="first-rate2" title="Not good">2 stars</label>
+                                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                                    <label for="first-rate3" title="Average">3 stars</label>
+                                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                                    <label for="first-rate4" title="Very good">4 stars</label>
+                                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                                    <label for="first-rate5" title="Amazing">5 stars</label>
+                                </fieldset>
+                            </div>
+                        </form>
+                        <textarea class="Review"onClick="this.value='';">Leave a review</textarea>
+                    </div>
                     }
                 </div>
 
@@ -81,6 +86,11 @@
             height: 8%;
             background-color: #5D5E5D;
             border-bottom: 1px solid #353635;
+        }
+        .select
+        {
+            margin-top:20px;
+            width:80px;
         }
 
         .Download {
