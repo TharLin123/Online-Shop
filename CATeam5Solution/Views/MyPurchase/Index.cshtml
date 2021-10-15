@@ -1,201 +1,187 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
     List<Products> products = (List<Products>)ViewData["products"];
- }
-@{
-
-    <head>
-        <link href="~/css/MyPurchase.css" rel="stylesheet" />
-    </head>
-    @*@if (products == null)
-    {
-        <div>Your history is empty.</div>
-    }
-    else
-    {
-        foreach (var item in products)
-        {
-            <div class="producthistory">
-                <div class="left">
-                    <img src="https://www.dute.org/imgplaceholder/360x240">
-                    <p>@item.ProductName</p>
-                    <p>@item.Description</p>
-                    <button>DownLoad</button>
-                </div>
-
-                <div class="right">
-                    <p>Purchase on: @ViewData[""]</p>
-                    <p>Quantity: @ViewData[""]</p>
-                    <p>
-                        Activation Code: <select>
-                            <option value="value">text</option>
-                            <option value="value">text</option>
-                        </select>
-                    </p>
-                    <form id="score_form">
-                    </form>
-                    <form>
-                        <div class="star-rating">
-                            <fieldset class="starability-basic">
-                                <p style="color:blue">Rating</p>
-                                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-                                <input type="radio" id="first-rate1" name="rating" value="1" />
-                                <label for="first-rate1" title="Terrible">1 star</label>
-                                <input type="radio" id="first-rate2" name="rating" value="2" />
-                                <label for="first-rate2" title="Not good">2 stars</label>
-                                <input type="radio" id="first-rate3" name="rating" value="3" />
-                                <label for="first-rate3" title="Average">3 stars</label>
-                                <input type="radio" id="first-rate4" name="rating" value="4" />
-                                <label for="first-rate4" title="Very good">4 stars</label>
-                                <input type="radio" id="first-rate5" name="rating" value="5" />
-                                <label for="first-rate5" title="Amazing">5 stars</label>
-                            </fieldset>
-                        </div>
-                    </form>
-                    <p>Leave your review:</p>
-                    <textarea rows="6" cols="40"></textarea>
-                    <button>Submit</button>
-                </div>
-            </div>
-        }
-    }*@
-
-    @*for (int i = 0; i < 99; i++)
-        {
-            <div class="producthistory">
-                <div class="left">
-                    <img src="https://www.dute.org/imgplaceholder/360x240">
-                    <p>Product Name</p>
-                    <p>The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</p>
-                    <button>DownLoad</button>
-                </div>
-
-                <div class="right">
-                    <p>Purchase on: @ViewData[""]</p>
-                    <p>Quantity: @ViewData[""]</p>
-                    <p>
-                        Activation Code: <select>
-                            <option value="value">text</option>
-                            <option value="value">text</option>
-                        </select>
-                    </p>
-                    <form id="score_form">
-                    </form>
-                    <form>
-                        <div class="star-rating">
-                            <fieldset class="starability-basic">
-                                <p style="color:blue">Rating</p>
-                                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-                                <input type="radio" id="first-rate1" name="rating" value="1" />
-                                <label for="first-rate1" title="Terrible">1 star</label>
-                                <input type="radio" id="first-rate2" name="rating" value="2" />
-                                <label for="first-rate2" title="Not good">2 stars</label>
-                                <input type="radio" id="first-rate3" name="rating" value="3" />
-                                <label for="first-rate3" title="Average">3 stars</label>
-                                <input type="radio" id="first-rate4" name="rating" value="4" />
-                                <label for="first-rate4" title="Very good">4 stars</label>
-                                <input type="radio" id="first-rate5" name="rating" value="5" />
-                                <label for="first-rate5" title="Amazing">5 stars</label>
-                            </fieldset>
-                        </div>
-                    </form>
-                    <p>Leave your review:</p>
-                    <textarea rows="6" cols="40"></textarea>
-                    <button>Submit</button>
-                </div>
-            </div>
-        }*@
+    List<Order> orders = (List<Order>)ViewData["orders"];
+    List<ActCode> actCodes = (List<ActCode>)ViewData["actcodes"];
 }
+
+
 <head>
     <link href="~/css/MyPurchase.css" rel="stylesheet" />
 </head>
+@if (products == null)
+{
+    <div>Your history is empty.</div>
+}
+else
+{
+    <body>
+        <div class="container">
+            <header class="header"> </header>
+
+            <div class="gallery">
+                @foreach (var customer in products)
+                {
+                    <div class="producthistory">
+                        <a><img src=/img/@customer.Image alt="" width="200" class="cards" /></a>
+                        <p></p>
+                        <p>@customer.ProductName</p>
+                        <div class="Desc">
+                            <p>@customer.Description</p>
+                        </div>
+                        <button class="Download">Download</button>
+                        <button class="Detail" title="@customer.ActCodes.ToString()">Detail</button>
+                        <p></p>
+                        <form id="score_form">
+                            <div class="star-rating">
+                                <fieldset class="starability-basic">
+                                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                                    <label for="first-rate1" title="Terrible">1 star</label>
+                                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                                    <label for="first-rate2" title="Not good">2 stars</label>
+                                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                                    <label for="first-rate3" title="Average">3 stars</label>
+                                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                                    <label for="first-rate4" title="Very good">4 stars</label>
+                                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                                    <label for="first-rate5" title="Amazing">5 stars</label>
+                                </fieldset>
+                            </div>
+                        </form>
+                        <textarea class="Review"></textarea>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </body>
+    <div class="copyright">&copy;2020 - <strong>GRID</strong></div>
+
+
+
+}
+
+
 <style>
+    body {
+        font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+        background-color: #FFFFFF;
+        margin: 0;
+    }
+    /* Container */
+    .container {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* Header */
+    header {
+        width: 100%;
+        height: 8%;
+        background-color: #5D5E5D;
+        border-bottom: 1px solid #353635;
+    }
+
+    .Download {
+        min-width: 80px;
+        margin-right: 15px;
+    }
+
+    .Detail {
+        min-width: 80px;
+    }
+
+    .Review {
+        width: 200px;
+        height: 70px;
+        position: center;
+        overflow-y: auto;
+        overflow-x: auto;
+        resize: none;
+    }
+
+    .Desc {
+        width: 200px;
+        height: 170px;
+        padding-left: 20px;
+    }
+
+    .star-rating {
+        padding-left: 35px;
+    }
+
+    .text_column {
+        width: 90%;
+        text-align: left;
+        font-weight: lighter;
+        line-height: 25px;
+        float: left;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #A3A3A3;
+    }
+
+    .gallery {
+        clear: both;
+        display: inline-block;
+        width: 100%;
+        background-color: #FFFFFF;
+        margin-top: 20px;
+        padding-bottom: 35px;
+        padding-top: 0px;
+        margin-top: 25px;
+        margin-bottom: 0px;
+    }
 
     .producthistory {
-        width: 850px;
-        height: 400px;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .left {
-        display: table-cell;
-        background: yellow;
-        width: 400px;
+        width: 220px;
+        height: 700px;
         text-align: center;
-        margin: 10px;
+        float: left;
+        margin-top: 35px;
+        background-color: #F8F8F8;
+        padding-bottom: 20px;
+        margin-left: 1%;
+        margin-right: 1%;
+        border-radius: 3px;
+        padding-top: 20px;
+        border-bottom: 4px solid #6DC7D0;
     }
 
-    .right {
-        display: table-cell;
-        background: burlywood;
-        width: 400px;
-        margin: 0px;
-        padding-left: 5px;
+    .gallery .thumbnail h4 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: #52BAD5;
+        text-align: left;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    img {
-        padding-top: 10px;
+    .gallery .thumbnail p {
+        margin: 0;
+        color: #B3B3B3;
+        text-align: left;
+        padding-left: 20px;
     }
 
-    .textdiv {
-        width: 100%;
-        border: 1px solid #EBEBEB;
-        min-height: 24px;
-        background-color: #FFF;
-        border-radius: 5px 5px;
-        overflow-y: auto;
-        font-size: 0.9em;
+    .cards {
+        width: 40%;
+        height: auto;
+        max-width: 400px;
+        max-height: 200px;
+        opacity: 0.8;
+    }
+
+    .copyright {
+        text-align: center;
+        background-color: #717070;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        font-weight: lighter;
+        letter-spacing: 2px;
+        border-top-width: 2px;
+        margin-top: 20px;
     }
 </style>
 
-@*<div class="producthistory">
-        <div class="left">
-            <img src="https://www.dute.org/imgplaceholder/360x240">
-            <p>Product Name</p>
-            <p>The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</p>
-            <button>DownLoad</button>
-        </div>
-
-        <div class="right">
-            <p>Purchase on: 12, OCT, 2021</p>
-            <p>Quantity: 2</p>
-            <p>
-                Activation Code: <select>
-                    <option value="value">text</option>
-                    <option value="value">text</option>
-                </select>
-            </p>
-            <p>Leave A Review!</p>
-        </div>
-    </div>*@
-
-
-@*<div class="historydiv1">
-        <table border="1">
-            <tr>
-                <td>
-                    <div class="leftpart">
-                        <img src="https://www.dute.org/imgplaceholder/800x240" width="400" height="240">
-                        <div class="pro_name">Product Name</div>
-                        <div class="pro-desc">The new release of Adobe Creative Cloud gives you all the best creative apps and services, so you can stay more connected and creative wherever you’re inspired.</div>
-                        <button>DownLoad</button>
-                    </div>
-                </td>
-                <td>
-                    <div class="rightpart" style="display:inline">
-                        <p>Purchase on: 12, OCT, 2021</p>
-                        <p>Quantity: 2</p>
-                        <p>
-                            Activation Code: <select>
-                                <option value="value">text</option>
-                                <option value="value">text</option>
-                            </select>
-                        </p>
-                        <p>Leave A Review!</p>
-                    </div>
-                </td>
-        </table>
-    </div>*@

@@ -71,6 +71,8 @@ namespace CATeam5Solution.Controllers
 
             return View();
         }
+
+       
         //Copy CartItem controller's code
         private Session GetSession()
         {
