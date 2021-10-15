@@ -47,21 +47,9 @@ namespace CATeam5Solution.Controllers
                 return View();
             }
 
-            //Guid userid = session.Users.Id;
+            Guid userid = session.Users.Id;
 
-            //List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
-            //ViewData["cart"] = cartItems;
-
-            //string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
-
-            //ViewData["userCartAmt"] = userCartAmt;
-
-            //return View();
-
-            //Code below just for testing view 
-
-
-            List<CartItem> cartItems = dbContext.CartItem.ToList();
+            List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
             ViewData["cart"] = cartItems;
 
             string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
@@ -69,6 +57,18 @@ namespace CATeam5Solution.Controllers
             ViewData["userCartAmt"] = userCartAmt;
 
             return View();
+
+            //Code below just for testing view 
+
+
+            //List<CartItem> cartItems = dbContext.CartItem.ToList();
+            //ViewData["cart"] = cartItems;
+
+            //string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
+
+            //ViewData["userCartAmt"] = userCartAmt;
+
+            //return View();
 
         }
 
