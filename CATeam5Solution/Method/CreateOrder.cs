@@ -40,7 +40,7 @@ namespace CATeam5Solution.Method
             };//new an order object
             foreach (var item in productDetail) // for each key value pair in the dict(product,quantity)
             {
-                for (int i = 0; i < item.Value; i++)//loop qunantity time to add all the products or his cart to the order.Products(List)
+                for (int i = 0; i < item.Value; i++)//loop qunantity time to add all the products in his cart to the order.Products(List)
                 {
                     order.Products.Add(item.Key);//add the product to order.products (list) 
                     ActCode actcode = new ActCode();//for each product, create a new ActCode

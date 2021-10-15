@@ -61,7 +61,7 @@ namespace CATeam5Solution
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=MyPurchase}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
             DB db = new DB(dbContext);
@@ -72,8 +72,6 @@ namespace CATeam5Solution
                 db.Seed();//the seed should be here to prevent multiple seedings everytime we restart the asp mvc 
             }
             
-            //TestSeedOnly ts = new TestSeedOnly(dbContext);           
-            //ts.SeedCart();
         }         
     }
     

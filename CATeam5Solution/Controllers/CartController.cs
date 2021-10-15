@@ -30,10 +30,7 @@ namespace CATeam5Solution.Controllers
                 return RedirectToAction("Index", "Login");
             }
             Guid userid = session.UsersId;
-            //the follow 2 lines of code are for testing only
-            //Users user = dbContext.Users.FirstOrDefault(x => x.UserName.Equals("adam"));
-            //Guid userid = user.Id;
-
+            TempData["Alert"] = "Successfully CheckOut!";//send this tempdata to mypurchase/index if the user visit my purchase page via clicking checkout button
             CreateOrder orderMaker = new CreateOrder(userid,dbContext);
             orderMaker.MakeOrder();//with passing the data to user/product/order/actcode tables, the his data in cartitem table will be deleted.
             return RedirectToAction("Index", "MyPurchase");
@@ -50,21 +47,9 @@ namespace CATeam5Solution.Controllers
                 return View();
             }
 
-            //Guid userid = session.Users.Id;
+            Guid userid = session.Users.Id;
 
-            //List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
-            //ViewData["cart"] = cartItems;
-
-            //string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
-
-            //ViewData["userCartAmt"] = userCartAmt;
-
-            //return View();
-
-            //Code below just for testing view 
-
-
-            List<CartItem> cartItems = dbContext.CartItem.ToList();
+            List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
             ViewData["cart"] = cartItems;
 
             string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
@@ -72,6 +57,18 @@ namespace CATeam5Solution.Controllers
             ViewData["userCartAmt"] = userCartAmt;
 
             return View();
+
+            //Code below just for testing view 
+
+
+            //List<CartItem> cartItems = dbContext.CartItem.ToList();
+            //ViewData["cart"] = cartItems;
+
+            //string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
+
+            //ViewData["userCartAmt"] = userCartAmt;
+
+            //return View();
 
         }
 
