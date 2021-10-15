@@ -12,6 +12,8 @@
     </head>
 
     <body>
+        <h1 id="cartHeader">Shopping Cart</h1>
+
 
         @if (cartItems.Count == 0)
         {
@@ -19,7 +21,7 @@
         }
         else
         {
-            <table>
+            <table id="cartTable">
                 <colgroup>
                     <col class="cart_Table_15" />
                     <col class="cart_Table_40" />
@@ -42,9 +44,10 @@
                     var placeholder2 = "unitprice" + @cartitem.Product.ProductID;
                     var placeholder3 = "cartitem" + @cartitem.Product.ProductID;
                     var placeholder4 = "remove" + @cartitem.Product.ProductID;
-                    var initSubtotal = (@cartitem.Product.UnitPrice * @cartitem.Quantity);
+                    var rawSubtotal = @cartitem.Product.UnitPrice * @cartitem.Quantity;
+                    var initSubtotal = Math.Round(rawSubtotal,2).ToString("#,0.00");
 
-                    <tr id=@placeholder3>
+                    <tr id=@placeholder3 class="itemRow">
                         <td>
                             <img src="/img/@cartitem.Product.Image">
                         </td>
