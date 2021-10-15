@@ -31,11 +31,11 @@ namespace CATeam5Solution.Controllers
             }
             Guid userid = session.UsersId;
             TempData["Alert"] = "Successfully CheckOut!";//send this tempdata to mypurchase/index if the user visit my purchase page via clicking checkout button
-            CreateOrder orderMaker = new CreateOrder(userid,dbContext);
+            CreateOrder orderMaker = new CreateOrder(userid, dbContext);
             orderMaker.MakeOrder();//with passing the data to user/product/order/actcode tables, the his data in cartitem table will be deleted.
             return RedirectToAction("Index", "MyPurchase");
         }//check out function-----> put user's cartitem data into User/Product/Order table
-       
+
         [Route("Cart")]
         public IActionResult ViewCart()
         {
