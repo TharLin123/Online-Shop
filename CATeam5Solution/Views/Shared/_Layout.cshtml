@@ -38,17 +38,17 @@
                         <li class="nav-item">
                             @if ((string)ViewData["Title"] != "View Cart")
                             { 
-                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><b>All Products</b></a>
+                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><b>Shop</b></a>
                             }
                             else
                             {
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><b>Continue Shopping</b></a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><b>&#8592 Continue Shopping</b></a>
                             }
                         </li>
                         <li class="nav-item">
                             @if ((string)ViewData["Title"] != "View Cart")
                             {
-                                <a class="nav-link light" asp-area="" asp-controller="MyPurchase" asp-action="Index"><b>MyPurchase</b></a>
+                                <a class="nav-link light" asp-area="" asp-controller="MyPurchase" asp-action="Index"><b>My Purchases</b></a>
                             }
                             else
                             {
