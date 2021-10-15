@@ -12,12 +12,13 @@
     </head>
 
     <body>
-        <h1 id="cartHeader">Shopping Cart</h1>
+        <h1 id="cartHeader"></h1>
 
 
         @if (cartItems.Count == 0)
         {
-            <div>Your cart is empty!</div>
+            <h3 style="text-align:center; padding: 20px;">Your cart is empty!</h3>
+            <img src="~/img/CryingFaceEmoji.png" class="cart_CryingFaceEmoji"/>
         }
         else
         {
