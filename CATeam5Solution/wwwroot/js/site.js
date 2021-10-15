@@ -18,7 +18,7 @@ addToCart = function(productId) {
             let data = JSON.parse(this.responseText);
             console.log(data);
             document.getElementById('CartCount').innerHTML = data.totalItem;
-            document.getElementById(productId).innerHTML = data.itemCount;
+            document.getElementById(productId).innerHTML = data.itemCount + " Items In Cart";
         }
     };
 
@@ -39,7 +39,7 @@ removeFromCart = function(productId) {
 
             let data = JSON.parse(this.responseText);
             document.getElementById('CartCount').innerHTML = data.totalItem;
-            document.getElementById(productId).innerHTML = data.itemCount;
+            document.getElementById(productId).innerHTML = data.itemCount + " Items In Cart";
         }
     };
 

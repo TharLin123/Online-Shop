@@ -23,22 +23,6 @@ namespace CATeam5Solution.Controllers
 
             ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User.Id == User.Id);
 
-            if (shoppingCart == null)
-            {
-                dbContext.Add(new ShoppingCart
-                {
-                    User = User
-                });
-                dbContext.SaveChanges();
-                shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User == null);
-            }
-
-            dbContext.Add(new ProductsShoppingCart
-            {
-                Products = ProductToAdd,
-                ShoppingCart = shoppingCart
-            });
-
             CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToAdd.ProductID);
           
             if (cartItem == null)
@@ -54,11 +38,13 @@ namespace CATeam5Solution.Controllers
             }
 
             dbContext.SaveChanges();
-
-            List<ProductsShoppingCart> productsShoppingCart = dbContext.ProductsShoppingCart.Where(psc => psc.ShoppingCart == shoppingCart).ToList();
-            int ItemCount = productsShoppingCart.Count(psc => psc.Products.ProductID == id);
-            int TotalItem = productsShoppingCart.Count();
-            return Json(new { TotalItem = TotalItem, ItemCount = ItemCount });
+            List<CartItem> cartItems = dbContext.CartItem.Where(cartItem => cartItem.Users.Id == User.Id).ToList();
+            int TotalItemInCart = 0;
+            foreach(CartItem item in cartItems)
+            {
+                TotalItemInCart += item.Quantity;
+            }
+            return Json(new { TotalItem = TotalItemInCart, ItemCount = cartItem.Quantity });
         }
 
         [HttpPost]
@@ -66,17 +52,7 @@ namespace CATeam5Solution.Controllers
         {
             Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).Users;
             Products ProductToRemove = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
-            ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User.Id == User.Id);
-            
-            if (shoppingCart != null)
-            {
-                ProductsShoppingCart ShoppingCartItem = dbContext.ProductsShoppingCart.FirstOrDefault(psc => psc.Products.ProductID == id);
-                if (ShoppingCartItem != null)
-                {
-                    dbContext.Remove(ShoppingCartItem);
-                }
-            }
-      
+    
             CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToRemove.ProductID);
             if (cartItem != null)
             {
@@ -88,10 +64,13 @@ namespace CATeam5Solution.Controllers
             }
 
             dbContext.SaveChanges();
-            List<ProductsShoppingCart> productsShoppingCart = dbContext.ProductsShoppingCart.Where(psc => psc.ShoppingCart == shoppingCart).ToList();
-            int ItemCount = productsShoppingCart.Count(psc => psc.Products.ProductID == id);
-            int TotalItem = productsShoppingCart.Count();
-            return Json(new { TotalItem = TotalItem, ItemCount = ItemCount });
+            List<CartItem> cartItems = dbContext.CartItem.Where(cartItem => cartItem.Users.Id == User.Id).ToList();
+            int TotalItemInCart = 0;
+            foreach (CartItem item in cartItems)
+            {
+                TotalItemInCart += item.Quantity;
+            }
+            return Json(new { TotalItem = TotalItemInCart, ItemCount = cartItem.Quantity });
         }
     }
 }

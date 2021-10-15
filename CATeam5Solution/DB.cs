@@ -21,7 +21,6 @@ namespace CATeam5Solution
         {
             SeedProducts();
             SeedUsers();
-            SeedCartItem();
         }
 
         public void SeedProducts()
