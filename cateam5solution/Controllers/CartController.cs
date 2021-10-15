@@ -30,10 +30,7 @@ namespace CATeam5Solution.Controllers
                 return RedirectToAction("Index", "Login");
             }
             Guid userid = session.UsersId;
-            //the follow 2 lines of code are for testing only
-            //Users user = dbContext.Users.FirstOrDefault(x => x.UserName.Equals("adam"));
-            //Guid userid = user.Id;
-
+            TempData["Alert"] = "Successfully CheckOut!";//send this tempdata to mypurchase/index if the user visit my purchase page via clicking checkout button
             CreateOrder orderMaker = new CreateOrder(userid,dbContext);
             orderMaker.MakeOrder();//with passing the data to user/product/order/actcode tables, the his data in cartitem table will be deleted.
             return RedirectToAction("Index", "MyPurchase");
