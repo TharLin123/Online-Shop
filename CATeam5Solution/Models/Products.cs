@@ -15,11 +15,8 @@ namespace CATeam5Solution.Models
             Id = new Guid();
             ActCodes = new List<ActCode>();
             Orders = new List<Order>();
-<<<<<<< Updated upstream
             CartItems = new List<CartItem>();
-=======
             ProductsShoppingCarts = new List<ProductsShoppingCart>();
->>>>>>> Stashed changes
         }
         
         public Guid Id { get; set; }

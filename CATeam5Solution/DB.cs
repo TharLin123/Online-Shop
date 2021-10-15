@@ -100,7 +100,6 @@ namespace CATeam5Solution
 
             dbContext.SaveChanges();
         }
-<<<<<<< Updated upstream
 
         public void SeedCartItem()
         {
@@ -139,8 +138,5 @@ namespace CATeam5Solution
 
             dbContext.SaveChanges();
         }
-
-=======
->>>>>>> Stashed changes
     }
 }
