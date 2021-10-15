@@ -17,7 +17,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3"> @*Start of Nav Bar*@ 
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            @*Start of Nav Bar*@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     Hello,
@@ -37,8 +38,8 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             @if ((string)ViewData["Title"] != "View Cart")
-                            { 
-                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><b>Shop</b></a>
+                            {
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><b>Shop</b></a>
                             }
                             else
                             {
@@ -63,36 +64,57 @@
                                 <a id="totalPrice" class="nav-link text-light">Total: $@ViewData["userCartAmt"]</a>
                             </li>
                         }
-                        <li class="nav-item ml-auto" id="Cart"> @*Shopping Cart Icon*@
+                        <li class="nav-item ml-auto" id="Cart">
+                            @*Shopping Cart Icon*@
                             <a asp-controller="Cart" asp-action="ViewCart">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                                     <span id="CartCount" class="position-absolute top-5 start-90 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden"></span></span>
-                                </svg> 
+                                </svg>
                             </a>
                         </li>
-                        <li class="nav-item text-light" style="margin-left:20px">@*Login / Logout Button*@
+                        <li class="nav-item text-light" style="margin-left:20px">
+                            @*Login / Logout Button*@
                             @{
                                 @if (Context.Request.Cookies["SessionId"] != null)
-                                {   
-                                    <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout"><b>Logout</b></a> 
+                                {
+                                    <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout"><b>Logout</b></a>
                                 }
                                 else
-                                {   <span class="glyphicon glyphicon-envelope"></span>
+                                { <span class="glyphicon glyphicon-envelope"></span>
                                     <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index"><b>Login</b></a>
-                                } 
-                             }
+                                }
+                            }
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    @*trying out new banner*@
+    <section style=" width: 100%; padding: 60px 0; text-align: center; background-color: royalblue; color: white; margin: 0">
+        <h1>Adob3 Reseller</h1>
+        @if ((string)ViewData["Title"] == "Home Page")
+        {
+            <h2>Shop</h2>
+        }
+        else if ((string)ViewData["Title"] == "View Cart")
+        {
+            <h2>Shopping Cart</h2>
+        }
+        else if ((string)ViewData["Title"] == "Privacy Policy")
+        {
+            <h2>Privacy Policy</h2>
+        }
+        else
+        {
+            <h2></h2>
+        }
+    </section>
+
+
     <div class="container">
         <main role="main" class="pb-3">
-            <div>
-            <img src="~/Background/GrayscaleLeaf.png"style="float:left;height:300px;width:1080px" />
-            </div>
             @RenderBody()
         </main>
     </div>
