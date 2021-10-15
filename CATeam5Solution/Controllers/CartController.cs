@@ -45,7 +45,9 @@ namespace CATeam5Solution.Controllers
             Session session = GetSession();
             if (session == null)
             {
-                return RedirectToAction("Index", "Login");
+                //return RedirectToAction("Index", "Login");
+                ViewData["cart"] = new List<CartItem>();
+                return View();
             }
 
             Guid userid = session.Users.Id;
@@ -53,7 +55,7 @@ namespace CATeam5Solution.Controllers
             List<CartItem> cartItems = dbContext.CartItem.Where(x => x.UsersId == userid).ToList();
             ViewData["cart"] = cartItems;
 
-            string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("0,0.00");
+            string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
 
             ViewData["userCartAmt"] = userCartAmt;
 
@@ -78,10 +80,13 @@ namespace CATeam5Solution.Controllers
             string username = Request.Cookies["Username"];
             Users user = dbContext.Users.FirstOrDefault(x => x.UserName == username);
             Guid userid = user.Id;
-            int newquantity = values.Quantity;
-
+            int newquantity;
             string userCartAmt;
-                     
+
+            newquantity = values.Quantity;
+            
+
+                                 
             //REMOVING THE ITEM FROM CART SHOULD HAVE A SEPARATE ACTION METHOD
             /*if (newquantity == 0) 
             {
@@ -108,7 +113,7 @@ namespace CATeam5Solution.Controllers
                 
                 double amt = dbContext.CartItem.Where(x => x.UsersId == userid).Sum(x => x.Quantity * x.Product.UnitPrice);
 
-                userCartAmt = Math.Round(amt, 2).ToString("0,0.00");
+                userCartAmt = Math.Round(amt, 2).ToString("#,0.00");
 
                 return Json(new 
                 { status = "success",
@@ -132,9 +137,16 @@ namespace CATeam5Solution.Controllers
 
             dbContext.SaveChanges();
 
+            double amt = dbContext.CartItem.Where(x => x.UsersId == userid).Sum(x => x.Quantity * x.Product.UnitPrice);
+
+            string userCartAmt = Math.Round(amt, 2).ToString("#,0.00");
+
+
+
             return Json(new
             {
                 status = "success",
+                userCartAmt
             });
         }
 

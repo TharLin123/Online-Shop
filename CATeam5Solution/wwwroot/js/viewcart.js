@@ -31,6 +31,7 @@ window.onload = function () {
     let elems = document.getElementsByClassName("cart_QuantityBox");
     for (let i = 0; i < elems.length; i++) {
         elems[i].addEventListener('input', UpdatePrice);
+        /*elems[i].addEventListener('blur', onBlur);*/
     }
 
     let cart = document.getElementsByClassName("cartItem");
@@ -39,6 +40,23 @@ window.onload = function () {
     }
 }
 
+/*let initValue = onFocus();
+
+function onFocus(event) {
+    let target = event.currentTarget;
+    let initValue = document.getElementById(target.id).value;
+    return initValue;
+}*/
+
+/*function onBlur(event) {
+    let target = event.currentTarget;
+    let value = document.getElementById(target.id).value
+    if (isNaN(value)) {
+        alert("Please input a correct quantity. You may remove the item by clicking on the delete icon on the right.");
+        document.getElementById(productId).value = 1;
+    }
+}*/
+
 function UpdatePrice(event) {
     let target = event.currentTarget;
     let productId = target.id;
@@ -46,14 +64,46 @@ function UpdatePrice(event) {
     let subtotalId = "subtotal" + productId;
     let unitpriceId = "unitprice" + productId;
 
-    let value = document.getElementById(productId).value;
+    let value = document.getElementById(productId).value * 1;
+    
     let unitprice = parseFloat(document.getElementById(unitpriceId).innerHTML.substring(1));
+
+    if (value < 1 || !Number.isInteger(value)) {
+        alert("Please input a correct quantity. You may remove the item by clicking on the delete icon on the right.");
+        document.getElementById(productId).value = 1;
+        document.getElementById(subtotalId).innerHTML = "$" + unitprice;
+
+        subtotalgroup = document.getElementsByClassName("subtotals");
+        /*let sum = 0;
+
+        for (let i = 0; i < subtotalgroup.length; i++) {
+            let amt = subtotalgroup[i].innerHTML.substring(1)*1
+            sum += amt;
+        }
+
+        document.getElementById("totalPrice").innerHTML = "Total: $" + sum;
+        return;*/
+    }
+
+    value = document.getElementById(productId).value * 1;
 
     AjaxUpdateCartDB(productId, value);
 
-    let newsubtotal = value * unitprice;
-    let converter = new Intl.NumberFormat('en-US');
-    let finalsubtotal = converter.format(newsubtotal.toFixed(2));
+    let newsubtotal;
+
+    if (isNaN(value)) {
+        newsubtotal = 0 * unitprice;
+    } else {
+        newsubtotal = value * unitprice;
+    }
+    
+    /*let converter = new Intl.NumberFormat('en-US');
+    let finalsubtotal = converter.format(newsubtotal.toFixed(2));*/
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    let finalsubtotal = formatNumber(newsubtotal.toFixed(2));
 
     document.getElementById(subtotalId).innerHTML = "$"+finalsubtotal;
 }
@@ -108,7 +158,21 @@ function AjaxRemoveItem(productId) {
                 let data = JSON.parse(this.responseText);
 
                 if (data.status == "success") {
+                    let total = document.getElementById("totalPrice");
+                    total.innerHTML = "Total: $" + data.userCartAmt;
                     item.remove();
+
+                    let rowCheck = document.getElementsByClassName("itemRow");
+                    let table = document.getElementById("cartTable");
+                    if (rowCheck.length == 0) {
+                        table.remove();
+                        let element = document.createElement("div");
+                        let content = document.createTextNode("Your cart is empty!");
+                        let result = element.appendChild(content);
+                        let cartHeader = document.getElementById("cartHeader");
+
+                        cartHeader.after(result);
+                    }
                 }
             }
         }
