@@ -23,6 +23,14 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+.header_banner {
+    width: 100%;
+    padding: 60px 0;
+    text-align: center;
+    background-color: royalblue;
+    color: white;
+    margin: 0;
+}
 
 
 /* Sticky footer styles

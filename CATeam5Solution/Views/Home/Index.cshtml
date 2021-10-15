@@ -4,12 +4,12 @@
     string searchStr = (string)ViewData["searchStr"];
 
 }
-<!--HEAD-->
-<h1>Shop</h1>
+
+
 @{
     @* Kenny search *@
-    <form action="/Search/" method="POST">
-        Search Products: <input name="searchStr" value="@searchStr" style="width:75%"/>
+    <form action="/Search/" method="POST" style="padding:20px">
+        <b>Search Products:</b> <input name="searchStr" value="@searchStr" style="width:75%"/>
     </form>
 
     <p></p>
