@@ -13,15 +13,20 @@ namespace CATeam5Solution.Models
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder model)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           
         }
+
         public DbSet<Session> Session { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<CartItem> CartItem { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ActCode> ActCode { get; set; }
+        public DbSet<ShoppingCart> ShoppingCart { get; set; }
+        public DbSet<ProductsShoppingCart> ProductsShoppingCart { get; set; }
+
     }
 }
     

@@ -18,52 +18,55 @@ namespace CATeam5Solution.Controllers
         [HttpPost]
         public IActionResult AddToCart(int id)
         {
-            int Count = 0;
+            //Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).UserName;
             Products ProductToAdd = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
 
-            Dictionary<string, int> ShoppingCartItem = ShoppingCart.ProductList.SingleOrDefault(product => product["ProductId"] == id);
-
-            if (ShoppingCartItem != null)
+            ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User == null);
+                                                                        //(cart => cart.User.Id == User.Id);
+            if (shoppingCart == null)
             {
-                ShoppingCartItem["Amount"] += 1;
-            }
-            else
-            {
-                Dictionary<string, int> ShoppingCartDict = new Dictionary<string, int>();
-                ShoppingCartDict["ProductId"] = ProductToAdd.ProductID;
-                ShoppingCartDict["Amount"] = 1;
-                ShoppingCart.ProductList.Add(ShoppingCartDict);
+                dbContext.Add(new ShoppingCart
+                {
+                    User = null //User
+                });
+                dbContext.SaveChanges();
+                shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User == null);
             }
 
-            foreach(Dictionary<string, int> Item in ShoppingCart.ProductList)
+            dbContext.Add(new ProductsShoppingCart
             {
-                Count += Item["Amount"];
-            }
-            return Json(new { CartCount =  Count, ShoppingCart = ShoppingCart.ProductList});
+                Products = ProductToAdd,
+                ShoppingCart = shoppingCart
+            });
+            dbContext.SaveChanges();
+
+            List<ProductsShoppingCart> productsShoppingCart = dbContext.ProductsShoppingCart.Where(psc => psc.ShoppingCart == shoppingCart).ToList();
+            int ItemCount = productsShoppingCart.Count(psc => psc.Products.ProductID == id);
+            int TotalItem = productsShoppingCart.Count();
+            return Json(new { TotalItem = TotalItem, ItemCount = ItemCount });
         }
 
         [HttpPost]
         public IActionResult RemoveFromCart(int id)
         {
-            int Count = 0;
-            Products ProductToAdd = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
+            //Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).UserName;
+            Products ProductToRemove = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
 
-            Dictionary<string, int> ShoppingCartItem = ShoppingCart.ProductList.SingleOrDefault(product => product["ProductId"] == id);
-
-            if(ShoppingCartItem != null)
+            ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User == null);
+                                                                        //(cart => cart.User.Id == User.Id);
+            if (shoppingCart != null)
             {
-                ShoppingCartItem["Amount"] -= 1;
-                if (ShoppingCartItem["Amount"] == 0)
+                ProductsShoppingCart ShoppingCartItem = dbContext.ProductsShoppingCart.FirstOrDefault(psc => psc.Products.ProductID == id);
+                if (ShoppingCartItem != null)
                 {
-                    ShoppingCart.ProductList.Remove(ShoppingCartItem);
+                    dbContext.Remove(ShoppingCartItem);
+                    dbContext.SaveChanges();
                 }
             }
-
-            foreach (Dictionary<string, int> Item in ShoppingCart.ProductList)
-            {
-                Count += Item["Amount"];
-            }
-            return Json(new { CartCount = Count, ShoppingCart = ShoppingCart.ProductList });
+            List<ProductsShoppingCart> productsShoppingCart = dbContext.ProductsShoppingCart.Where(psc => psc.ShoppingCart == shoppingCart).ToList();
+            int ItemCount = productsShoppingCart.Count(psc => psc.Products.ProductID == id);
+            int TotalItem = productsShoppingCart.Count();
+            return Json(new { TotalItem = TotalItem, ItemCount = ItemCount });
         }
     }
 }

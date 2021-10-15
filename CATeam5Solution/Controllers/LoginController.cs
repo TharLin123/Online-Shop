@@ -77,7 +77,7 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult CreateAccount()
         {
-
+            
             return View();
 
         }
@@ -118,14 +118,16 @@ namespace CATeam5Solution.Controllers
       
        public IActionResult ResetPass(IFormCollection form)
         {
+
+            string username1 = (string)Request.Cookies["Username"];
             string emailAdd = form["email"];
             Users emailReset = dbContext.Users.FirstOrDefault(x => x.Email == emailAdd);
             if (emailReset == null)
-            {
+            {   
                 TempData["Pop"] = "Email Not found, Kindly Retry";
                 return RedirectToAction("ForgetPass", "Login");
             }
-            TempData["Pop"] = "Password link will be sent to your registered email";
+            TempData["Pop"] = "Password link will be sent to your registered email" + username1;
             return RedirectToAction("Index","Login");
         }
 

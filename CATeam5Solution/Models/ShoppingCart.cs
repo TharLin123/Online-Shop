@@ -6,11 +6,16 @@ namespace CATeam5Solution.Models
 {
     public class ShoppingCart
     {
-        public static List<Dictionary<string, int>> ProductList = new List<Dictionary<string, int>>();
-        Dictionary<string, int> ShoppingCartDict = new Dictionary<string, int>();
+        public ShoppingCart()
+        {
+            ShoppingCartId = new Guid();
+            ProductsShoppingCarts = new List<ProductsShoppingCart>();
 
-        public static void ClearCart(){
-            ProductList.Clear();
         }
+
+        public Guid ShoppingCartId { get; set; }
+        public virtual Users User { get; set; }
+        public virtual ICollection<ProductsShoppingCart> ProductsShoppingCarts { get; set; }
+        
     }
 }

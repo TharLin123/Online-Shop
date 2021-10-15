@@ -26,7 +26,6 @@ namespace CATeam5Solution.Models
         public virtual ICollection<Order> Order { get; set; }//每个user会有很多的Order
 
         public virtual ICollection<CartItem> CartItems { get; set; }
-        
-        
+
     }
 }
