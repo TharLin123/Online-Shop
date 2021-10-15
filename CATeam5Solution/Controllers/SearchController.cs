@@ -28,16 +28,20 @@ namespace CATeam5Solution.Controllers
                 x.ProductName.Contains(searchStr) ||
                 x.Description.Contains(searchStr)).ToList();
                 ViewData["AllProducts"] = products;
-                ViewData["ShoppingCart"] = ShoppingCart.ProductList;
             }
             else
             {
+<<<<<<< Updated upstream
                 
                 return RedirectToAction("Index", "Home"); //return to Gallery page if cleared
 
                 //ViewData["AllProducts"] = allProducts;
                 //ViewData["ShoppingCart"] = ShoppingCart.ProductList;
                 //searchStr = "";
+=======
+                ViewData["AllProducts"] = allProducts;
+                searchStr = "";
+>>>>>>> Stashed changes
             }
 
 

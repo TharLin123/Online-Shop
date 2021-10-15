@@ -83,7 +83,7 @@ namespace CATeam5Solution
         {
             HashAlgorithm sha = SHA256.Create();
 
-            string[] usernames = { "adam", "betty", "charles", "daniel","elson","hehehe" };
+            string[] usernames = { "adam", "betty", "charles", "daniel", "elson", "hehehe" };
 
             foreach (string username in usernames)
             {
@@ -100,6 +100,7 @@ namespace CATeam5Solution
 
             dbContext.SaveChanges();
         }
+<<<<<<< Updated upstream
 
         public void SeedCartItem()
         {
@@ -139,5 +140,7 @@ namespace CATeam5Solution
             dbContext.SaveChanges();
         }
 
+=======
+>>>>>>> Stashed changes
     }
 }
