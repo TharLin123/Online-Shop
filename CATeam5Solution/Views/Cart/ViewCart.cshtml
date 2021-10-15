@@ -1,6 +1,8 @@
 ﻿@{
-    List<CartItem> cartItems = (List<CartItem>)ViewData["cart"];
     ViewData["Title"] = "View Cart";
+    List<CartItem> cartItems = (List<CartItem>)ViewData["cart"];
+    var userCartAmt = ViewData["userCartAmt"];
+    
 }
 
     <head>
@@ -14,7 +16,7 @@
 
 
         @if (cartItems.Count == 0)
-    {
+        {
             <div>Your cart is empty!</div>
         }
         else
@@ -35,7 +37,7 @@
                     <th>Subtotal</th>
                     <th>Remove from Cart</th>
                 </tr>
-                
+
                 @foreach (var cartitem in cartItems)
                 {
                     var placeholder = "subtotal" + @cartitem.Product.ProductID;
@@ -46,20 +48,33 @@
 
                     <tr id=@placeholder3>
                         <td>
-                            <img src="/img/@cartitem.Product.Image"></td>
+                            <img src="/img/@cartitem.Product.Image">
+                        </td>
                         <td>
                             <b>@cartitem.Product.ProductName</b><br>
                             @cartitem.Product.Description<br><br />
-                            <span id=@placeholder2 class="unitprice">$@cartitem.Product.UnitPrice</span></td>
+                            <span id=@placeholder2 class="unitprice">$@cartitem.Product.UnitPrice</span>
+                        </td>
                         <td>
-                            <div><input id=@cartitem.Product.ProductID type="number" step="1" min="1" max="" name="quantity" value="@cartitem.Quantity" title="qty" class="cart_QuantityBox" size="4" pattern="" inputmode="">
-                            </div></td>
+                            <div>
+                                <input id=@cartitem.Product.ProductID type="number" step="1" min="1" max="" name="quantity" value="@cartitem.Quantity" title="qty" class="cart_QuantityBox" size="4" pattern="" inputmode="">
+                            </div>
+                        </td>
                         <td id=@placeholder class="subtotals">
-                            $@initSubtotal </td>
+                            $@initSubtotal
+                        </td>
                         <td>
-                            <a id="@placeholder4" class="cartItem"><img src="/img/RemoveFromCartIcon.png" class="cart_RemoveIcon"></a></td>
+                            <a id="@placeholder4" class="cartItem"><img src="/img/RemoveFromCartIcon.png" class="cart_RemoveIcon"></a>
+                        </td>
                     </tr>
                 }
+
             </table>
-        }
-    </body>
+
+            <hr />
+            
+            <h5 style="text-align:right">Total Price: $@userCartAmt</h5>
+            <input type="submit" value="Checkout &#x2192"; class="cart_CheckoutButton">
+            <a href="" class="purchaseLink"><div class="card-footer text-center"> Checkout &#8594; </div></a>
+                    }
+</body>
