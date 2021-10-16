@@ -35,7 +35,6 @@ namespace CATeam5Solution.Controllers
                     Product = ProductToAdd,
                     Quantity = 1,
                 });
-                cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToAdd.ProductID);
             }
             else
             {
@@ -43,6 +42,7 @@ namespace CATeam5Solution.Controllers
             }
 
             dbContext.SaveChanges();
+            cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToAdd.ProductID);
             List<CartItem> cartItems = dbContext.CartItem.Where(cartItem => cartItem.Users.Id == User.Id).ToList();
             int TotalItemInCart = 0;
             foreach(CartItem item in cartItems)
