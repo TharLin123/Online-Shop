@@ -97,7 +97,7 @@
             </div>
         </nav>
     </header>
-    @*trying out new banner*@
+    @*header banner*@
     <section style=" width: 100%; padding: 60px 0; text-align: center; background-color: royalblue; color: white; margin: 0">
         <h1>Adob3 Reseller</h1>
         @if ((string)ViewData["Title"] == "Home Page")
@@ -111,6 +111,10 @@
         else if ((string)ViewData["Title"] == "Privacy Policy")
         {
             <h2>Privacy Policy</h2>
+        }
+        else if ((string)ViewData["Title"] == "My Purchases")
+        {
+            <h2>My Purchases</h2>
         }
         else
         {
