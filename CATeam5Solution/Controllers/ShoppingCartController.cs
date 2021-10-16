@@ -18,7 +18,9 @@ namespace CATeam5Solution.Controllers
         [HttpPost]
         public IActionResult AddToCart(int id)
         {
-            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).Users;
+            string sesessionId = Request.Cookies["SessionId"];
+            if (string.IsNullOrEmpty(sesessionId)) return Redirect("/Login");
+            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == sesessionId).Users;
             Products ProductToAdd = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
 
             ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User.Id == User.Id);
@@ -32,8 +34,11 @@ namespace CATeam5Solution.Controllers
                     Users = User,
                     Product = ProductToAdd,
                     Quantity = 1,
-                }); 
-            } else {
+                });
+                cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToAdd.ProductID);
+            }
+            else
+            {
                 cartItem.Quantity += 1;
             }
 
@@ -50,7 +55,9 @@ namespace CATeam5Solution.Controllers
         [HttpPost]
         public IActionResult RemoveFromCart(int id)
         {
-            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == Request.Cookies["sessionId"]).Users;
+            string sesessionId = Request.Cookies["SessionId"];
+            if (string.IsNullOrEmpty(sesessionId)) return Redirect("/Login");
+            Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == sesessionId).Users;
             Products ProductToRemove = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
     
             CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToRemove.ProductID);
