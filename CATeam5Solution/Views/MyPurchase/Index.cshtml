@@ -6,7 +6,10 @@
 <head>
     <link href="~/css/MyPurchase.css" rel="stylesheet" />
 </head>
-
+@if (TempData["Alert"] != null)
+{
+    <p>@TempData["Alert"]</p>
+}
 @if (myPurchaseViewModels == null)
 {
     <div>Your history is empty.</div>
@@ -21,25 +24,31 @@ else
                 @foreach (var customer in myPurchaseViewModels)
                 {
                     <div class="producthistory">
-                        <a><img src=/img/@customer.ImageLink alt="" width="200" class="cards" /></a>
+                        <a><img src=/img/@customer.ImageLink alt="" class="cards" /></a>
                         <p></p>
-                        <p title="Quantity: @customer.Quantity&#10;Order Date: @customer.DateTime"><a href="#">@customer.Name</a></p>
+                        <p><b>@customer.Name</b></p>
                         <div class="Desc">
                             <p>@customer.Description</p>
                         </div>
-                        <br />
-                        <select class="select">
-                            <option value="Activation Code">Activation Code</option>
-                            @for (int i = 0; i < customer.ActivationCode.Count; i++)
-                            {
-                                <option value="Actcode">@customer.ActivationCode[i]</option>
-                            }
-                        </select>
-                        <button class="Download">Download</button>
-                        <br />
+                        <p class="orderDetail">
+                            Quantity: @customer.Quantity</p>
+                        <p class="orderDetail">
+                            Order Date: @customer.DateTime</p>
 
-                        <p></p>
-                        <form id="score_form">
+
+                            <br />
+                            <select class="select">
+                                <option value="Activation Code">Activation Code</option>
+                                @for (int i = 0; i < customer.ActivationCode.Count; i++)
+                                {
+                                    <option value="Actcode">@customer.ActivationCode[i]</option>
+                                }
+                            </select>
+                            <button class="Download">Download</button>
+                            <br />
+
+<p></p>
+                        @*<form id="score_form">
                             <div class="star-rating">
                                 <fieldset class="starability-basic">
                                     <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
@@ -56,7 +65,7 @@ else
                                 </fieldset>
                             </div>
                         </form>
-                        <textarea class="Review" onClick="this.value='';">Leave a review</textarea>
+                        <textarea class="Review" onClick="this.value='';">Leave a review</textarea>*@
                     </div>
                 }
             </div>
@@ -99,10 +108,13 @@ else
     .Download {
         min-width: 80px;
     }
-
+    .orderDetail
+    {
+        color:gray;
+    }
     .Detail {
-        margin-top:20px;
-        margin-right:20px;
+        margin-top: 20px;
+        margin-right: 20px;
         min-width: 80px;
     }
 
