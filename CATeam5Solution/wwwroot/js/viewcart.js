@@ -153,7 +153,7 @@ function AjaxRemoveItem(productId) {
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status == 200) {
-                let cartId = "cartitem"+productId
+                let cartId = "cartitem" + productId
                 let item = document.getElementById(cartId);
                 let data = JSON.parse(this.responseText);
 
@@ -163,24 +163,59 @@ function AjaxRemoveItem(productId) {
                     item.remove();
 
                     let rowCheck = document.getElementsByClassName("itemRow");
+                    //let allCartContent = document.getElementsByClassName("allCartContent");
                     let table = document.getElementById("cartTable");
+                    let checkoutButton = document.getElementById("checkoutButton");
+                    let totalPriceBottom = document.getElementById("totalPriceBottom");
+                    let lineDivider = document.getElementById("lineDivider");
+
                     if (rowCheck.length == 0) {
                         table.remove();
-                        let element = document.createElement("div");
-                        let content = document.createTextNode("Your cart is empty!");
-                        let result = element.appendChild(content);
-                        let cartHeader = document.getElementById("cartHeader");
+                        checkoutButton.remove();
+                        totalPriceBottom.remove();
+                        lineDivider.remove();
 
-                        cartHeader.after(result);
+                        let cartTop = document.getElementById("cartTop");
+                        //Message
+                        let msgNode = document.createElement("div");
+                        let msg = document.createTextNode("Your cart is empty!");
+
+                        //Apply styles
+                        msgNode.style.textAlign = "center";
+                        msgNode.style.padding = "20px";
+                        msgNode.style.fontSize = "18px";
+                        msgNode.style.fontWeight = "bolder"; 
+
+                        let msgResult = msgNode.appendChild(msg);
+
+                        //Image
+                        let imgNode = document.createElement("div");
+                        let img = document.createElement('img');
+                        img.src = "img/CryingFaceEmoji.png";
+
+                        //Apply styles
+                        img.style.height = "150px";
+                        img.style.width = "150px";
+                        img.style.display = "block";
+                        img.style.marginLeft = "auto";
+                        img.style.marginRight = "auto";
+
+                        let imgResult = imgNode.appendChild(img);
+
+                        //Display
+                        cartTop.after(msgResult);
+                        msgResult.after(imgResult);
+                        }
                     }
                 }
             }
-        }
-    };
+        };
 
-    let itemToRemove = {
-        ProductId: productId,
-    };
-    xhr.send(JSON.stringify(itemToRemove));
-}
+        let itemToRemove = {
+            ProductId: productId,
+        };
+        xhr.send(JSON.stringify(itemToRemove));
+
+
+    }
 
