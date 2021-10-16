@@ -38,7 +38,15 @@ window.onload = function () {
     for (let i = 0; i < cart.length; i++) {
         cart[i].addEventListener('click', removeItem);
     }
+
+    ////set event listener for checkout button
+    //let checkout = document.getElementById("checkoutButton");
+    //checkout.addEventListener('click', CheckOut);
 }
+
+//function CheckOut(event) {
+//    let target = event.currentTarget;
+//}
 
 /*let initValue = onFocus();
 
@@ -118,7 +126,7 @@ function AjaxUpdateCartDB(productId, value) {
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status == 200)
             {
-                let total = document.getElementById("totalPrice");
+                let total = document.getElementById("totalPriceBottom");
                 let data = JSON.parse(this.responseText);
 
                 if (data.status == "success") {
@@ -158,21 +166,19 @@ function AjaxRemoveItem(productId) {
                 let data = JSON.parse(this.responseText);
 
                 if (data.status == "success") {
-                    let total = document.getElementById("totalPrice");
+                    let total = document.getElementById("totalPriceBottom");
                     total.innerHTML = "Total: $" + data.userCartAmt;
                     item.remove();
 
                     let rowCheck = document.getElementsByClassName("itemRow");
-                    //let allCartContent = document.getElementsByClassName("allCartContent");
                     let table = document.getElementById("cartTable");
                     let checkoutButton = document.getElementById("checkoutButton");
-                    let totalPriceBottom = document.getElementById("totalPriceBottom");
                     let lineDivider = document.getElementById("lineDivider");
 
                     if (rowCheck.length == 0) {
                         table.remove();
                         checkoutButton.remove();
-                        totalPriceBottom.remove();
+                        total.remove();
                         lineDivider.remove();
 
                         let cartTop = document.getElementById("cartTop");

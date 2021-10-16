@@ -10,7 +10,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @*<title>@ViewData["Title"] - Adob3 Reseller</title>*@
     <title>Adob3 Reseller</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -47,23 +46,23 @@
                             }
                         </li>
                         <li class="nav-item">
-                            @if ((string)ViewData["Title"] != "View Cart")
-                            {
+                            @*@if ((string)ViewData["Title"] != "View Cart")
+                            {*@
                                 <a class="nav-link light" asp-area="" asp-controller="MyPurchase" asp-action="Index"><b>My Purchases</b></a>
-                            }
+                            @*}
                             else
                             {
                                 <a class="nav-link light" asp-area="" asp-controller="Cart" asp-action="CheckOut"><b>Checkout</b></a>
-                            }
+                            }*@
                         </li>
 
 
-                        @if ((string)ViewData["Title"] == "View Cart")
+                        @*@if ((string)ViewData["Title"] == "View Cart")
                         { 
                             <li class="nav-item ml-auto">
                                 <a id="totalPrice" class="nav-link text-light">Total: $@ViewData["userCartAmt"]</a>
                             </li>
-                        }
+                        }*@
                     <li class="nav-item ml-auto" id="Cart">
                         @*Shopping Cart Icon*@
                         @if ((string)ViewData["Title"] == "View Cart")
