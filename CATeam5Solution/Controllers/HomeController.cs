@@ -32,12 +32,15 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult Index()
         {
+            
             List<Products> allProducts = dbContext.Products.ToList();
             ViewData["AllProducts"] = allProducts;
-            return View(); // testing github
+
+            return View(); 
         }
 
-        public IActionResult Privacy()
+
+        public IActionResult About()
         {
             return View();
         }

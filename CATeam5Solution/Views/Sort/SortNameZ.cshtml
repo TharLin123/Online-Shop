@@ -1,13 +1,14 @@
-﻿@{
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
     ViewData["Title"] = "Home Page";
     List<Products> allProducts = (List<Products>)ViewData["allProducts"];
-    List<Products> priceAsce = (List<Products>)ViewData["priceAsce"];
-    List<Products> priceDesc = (List<Products>)ViewData["priceDesc"];
+    List<Products> nameZ = (List<Products>)ViewData["nameZ"];
 
     string searchStr = (string)ViewData["searchStr"];
-
 }
-
 
 @{
     @* Kenny search *@
@@ -17,17 +18,17 @@
 
     <p></p>
 }
+
 <b>Sort By:</b>
-<a href ="/Sort/SortAsce">Low to High</a> |
+<a href="/Sort/SortAsce">Low to High</a> |
 <a href="/Sort/SortDesc">High to Low</a> |
 <a href="/Sort/SortNameA">A to Z</a> |
-<a href="/Sort/SortNameZ">Z to A</a> |
-
-
+<a href="/Sort/SortNameZ"><b>Z to A</b></a> |
+<a href="/Home/Index">Clear</a>
 
 <div class="container">
     <div class="row mx-auto">
-        @{foreach (Products products in allProducts)
+        @{foreach (Products products in nameZ)
             {
                 <div class="card m-10 p-10" style="width: 18rem; margin: 0.5rem;">
                     <img class="card-img-top mx-auto" style="width: 150px;height: 150px; margin: 1rem" src="/img/@products.Image" alt="Product Image TBF">
@@ -49,8 +50,3 @@
         }
     </div>
 </div>
-
-
-
-
-

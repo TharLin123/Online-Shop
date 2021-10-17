@@ -22,7 +22,7 @@ namespace CATeam5Solution
             SeedProducts();
             SeedUsers();
 
->>>>>>> 45f3ff06991bfb3f345774bb991c2c664e2c77c5
+
         }
 
         public void SeedProducts()
