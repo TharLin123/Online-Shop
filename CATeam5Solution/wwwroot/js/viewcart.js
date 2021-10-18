@@ -39,31 +39,9 @@ window.onload = function () {
         cart[i].addEventListener('click', removeItem);
     }
 
-    ////set event listener for checkout button
-    //let checkout = document.getElementById("checkoutButton");
-    //checkout.addEventListener('click', CheckOut);
 }
 
-//function CheckOut(event) {
-//    let target = event.currentTarget;
-//}
 
-/*let initValue = onFocus();
-
-function onFocus(event) {
-    let target = event.currentTarget;
-    let initValue = document.getElementById(target.id).value;
-    return initValue;
-}*/
-
-/*function onBlur(event) {
-    let target = event.currentTarget;
-    let value = document.getElementById(target.id).value
-    if (isNaN(value)) {
-        alert("Please input a correct quantity. You may remove the item by clicking on the delete icon on the right.");
-        document.getElementById(productId).value = 1;
-    }
-}*/
 
 function UpdatePrice(event) {
     let target = event.currentTarget;
@@ -82,15 +60,7 @@ function UpdatePrice(event) {
         document.getElementById(subtotalId).innerHTML = "$" + unitprice;
 
         subtotalgroup = document.getElementsByClassName("subtotals");
-        /*let sum = 0;
 
-        for (let i = 0; i < subtotalgroup.length; i++) {
-            let amt = subtotalgroup[i].innerHTML.substring(1)*1
-            sum += amt;
-        }
-
-        document.getElementById("totalPrice").innerHTML = "Total: $" + sum;
-        return;*/
     }
 
     value = document.getElementById(productId).value * 1;
@@ -105,8 +75,7 @@ function UpdatePrice(event) {
         newsubtotal = value * unitprice;
     }
     
-    /*let converter = new Intl.NumberFormat('en-US');
-    let finalsubtotal = converter.format(newsubtotal.toFixed(2));*/
+    
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }

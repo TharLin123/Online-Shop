@@ -100,43 +100,6 @@ namespace CATeam5Solution
             dbContext.SaveChanges();
         }
 
-        public void SeedCartItem()
-        {
-            Users user1 = dbContext.Users.FirstOrDefault(x => x.UserName == "Adam");
-            Users user2 = dbContext.Users.FirstOrDefault(x => x.UserName == "Betty");
-            Products product1 = dbContext.Products.FirstOrDefault(x => x.ProductID == 1);
-            Products product3 = dbContext.Products.FirstOrDefault(x => x.ProductID == 3);
-
-            if (user1 != null)
-            {
-                CartItem item1 = new CartItem
-                {
-                    Quantity = 5
-                };
-                user1.CartItems.Add(item1);
-                product1.CartItems.Add(item1);
-            }
-
-            if (user2 != null)
-            {
-                CartItem item1 = new CartItem
-                {
-                    Quantity = 11
-                };
-                user2.CartItems.Add(item1);
-                product1.CartItems.Add(item1);
-
-                CartItem item2 = new CartItem
-                {
-                    Quantity = 19
-                };
-                user2.CartItems.Add(item2);
-                product3.CartItems.Add(item2);
-
-            }
-
-            dbContext.SaveChanges();
-        }
     }
 }
 
