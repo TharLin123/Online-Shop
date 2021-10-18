@@ -12,24 +12,13 @@ namespace CATeam5Solution.Controllers
 {
     public class HomeController : Controller
     {
-        /*Have to comment out the following HomeController default
-         * Otherwise cannot put in DBContext and constructor
-         * which then results in not being able to add all products 
-         * to the list (XH)
-         */
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
         private DBContext dbContext;
         public HomeController(DBContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
+        //show all products on the Home page
         public IActionResult Index()
         {
             DB db = new DB(dbContext);
@@ -38,7 +27,6 @@ namespace CATeam5Solution.Controllers
 
             return View(); 
         }
-
 
         public IActionResult About()
         {
