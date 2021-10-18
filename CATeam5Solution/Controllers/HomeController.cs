@@ -32,7 +32,7 @@ namespace CATeam5Solution.Controllers
 
         public IActionResult Index()
         {
-            
+            DB db = new DB(dbContext);
             List<Products> allProducts = dbContext.Products.ToList();
             ViewData["AllProducts"] = allProducts;
 

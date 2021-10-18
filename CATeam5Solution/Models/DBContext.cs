@@ -24,9 +24,6 @@ namespace CATeam5Solution.Models
         public DbSet<CartItem> CartItem { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ActCode> ActCode { get; set; }
-        public DbSet<ShoppingCart> ShoppingCart { get; set; }
-        public DbSet<ProductsShoppingCart> ProductsShoppingCart { get; set; }
-
     }
 }
     
