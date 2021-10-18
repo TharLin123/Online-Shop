@@ -16,6 +16,7 @@ namespace CATeam5Solution.Controllers
             this.dbContext = dbContext;
         }
 
+        //sort products in ascending order (price)
         public IActionResult SortAsce()
         {
             List<Products> allProducts = dbContext.Products.ToList();
@@ -27,6 +28,7 @@ namespace CATeam5Solution.Controllers
             return View(); 
         }
 
+        //sort products in descending order (price)
         public IActionResult SortDesc()
         {
 
@@ -39,6 +41,7 @@ namespace CATeam5Solution.Controllers
             return View(); 
         }
 
+        //sort products in ascending order (name)
         public IActionResult SortNameA()
         {
             List<Products> allProducts = dbContext.Products.ToList();
@@ -50,6 +53,7 @@ namespace CATeam5Solution.Controllers
             return View();
         }
 
+        //sort products in descending order (name)
         public IActionResult SortNameZ()
         {
             List<Products> allProducts = dbContext.Products.ToList();

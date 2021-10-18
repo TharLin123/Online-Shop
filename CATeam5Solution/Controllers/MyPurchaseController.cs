@@ -36,26 +36,7 @@ namespace CATeam5Solution.Controllers
             ViewData["myPurchaseViewModel"] = myPurchaseViewModels;
 
             return View();
-        }
-        public IActionResult Details()
-        {
-            //Show orderId, ordertotal, email, phonenumber, orderDate, which account, coupon or not, activation code and something else?
-            //have function to delete orders
-            return View();
-        }
-
-        public IActionResult MyPurchase()
-        {
-            
-            return View();
-        }//for testing the page only now
-        public IActionResult Review()
-        {
-
-            return View();
-        }
-
-       
+        }     
         //Copy CartItem controller's code
         private Session GetSession()
         {
