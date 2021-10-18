@@ -34,7 +34,7 @@ namespace CATeam5Solution.Controllers
             CreateOrder orderMaker = new CreateOrder(userid,dbContext);
             orderMaker.MakeOrder();//with passing the data to user/product/order/actcode tables, the his data in cartitem table will be deleted.
             return RedirectToAction("Index", "MyPurchase");
-        }//check out function-----> put user's cartitem data into User/Product/Order table
+        }//check out function puts user's cartitem data into User/Product/Order table
        
         [Route("Cart")]
         public IActionResult ViewCart()
@@ -89,7 +89,7 @@ namespace CATeam5Solution.Controllers
                 { status = "success",
                   userCartAmt
                 });
-            /*}*/
+            
 
         }
 

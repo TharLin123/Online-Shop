@@ -28,16 +28,14 @@ namespace CATeam5Solution.Controllers
             }
 
             Guid userid = session.UsersId;//get user's Guid
-            //the following 2 lines are for testing only
-            //Users user = dbContext.Users.FirstOrDefault(x => x.UserName.Equals("adam"));
-            //Guid userid = user.Id;
+          
             GetMyPurchaseData myPurchaseMaker = new GetMyPurchaseData(userid, dbContext);
             List<MyPurchaseViewModel> myPurchaseViewModels = myPurchaseMaker.MakeMyPurchaseView();
             ViewData["myPurchaseViewModel"] = myPurchaseViewModels;
 
             return View();
         }     
-        //Copy CartItem controller's code
+        
         private Session GetSession()
         {
             if (Request.Cookies["SessionId"] == null)

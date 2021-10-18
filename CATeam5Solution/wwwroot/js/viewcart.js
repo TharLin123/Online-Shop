@@ -1,7 +1,5 @@
 ﻿//Quantity box
 
-//const { ajax } = require("jquery");
-//Not sure what is the above line somehow it got generated when i was working other parts
 //Reference:  https://embed.plnkr.co/plunk/B5waxZ
 function wcqib_refresh_quantity_increments() {
     jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function (a, b) {
