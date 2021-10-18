@@ -9,7 +9,7 @@ var checkpass = function ()
     var password2 = document.getElementById('password').value.length;
 
     if (password2 < 8) {
-        alert("Password requires to be at least 8 letters");
+        alert("Password requires to be at least 8 characters");
         document.getElementById("submitCreate").disabled = true;
         return;
     }
@@ -21,13 +21,13 @@ var checkpass = function ()
     }
     else if (password == "")
     {
-        alert("Please Enter Password!");
+        alert("Please Enter a Password");
        document.getElementById("submitCreate").disabled = true;
         return;
     }
     else if (password.toLowerCase() != confirmPass.toLowerCase())
     {
-        alert("Password & Confirm Password Do not match");
+        alert("Password & Confirm Password do not match");
         document.getElementById("submitCreate").disabled = true;
         return;
     }
