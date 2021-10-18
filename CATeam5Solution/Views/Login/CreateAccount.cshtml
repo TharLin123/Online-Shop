@@ -30,14 +30,14 @@
                         </div>
                         <div>
                             <input name="confirmPass" id="confirmPass" type="password" style="margin-left:135px" required />
-                            <input type="button" id="btnCheck" value="Check Password" title="Check Passwor" onclick="checkpass()" />
+                            <input type="button" id="btnCheck" value="Check Password" title="Check Password" onclick="checkpass()" />  @*Checkpass is a javascript function that will do validation on the passwords*@
                         </div>
                     </div>
                     <div class="my_row">
                         <div class="my_cell"></div>
                         <div class="my_cell" style="text-align: center">
                             <br />
-                            <input type="submit" id="submitCreate" value="Submit" class="btn btn-primary" title="Please Check Password" disabled />
+                            <input type="submit" id="submitCreate" value="Submit" class="btn btn-primary" title="Please Check Password" disabled /> @*Button Disabled at first until checkpassword is okay so that user would not be able to create account unless validation is done*@
                             <input type="reset" value="Reset" class="btn btn-primary" title="Reset Form" />
                         </div>
                     </div>

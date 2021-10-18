@@ -2,11 +2,6 @@
 <html lang="en">
 
 
-@{ 
-    string popmess = (string) TempData["Pop"];
-}
-
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -137,7 +132,7 @@
 
     <div class="container">
         <main role="main" class="pb-3">
-            @if (@TempData["Pop"] != null)
+            @if (@TempData["Pop"] != null) @*To pop messages when there is an error during login/accountcreation*@
             {
                 <script>
                     var message = '@TempData["Pop"]';
