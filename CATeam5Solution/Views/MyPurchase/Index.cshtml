@@ -10,9 +10,12 @@
     <p>@TempData["Alert"]</p>
 
 }
-@if (myPurchaseViewModels.Count==0)
+@if (myPurchaseViewModels.Count == 0)
 {
-    <div>Your history is empty.</div>
+    <div class="cartEmptyDiv">
+        <h3 id="cartEmptyMessage" style="text-align:center; padding: 20px;">Your history is empty!</h3>
+        <img id="cartEmptyMessage_Emoji" src="~/img/CryingFaceEmoji.png" class="cart_CryingFaceEmoji" />
+    </div>
 }
 else
 {
@@ -48,7 +51,7 @@ else
                             }
                         </select>
                         <button class="Download"><a href="~/download/1.zip">Download</a></button>
-                        <br/>
+                        <br />
                     </div>
                 }
             </div>
@@ -189,6 +192,13 @@ else
         letter-spacing: 2px;
         border-top-width: 2px;
         margin-top: 20px;
+    }
+    .cart_CryingFaceEmoji {
+        height: 150px;
+        width: 150px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
 
