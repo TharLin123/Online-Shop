@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CATeam5Solution.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace CATeam5Solution.Controllers
 {
@@ -17,7 +17,7 @@ namespace CATeam5Solution.Controllers
             this.dbContext = dbContext;
         }
 
-        // GET: /<controller>/
+        
         public IActionResult Index(string searchStr)
         {
             List<Products> allProducts = dbContext.Products.ToList();
@@ -31,20 +31,12 @@ namespace CATeam5Solution.Controllers
             }
             else
             {
-
-                
-                return RedirectToAction("Index", "Home"); //return to Gallery page if cleared
-
-                //ViewData["AllProducts"] = allProducts;
-                //ViewData["ShoppingCart"] = ShoppingCart.ProductList;
-                //searchStr = "";
-
                 ViewData["AllProducts"] = allProducts;
                 searchStr = "";
+                return RedirectToAction("Index", "Home"); 
+
             }
-
-
-            return View(); // testing github
+            return View(); 
         }
     }
 }
