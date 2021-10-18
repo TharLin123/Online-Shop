@@ -26,10 +26,7 @@ namespace CATeam5Solution.Models
         public double UnitPrice { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        //1 to many between order and products
-        //public virtual Guid OrderId { get; set; }
-
-        //many 2 many relationship between Pro and Ord
+        
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<ActCode> ActCodes { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; }
