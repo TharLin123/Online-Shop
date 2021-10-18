@@ -35,8 +35,6 @@ var checkpass = function ()
     {
         alert("Password good to go!");
         document.getElementById("submitCreate").disabled = false;
-        document.getElementById("password").disabled = false;
-        document.getElementById("confirmPass").disabled = false;
     }
 
 }

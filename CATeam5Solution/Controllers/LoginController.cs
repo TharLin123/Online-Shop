@@ -88,11 +88,16 @@ namespace CATeam5Solution.Controllers
             string email = form["email"].ToString();
 
             Users user = dbContext.Users.FirstOrDefault(x =>x.UserName == username);
-
             if (user != null)
             {
-                TempData["Pop"] = "Username has been taken please try again";
-                return RedirectToAction("RegisterAccount", "Login");
+                TempData["Pop"] = "Username has been taken please try again.";
+                return RedirectToAction("Index", "Login");
+            }
+            Users user1 = dbContext.Users.FirstOrDefault(x => x.Email == email);
+            if (user1 != null)
+            {
+                TempData["Pop"] = "Email exists, Kindly please retry again or use forget password";
+                return RedirectToAction("Index", "Login");
             }
 
             HashAlgorithm sha = SHA256.Create();
@@ -106,7 +111,7 @@ namespace CATeam5Solution.Controllers
             }); ;
             dbContext.SaveChanges();
             TempData["Pop"] = "User has been created!";
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index","Login");
         }
 
 
