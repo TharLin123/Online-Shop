@@ -24,7 +24,7 @@ namespace CATeam5Solution
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -35,8 +35,7 @@ namespace CATeam5Solution
             );
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        //[FromServices]DBContext dbContext
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
             [FromServices] DBContext dbContext)
         {
@@ -47,7 +46,7 @@ namespace CATeam5Solution
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -69,7 +68,7 @@ namespace CATeam5Solution
             if (!dbContext.Database.CanConnect())
             {
                 dbContext.Database.EnsureCreated();
-                db.Seed();//the seed should be here to prevent multiple seedings everytime we restart the asp mvc 
+                db.Seed();
             }
             
         }         
