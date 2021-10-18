@@ -8,8 +8,9 @@
 @if (TempData["Alert"] != null)
 {
     <p>@TempData["Alert"]</p>
+
 }
-@if (myPurchaseViewModels == null)
+@if (myPurchaseViewModels.Count==0)
 {
     <div>Your history is empty.</div>
 }
