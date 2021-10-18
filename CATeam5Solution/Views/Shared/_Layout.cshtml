@@ -41,23 +41,10 @@
                             }
                         </li>
                         <li class="nav-item">
-                            @*@if ((string)ViewData["Title"] != "View Cart")
-                            {*@
                                 <a class="nav-link light" asp-area="" asp-controller="MyPurchase" asp-action="Index"><b>My Purchases</b></a>
-                            @*}
-                            else
-                            {
-                                <a class="nav-link light" asp-area="" asp-controller="Cart" asp-action="CheckOut"><b>Checkout</b></a>
-                            }*@
                         </li>
 
 
-                        @*@if ((string)ViewData["Title"] == "View Cart")
-                        { 
-                            <li class="nav-item ml-auto">
-                                <a id="totalPrice" class="nav-link text-light">Total: $@ViewData["userCartAmt"]</a>
-                            </li>
-                        }*@
                     <li class="nav-item ml-auto" id="Cart">
                         @*Shopping Cart Icon*@
                         @if ((string)ViewData["Title"] == "View Cart")
