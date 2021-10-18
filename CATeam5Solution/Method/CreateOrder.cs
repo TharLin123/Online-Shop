@@ -24,8 +24,8 @@ namespace CATeam5Solution.Method
 
         private Dictionary<Products, int> FindProducts()
         {
-            List<CartItem> cart = createOrderDB.CartItem.Where(x => x.UsersId == this.UserId).ToList();//Find all CartItem of him 找到用户的所有CartItem
-            Dictionary<Products, int> productDetail = new Dictionary<Products, int>();//new a dict to store product with its quantity 新建一个字典存储Product & quantity
+            List<CartItem> cart = createOrderDB.CartItem.Where(x => x.UsersId == this.UserId).ToList();//Find all CartItem of user
+            Dictionary<Products, int> productDetail = new Dictionary<Products, int>();//new dict to store product with its quantity
             foreach (var item in cart)
             {
                 productDetail.Add(item.Product, item.Quantity);
@@ -37,7 +37,7 @@ namespace CATeam5Solution.Method
         {
             Order order = new Order { 
                 UsersId = this.UserId,
-            };//new an order object
+            };//new order object
             foreach (var item in productDetail) // for each key value pair in the dict(product,quantity)
             {
                 for (int i = 0; i < item.Value; i++)//loop qunantity time to add all the products in his cart to the order.Products(List)

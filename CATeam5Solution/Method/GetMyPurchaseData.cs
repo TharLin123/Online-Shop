@@ -25,12 +25,12 @@ namespace CATeam5Solution.Method
             {
                 foreach (ActCode actcode in order.ActCodes)
                 {
-                    actCodes.Add(actcode);//get all actcodes of him 获取他所有的Actcodes(从这里可以计算出单个商品有几个Actcode)
+                    actCodes.Add(actcode);//get all actcodes of user
                 }
                 foreach (Products product in order.Products)
                 {
                     if (!products.Contains(product))
-                        products.Add(product);//get how many types of product he has bought 获取到他购买过几种商品(包括展示需要的各种信息)
+                        products.Add(product);//get how many types of product user has bought
                 }
             }
             foreach (Products pro in products)
