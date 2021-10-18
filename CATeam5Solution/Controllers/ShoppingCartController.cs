@@ -22,9 +22,6 @@ namespace CATeam5Solution.Controllers
             if (string.IsNullOrEmpty(sesessionId)) return Redirect("/Login");
             Users User = dbContext.Session.FirstOrDefault(session => session.Id.ToString() == sesessionId).Users;
             Products ProductToAdd = dbContext.Products.FirstOrDefault(product => product.ProductID == id);
-
-            ShoppingCart shoppingCart = dbContext.ShoppingCart.FirstOrDefault(cart => cart.User.Id == User.Id);
-
             CartItem cartItem = dbContext.CartItem.FirstOrDefault(cartItem => cartItem.Users.Id == User.Id && cartItem.Product.ProductID == ProductToAdd.ProductID);
           
             if (cartItem == null)
