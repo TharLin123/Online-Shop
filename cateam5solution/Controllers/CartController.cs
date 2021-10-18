@@ -58,17 +58,6 @@ namespace CATeam5Solution.Controllers
 
             return View();
 
-            //Code below just for testing view 
-
-
-            //List<CartItem> cartItems = dbContext.CartItem.ToList();
-            //ViewData["cart"] = cartItems;
-
-            //string userCartAmt = cartItems.Sum(x => x.Quantity * x.Product.UnitPrice).ToString("#,0.00");
-
-            //ViewData["userCartAmt"] = userCartAmt;
-
-            //return View();
 
         }
 
@@ -81,24 +70,8 @@ namespace CATeam5Solution.Controllers
             string userCartAmt;
 
             newquantity = values.Quantity;
-            
+                                   
 
-                                 
-            //REMOVING THE ITEM FROM CART SHOULD HAVE A SEPARATE ACTION METHOD
-            /*if (newquantity == 0) 
-            {
-                CartItem cartItem = dbContext.CartItem.FirstOrDefault(x => x.UsersId == userid && x.Product.ProductID == values.ProductId);
-
-                dbContext.Remove(cartItem);
-                dbContext.SaveChanges();
-
-                userCartAmt = dbContext.CartItem.Where(x => x.UsersId == userid).Sum(x => x.Quantity * x.Product.UnitPrice).ToString();
-
-                return Json(new 
-                { status = "success", 
-                  userCartAmt});
-            } else
-            {*/
                 CartItem cartItem = dbContext.CartItem.FirstOrDefault(x => x.UsersId == userid && x.Product.ProductID == values.ProductId);
 
                 if (cartItem != null)
