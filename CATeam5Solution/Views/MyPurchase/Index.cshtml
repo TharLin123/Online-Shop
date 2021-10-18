@@ -4,9 +4,7 @@
     List<MyPurchaseViewModel> myPurchaseViewModels = (List<MyPurchaseViewModel>)ViewData["myPurchaseViewModel"];
 }
 
-<head>
-    <link href="~/css/MyPurchase.css" rel="stylesheet" />
-</head>
+
 @if (TempData["Alert"] != null)
 {
     <p>@TempData["Alert"]</p>
@@ -45,103 +43,11 @@ else
                             @for (int i = 0; i < customer.ActivationCode.Count; i++)
                             {
                                 <option value="Actcode">@customer.ActivationCode[i]</option>
+
                             }
                         </select>
-                        <button class="Download">Download</button>
-                        <br />
-
-                        <p></p>
-                        @*<form id="score_form">
-                                <div class="star-rating">
-                                    <fieldset class="starability-basic">
-                                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-                                        <input type="radio" id="first-rate1" name="rating" value="1" />
-                                        <label for="first-rate1" title="Terrible">1 star</label>
-                                        <input type="radio" id="first-rate2" name="rating" value="2" />
-                                        <label for="first-rate2" title="Not good">2 stars</label>
-                                        <input type="radio" id="first-rate3" name="rating" value="3" />
-                                        <label for="first-rate3" title="Average">3 stars</label>
-                                        <input type="radio" id="first-rate4" name="rating" value="4" />
-                                        <label for="first-rate4" title="Very good">4 stars</label>
-                                        <input type="radio" id="first-rate5" name="rating" value="5" />
-                                        <label for="first-rate5" title="Amazing">5 stars</label>
-                                    </fieldset>
-                                </div>
-                            </form>*@<form id="score_form">
-                            <div class="star-rating">
-                                <fieldset class="starability-basic">
-                                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-                                    <input type="radio" id="first-rate1" name="rating" value="1" />
-                                    <label for="first-rate1" title="Terrible"></label>
-                                    <input type="radio" id="first-rate2" name="rating" value="2" />
-                                    <label for="first-rate2" title="Not good"></label>
-                                    <input type="radio" id="first-rate3" name="rating" value="3" />
-                                    <label for="first-rate3" title="Average"></label>
-                                    <input type="radio" id="first-rate4" name="rating" value="4" />
-                                    <label for="first-rate4" title="Very good"></label>
-                                    <input type="radio" id="first-rate5" name="rating" value="5" />
-                                    <label for="first-rate5" title="Amazing"></label>
-                                </fieldset>
-                            </div>
-                        </form>
-                        <div class="xing">
-
-                            <span style="float: left">总体评价:<font color="#CC3300" size="-1">*</font></span>
-                            <div class="rating-wrap">
-
-                                <ul id="xing1">
-
-                                    <li><a href="javascript:;" data-rate-value="10" data-hint="很差" title="很差" class="one-star"></a></li>
-
-                                    <li>
-                                        <a href="javascript:;" data-rate-value="20" data-hint="差" title="差" class="two-stars "></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" data-rate-value="30" data-hint="还行" title="还行" class="three-stars "></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" data-rate-value="40" data-hint="好" title="好" class="four-stars"></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" data-rate-value="50" data-hint="很好" title="很好" class="five-stars"></a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <span class="xing1">点击星星开始打分</span>
-
-                        </div>
-
-                        <div class="xing">
-
-                            <span style="float: left">广告效果:<font color="#CC3300" size="-1">*</font></span>
-                            <div class="rating-wrap">
-
-                                <ul id="xing2">
-
-                                    <li><a href="javascript:;" data-rate-value="10" data-hint="很差" title="很差" class="one-star"></a></li>
-
-                                    <li><a href="javascript:;" data-rate-value="20" data-hint="差" title="差" class="two-stars "></a></li>
-
-                                    <li><a href="javascript:;" data-rate-value="30" data-hint="还行" title="还行" class="three-stars "></a></li>
-
-                                    <li><a href="javascript:;" data-rate-value="40" data-hint="好" title="好" class="four-stars"></a></li>
-
-                                    <li>
-                                        <a href="javascript:;" data-rate-value="50" data-hint="很好" title="很好" class="five-stars"></a>
-                                    </li>
-
-                                </ul>
-
-                            </div>
-
-                            <span class="xing2">点击星星开始打分</span>
-
-                        </div>
-
-
-
-                        <textarea class="Review" onClick="this.value='';">Leave a review</textarea>
+                        <button class="Download"><a href="~/download/1.zip">Download</a></button>
+                        <br/>
                     </div>
                 }
             </div>
@@ -150,64 +56,11 @@ else
     </body>
     <div class="copyright">&copy;2020 - <strong>GRID</strong></div>
 
-    <script type="text/javascript" src="js/jQuery_1.42.js"></script>
-
-    <script type="text/javascript">
-
-    $(function(){
-
-      $(".rating-wrap a").mouseover(function(){
-
-           $(this).parent().siblings().find("a").removeClass("active-star");
-
-           $(this).addClass("active-star");
-
-           $("."+$(this).parent().parent().attr("id")).html($(this).attr("data-hint"))
-
-        }).mouseleave(function(){
-
-var selectID=$(this).parent().parent().attr("id")+"select";
-
-           $(this).removeClass("active-star");
-
-if($("#"+selectID).length==0)
-
-           {
-
-               $("."+$(this).parent().parent().attr("id")).removeClass("active-hint").html("点击星星开始打分");
-
-           }
-
-else
-
-           {
-
-               $("."+$(this).parent().parent().attr("id")).html($("#"+selectID).attr("data-hint"));
-
-               $("#"+selectID).addClass("active-star");
-
-           }
-
-       }).click(function(){
-
-           $(this).addClass("active-star").attr('id',$(this).parent().parent().attr("id")+"select");
-
-           $(this).parent().siblings().find("a").attr("id","");
-
-           $("."+$(this).parent().parent().attr("id")).html($(this).attr("data-hint")).addClass("active-hint");
-
-       })
-
-    })
-
-    </script>
-
 }
 
 
 <style>
     body {
-        font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
         background-color: #FFFFFF;
         margin: 0;
     }
