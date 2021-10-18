@@ -22,8 +22,7 @@ namespace CATeam5Solution.Models
 
         public string Email { get; set; }
 
-        //1 to many between user and orders
-        public virtual ICollection<Order> Order { get; set; }//每个user会有很多的Order
+        public virtual ICollection<Order> Order { get; set; }
 
         public virtual ICollection<CartItem> CartItems { get; set; }
 
